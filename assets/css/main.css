@@ -1,0 +1,10 @@
+.inputext {
+    margin: 20px;
+    border-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-color: #555555;
+}
+
+.card {
+    box-shadow: 10px 10px 5px grey;
+}
