@@ -1,2 +1,2 @@
 # newgate.ho
-medical-clinic-tracking-system
+newgate is a medical-clinic-tracking-system

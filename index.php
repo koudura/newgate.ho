@@ -1,3 +1,3 @@
 <?php
-    header("Location: http://localhost/newgate.ho/login.php");
+    header("Location: /newgate.ho/login.php");
 ?>

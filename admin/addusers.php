@@ -1,4 +1,7 @@
 <?php
+    require_once('../functions/functions.php');
+    session_start();
+    if (!isset($_SESSION["ID"]) || !isAdmin()){ header("Location: /newgate.ho/login.php");}
 
 ?>
 
@@ -16,6 +19,7 @@
         <input type="email" name="email" placeholder="email">
         <br>
         <ul>
+            <h4>Roles</h4>
             <li><label>Admin <input type="checkbox" name="role" value="1"></label></li>
             <li><label>Doctor <input type="checkbox" name="role" value="2"></label></li>
             <li><label>Support <input type="checkbox" name="role" value="3"></label></li>

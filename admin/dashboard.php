@@ -1,7 +1,7 @@
 <?php
     require_once("../functions/functions.php");
     session_start();
-    if (!isset($_SESSION["ID"]) || !isAdmin()){ header("Location: ../login.php");}
+    if (!isset($_SESSION["ID"]) || !isAdmin()){ header("Location: /newgate.ho/login.php");}
 
 ?>
 
