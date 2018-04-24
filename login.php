@@ -57,8 +57,8 @@
                     </div>
                     <div>
                         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                            <input type="email" name="email" placeholder="email" class="inputext">
-                            <input type="password" name="password" placeholder="password" class="inputext">
+                            <input type="email" name="email" placeholder="email" class="inputext" required>
+                            <input type="password" name="password" placeholder="password" class="inputext" required>
                             <input type="submit" name="submit" value="Login" class="btn btn-primary">
                         </form>
                     </div>
