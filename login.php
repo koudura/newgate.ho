@@ -35,8 +35,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <title> Login </title>
@@ -44,7 +44,7 @@
 <body>
     <div class="text-center">
         <h1 class="jumbotron">New Gate Hospital</h1>
-        <div>
+        <div class="backbone">
             <div class="card mx-auto" style="width:20rem;height:20rem">
                 <div class="card-body ">
                     <div class="card-content ">
