@@ -1,1 +1,2 @@
 ErrorDocument 404 /newgate.ho/errors/404.php
+ErrorDocument 401 /newgate.ho/errors/401.php

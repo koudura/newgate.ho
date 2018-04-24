@@ -1,6 +1,10 @@
 <?php
     require_once("functions/conn.php");
     require_once("functions/functions.php");
+    session_start();
+    if (isset($_SESSION["ID"])){
+        header("Location: /newgate.ho/landing.php");      
+    }
 
     if (isset($_POST["submit"])){
         $conn = connect();

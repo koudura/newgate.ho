@@ -12,4 +12,7 @@
         return in_array(3, $_SESSION['role']) || in_array(2, $_SESSION['role']);
     }
 
+    function doUnauthorized(){
+        header('Location: /newgate.ho/errors/401.php');
+    }
 ?>

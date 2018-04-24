@@ -1,5 +1,6 @@
 <?php
+    session_start();
+    $_SESSION = array();
     session_destroy();
-    unset($_SESSION);
-    header("Location: http://localhost/newgate.ho/login.php");
+    header("Location: /newgate.ho/login.php");
 ?>
