@@ -43,7 +43,7 @@
 </head>
 <body>
     <div class="text-center">
-        <h1 class="jumbotron">Heaven's Gate Hospital</h1>
+        <h1 class="jumbotron">New Gate Hospital</h1>
         <div>
             <div class="card mx-auto" style="width:20rem;height:20rem">
                 <div class="card-body ">
