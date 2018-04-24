@@ -1,6 +1,6 @@
 <?php
-    require_once("/newgate.ho/functions/conn.php");
-    require_once("/newgate.ho/functions/functions.php");
+    require_once("functions/conn.php");
+    require_once("functions/functions.php");
 
     if (isset($_POST["submit"])){
         $conn = connect();
