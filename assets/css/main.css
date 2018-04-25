@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.btn {
+    margin: 30px;
+}
+
 .jumbotron {
     background-color: #4975e9;
 }
@@ -19,11 +23,45 @@
     font-size: 24px;
 }
 
+.logo {
+    background-color: #4975e9;
+    border-right: 1px solid#6e6d6d;
+}
+
+.navbar {
+    border-right: 1px solid#6e6d6d;
+}
+
+.profile {
+    background-color: #0C12B2;
+}
+
+.bodbut {
+    margin: 10px;
+    font-size: 12px;
+    border: 0 none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #0C12B2;
+    font-family: roboto, medium;
+    border-radius: 0;
+    width: 181px;
+    height: 36px;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 5fr;
     grid-template-areas: "logo profile" "navbar stuff";
+    width: 100vw;
+    height: 100vh;
+}
+
+.navgrid {
+    display: grid;
+    grid-template-rows: 15% 50% 35%;
+    grid-template-areas: " . damn .";
 }
 
 .logingrid {
