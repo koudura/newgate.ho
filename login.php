@@ -1,7 +1,7 @@
 <?php
     require_once("functions/conn.php");
     require_once("functions/functions.php");
-    session_start();
+
     if (isset($_SESSION["ID"])){
         header("Location: /newgate.ho/landing.php");      
     }
@@ -15,11 +15,11 @@
         if( $result = $stmt->fetch(PDO::FETCH_ASSOC) ){
         
             $id = $result["ID"];
-            $stmt2 = $conn->query("SELECT * FROM rel_user_roles WHERE userID = $id");
+            $stmt2 = $conn->query("SELECT role FROM tbl_roles WHERE userID = $id");
             $result2 = $stmt2->fetchall(PDO::FETCH_ASSOC);
             $rolearray = array();
             foreach ($result2 as $row) {
-                array_push($rolearray,intval($row["roleID"]));
+                array_push($rolearray,$row["role"]);
             }
             session_start();
             $_SESSION['ID'] = $id;
