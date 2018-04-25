@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
+DROP DATABASE `db_newgate`;
 CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `db_newgate`;
 
