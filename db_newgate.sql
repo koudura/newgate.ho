@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 25, 2018 at 08:07 AM
+-- Generation Time: Apr 25, 2018 at 03:03 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -27,33 +27,25 @@ USE `db_newgate`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rel_user_roles`
+-- Table structure for table `tbl_patients`
 --
 
-DROP TABLE IF EXISTS `rel_user_roles`;
-CREATE TABLE IF NOT EXISTS `rel_user_roles` (
+DROP TABLE IF EXISTS `tbl_patients`;
+CREATE TABLE IF NOT EXISTS `tbl_patients` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `userID` int(11) NOT NULL,
-  `roleID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `roleID` (`roleID`),
-  KEY `rel_user_roles_ibfk_2` (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_num` varchar(255) NOT NULL,
+  `dob` date NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `rel_user_roles`
+-- Truncate table before insert `tbl_patients`
 --
 
-TRUNCATE TABLE `rel_user_roles`;
---
--- Dumping data for table `rel_user_roles`
---
-
-INSERT INTO `rel_user_roles` (`ID`, `userID`, `roleID`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(4, 3, 2);
-
+TRUNCATE TABLE `tbl_patients`;
 -- --------------------------------------------------------
 
 --
@@ -63,8 +55,10 @@ INSERT INTO `rel_user_roles` (`ID`, `userID`, `roleID`) VALUES
 DROP TABLE IF EXISTS `tbl_roles`;
 CREATE TABLE IF NOT EXISTS `tbl_roles` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `userID` int(11) NOT NULL,
+  `role` enum('ADMIN','DOCTOR','SUPPORT') NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `userID` (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -76,10 +70,10 @@ TRUNCATE TABLE `tbl_roles`;
 -- Dumping data for table `tbl_roles`
 --
 
-INSERT INTO `tbl_roles` (`ID`, `name`) VALUES
-(1, 'ADMIN'),
-(2, 'DOCTOR'),
-(3, 'SUPPORT');
+INSERT INTO `tbl_roles` (`ID`, `userID`, `role`) VALUES
+(1, 1, 'ADMIN'),
+(2, 3, 'DOCTOR'),
+(3, 1, 'DOCTOR');
 
 -- --------------------------------------------------------
 
@@ -115,11 +109,10 @@ INSERT INTO `tbl_users` (`ID`, `email`, `firstname`, `lastname`, `password`) VAL
 --
 
 --
--- Constraints for table `rel_user_roles`
+-- Constraints for table `tbl_roles`
 --
-ALTER TABLE `rel_user_roles`
-  ADD CONSTRAINT `rel_user_roles_ibfk_1` FOREIGN KEY (`roleID`) REFERENCES `tbl_roles` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `rel_user_roles_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `tbl_users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_roles`
+  ADD CONSTRAINT `tbl_roles_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `tbl_users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
