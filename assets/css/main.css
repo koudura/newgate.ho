@@ -1,13 +1,17 @@
 .inputext {
-    /* margin: 30px; */
+    margin: 30px;
     border-style: hidden;
     border-bottom-style: solid;
-    border-bottom-color: #555555;
+    border-bottom-color: #556797;
     width: 100%;
 }
 
 .jumbotron {
     background-color: #4975e9;
+}
+
+::placeholder {
+    color: #4975e9;
 }
 
 .details {

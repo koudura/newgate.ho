@@ -3,7 +3,7 @@
     require_once("functions/functions.php");
 
     if (isset($_SESSION["ID"])){
-        header("Location: /newgate.ho/landing.php");      
+        header("Location: /newgate.ho/dashboard.php");      
     }
 
     if (isset($_POST["submit"])){
@@ -25,7 +25,7 @@
             $_SESSION['ID'] = $id;
             $_SESSION['email'] = $result["email"];
             $_SESSION['role'] = $rolearray;
-            header("Location: landing.php");
+            header("Location: dashboard.php");
         }
     }
 
@@ -55,11 +55,11 @@
     </div> 
     <div class = "logingrid"> 
       <div></div>
-        <div class="made">
+        <div class="made text-center">
             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                 <input type="email" name="email" placeholder="Email" class="inputext" required><br>
                 <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
-                <input type="submit" name="submit" value="Continue" class="text-center btn btn-primary">
+                <input type="submit" name="submit" value="Continue" class="btn btn-primary">
             </form>
         </div>  
     <div></div>

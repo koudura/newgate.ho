@@ -7,6 +7,6 @@
     <title>404</title>
 </head>
 <body>
-    we dont have teh page
+    we dont have teh pages
 </body>
 </html>
