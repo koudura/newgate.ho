@@ -27,13 +27,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>View Users</title>
 </head>
 <body>
-    
+    <div class="grid">
+        <div class = "logo">sss</div>
+        <div class = "profile">adsdas</div>
+        <div class = "navbar ">
+            <div class ="navgrid">
+                <div class="damn">
+                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Users</button></a> 
+                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Questionnaires</button></a>
+                </div>
+            </div>
+        </div>
+ <div class = "stuff">
+            
     <table>
         <thead>
             <tr>
@@ -71,6 +85,7 @@ _END;
         
         </tbody>
     </table>
-
+        </div>
+    </div>
 </body>
 </html>

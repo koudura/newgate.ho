@@ -29,14 +29,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add User</title>
 </head>
 <body>
-
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <div class="grid">
+        <div class = "logo">sss</div>
+        <div class = "profile">adsdas</div>
+        <div class = "navbar ">
+            <div class ="navgrid">
+                <div class="damn">
+                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Patient</button></a> 
+                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Add Patient</button></a>
+                </div>
+            </div>
+        </div>
+        <div class = "stuff">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <input type="email" name="email" placeholder="email" required>
         <br>
         <input type="text" name="firstname" value="" required>
@@ -54,6 +67,9 @@
         
     </form>
     <p>Default password is lastname in lower case</p>
+        </div>
+    </div>
+    
     
 </body>
 </html>

@@ -59,7 +59,7 @@
             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                 <input type="email" name="email" placeholder="Email" class="inputext" required><br>
                 <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
-                <input type="submit" name="submit" value="Continue" class="btn ">
+                <input type="submit" name="submit" value="Continue" class="bodbut">
             </form>
         </div>  
     <div></div>
