@@ -49,23 +49,20 @@
 <body>
     <div class="text-center">
         <h1 class="jumbotron">New Gate Hospital</h1>
-        <div class="backbone">
-            <div class="card mx-auto" style="width:20rem;height:20rem">
-                <div class="card-body ">
-                    <div class="card-content ">
-                        <h3 class="card-heading ">Login</p>
-                    </div>
-                    <div>
-                        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                            <input type="email" name="email" placeholder="email" class="inputext" required>
-                            <input type="password" name="password" placeholder="password" class="inputext" required>
-                            <input type="submit" name="submit" value="Login" class="btn btn-primary">
-                        </form>
-                    </div>
-                </div>
-
-            </div>
+        <div>
+            <p class="details">Enter your details to continue</p>
         </div>
-    </div>
+    </div> 
+    <div class = "logingrid"> 
+      <div></div>
+        <div class="made">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                <input type="email" name="email" placeholder="Email" class="inputext" required><br>
+                <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
+                <input type="submit" name="submit" value="Continue" class="text-center btn btn-primary">
+            </form>
+        </div>  
+    <div></div>
+    </div>     
 </body>
 </html>
