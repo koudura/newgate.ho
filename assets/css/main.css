@@ -1,14 +1,33 @@
 .inputext {
-    margin: 20px;
+    /* margin: 30px; */
     border-style: hidden;
     border-bottom-style: solid;
     border-bottom-color: #555555;
+    width: 100%;
 }
 
-.card {
-    box-shadow: 10px 10px 5px grey;
+.jumbotron {
+    background-color: #4975e9;
 }
 
-.body {
-    background-color: aqua;
+.details {
+    font-family: Roboto;
+    font-size: 24px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "logo profile" "navbar stuff";
+}
+
+.logingrid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: ". made ."
+}
+
+.made {
+    justify-items: center;
 }

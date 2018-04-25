@@ -1,7 +1,7 @@
 <?php
     require_once("functions/conn.php");
     require_once("functions/functions.php");
-    session_start();
+
     if (isset($_SESSION["ID"])){
         header("Location: /newgate.ho/landing.php");      
     }
@@ -15,11 +15,11 @@
         if( $result = $stmt->fetch(PDO::FETCH_ASSOC) ){
         
             $id = $result["ID"];
-            $stmt2 = $conn->query("SELECT * FROM rel_user_roles WHERE userID = $id");
+            $stmt2 = $conn->query("SELECT role FROM tbl_roles WHERE userID = $id");
             $result2 = $stmt2->fetchall(PDO::FETCH_ASSOC);
             $rolearray = array();
             foreach ($result2 as $row) {
-                array_push($rolearray,intval($row["roleID"]));
+                array_push($rolearray,$row["role"]);
             }
             session_start();
             $_SESSION['ID'] = $id;
@@ -49,23 +49,20 @@
 <body>
     <div class="text-center">
         <h1 class="jumbotron">New Gate Hospital</h1>
-        <div class="backbone">
-            <div class="card mx-auto" style="width:20rem;height:20rem">
-                <div class="card-body ">
-                    <div class="card-content ">
-                        <h3 class="card-heading ">Login</p>
-                    </div>
-                    <div>
-                        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                            <input type="email" name="email" placeholder="email" class="inputext" required>
-                            <input type="password" name="password" placeholder="password" class="inputext" required>
-                            <input type="submit" name="submit" value="Login" class="btn btn-primary">
-                        </form>
-                    </div>
-                </div>
-
-            </div>
+        <div>
+            <p class="details">Enter your details to continue</p>
         </div>
-    </div>
+    </div> 
+    <div class = "logingrid"> 
+      <div></div>
+        <div class="made">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                <input type="email" name="email" placeholder="Email" class="inputext" required><br>
+                <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
+                <input type="submit" name="submit" value="Continue" class="text-center btn btn-primary">
+            </form>
+        </div>  
+    <div></div>
+    </div>     
 </body>
 </html>
