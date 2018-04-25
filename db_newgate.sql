@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 24, 2018 at 11:28 AM
+-- Generation Time: Apr 25, 2018 at 08:07 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
+CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db_newgate`;
 
 -- --------------------------------------------------------
 
@@ -38,6 +40,11 @@ CREATE TABLE IF NOT EXISTS `rel_user_roles` (
   KEY `rel_user_roles_ibfk_2` (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `rel_user_roles`
+--
+
+TRUNCATE TABLE `rel_user_roles`;
 --
 -- Dumping data for table `rel_user_roles`
 --
@@ -61,6 +68,11 @@ CREATE TABLE IF NOT EXISTS `tbl_roles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `tbl_roles`
+--
+
+TRUNCATE TABLE `tbl_roles`;
+--
 -- Dumping data for table `tbl_roles`
 --
 
@@ -79,17 +91,24 @@ DROP TABLE IF EXISTS `tbl_users`;
 CREATE TABLE IF NOT EXISTS `tbl_users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `tbl_users`
+--
+
+TRUNCATE TABLE `tbl_users`;
+--
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`ID`, `email`, `password`) VALUES
-(1, 'admin1@newgate.ho', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
-(3, 'doc1@newgate.ho', 'a5beb9d1b0e50129affe6e13e42d9e5f5942cda7');
+INSERT INTO `tbl_users` (`ID`, `email`, `firstname`, `lastname`, `password`) VALUES
+(1, 'admin1@newgate.ho', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
+(3, 'doc1@newgate.ho', 'donald', 'doc', 'a5beb9d1b0e50129affe6e13e42d9e5f5942cda7');
 
 --
 -- Constraints for dumped tables
