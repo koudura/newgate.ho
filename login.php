@@ -49,20 +49,21 @@
 <body>
     <div class="text-center">
         <h1 class="jumbotron">New Gate Hospital</h1>
-        <div>
-            <p class="details">Enter your details to continue</p>
-        </div>
+        
     </div> 
-    <div class = "logingrid"> 
-      <div></div>
-        <div class="made text-center">
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                <input type="email" name="email" placeholder="Email" class="inputext" required><br>
-                <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
-                <input type="submit" name="submit" value="Continue" class="bodbut">
-            </form>
+    <div class = "logingrid">   
+        <div></div>
+        <div class="card">            
+                <div>
+                    <p class="details">Enter your details to continue</p>
+                </div>
+                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                    <input type="email" name="email" placeholder="Email" class="inputext" required><br>
+                    <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
+                    <input type="submit" name="submit" value="Continue" class="bodbut" style="float:right">
+                </form>   
         </div>  
-    <div></div>
+        <div></div>
     </div>     
 </body>
 </html>

@@ -3,7 +3,7 @@
     border-style: hidden;
     border-bottom-style: solid;
     border-bottom-color: #556797;
-    width: 100%;
+    width: 90%;
 }
 
 .btn {
@@ -19,8 +19,11 @@
 }
 
 .details {
+    margin: 10px 0px 0px 30px;
     font-family: Roboto;
-    font-size: 24px;
+    font-size: 19px;
+    float: left;
+    color: #8E8E8E;
 }
 
 .logo {
@@ -37,6 +40,7 @@
 }
 
 .bodbut {
+    color: #ffffff;
     margin: 10px;
     font-size: 12px;
     border: 0 none;
@@ -70,6 +74,6 @@
     grid-template-columns: ". made ."
 }
 
-.made {
-    justify-items: center;
+.card {
+    box-shadow: 10px 10px grey;
 }
