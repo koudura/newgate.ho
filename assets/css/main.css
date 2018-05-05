@@ -10,7 +10,7 @@
     margin: 30px;
 }
 
-.jumbotron {
+.header {
     background-color: #4975e9;
 }
 
@@ -26,9 +26,21 @@
     color: #8E8E8E;
 }
 
+.nslogo {
+    height: 100px;
+    width: 100px;
+    float: right;
+}
+
+.lago {
+    height: 100px;
+    width: 100px;
+}
+
 .logo {
     background-color: #4975e9;
     border-right: 1px solid#6e6d6d;
+    text-align: center;
 }
 
 .navbar {
@@ -68,12 +80,24 @@
     grid-template-areas: " . damn .";
 }
 
+.floatleft {
+    background-color: #4975e9;
+    padding: 17px 0px 0px 0px;
+    color: #ffffff;
+}
+
+.floatright {
+    background-color: #4975e9;
+}
+
 .logingrid {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-columns: ". made ."
 }
 
-.card {
-    box-shadow: 10px 10px grey;
+.topgrid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "floatleft floatright";
 }

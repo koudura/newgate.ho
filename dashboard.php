@@ -19,7 +19,9 @@
 </head>
 <body>
     <div class="grid">
-        <div class = "logo">sss</div>
+        <div class = "logo">
+            <img class = "lago" src="assets/images/newgate.svg" alt="">
+        </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
             <div class ="navgrid">
@@ -31,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class = "stuff">adad</div>
+        <div class = "stuff"></div>
     </div>
     
     

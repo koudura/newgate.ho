@@ -47,9 +47,13 @@
     <title> Login </title>
 </head>
 <body>
-    <div class="text-center">
-        <h1 class="jumbotron">New Gate Hospital</h1>
-        
+    <div class="topgrid">
+        <div class = "floatright">
+        <img src="assets/images/newgate.svg" alt="" class="nslogo">
+        </div>
+        <div class = "floatleft">
+        <h1>CLINIC</h1>
+        </div>
     </div> 
     <div class = "logingrid">   
         <div></div>

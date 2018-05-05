@@ -36,7 +36,9 @@
 </head>
 <body>
     <div class="grid">
-        <div class = "logo">sss</div>
+        <div class = "logo">
+            <img class = "lago" src="assets/assets/newgate.svg" alt="logo here">
+        </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
             <div class ="navgrid">
@@ -46,8 +48,7 @@
                 </div>
             </div>
         </div>
- <div class = "stuff">
-            
+ <div class = "stuff">        
     <table>
         <thead>
             <tr>
@@ -58,7 +59,6 @@
                 <td>Role</td>
             </tr>
         </thead>
-
         <tbody>
             <?php foreach ($users as $user) {
                 $email = $user['email'];
