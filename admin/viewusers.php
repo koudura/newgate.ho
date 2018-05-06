@@ -52,11 +52,12 @@
     <table>
         <thead>
             <tr>
-                <td>Email</td>
-                <td>Firstname</td>
-                <td>Lastname</td>
-                <td>Admin</td>
-                <td>Role</td>
+                <th>Email</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Admin</th>
+                <th>Role</th>
+                <th>Phone Number</th>
             </tr>
         </thead>
         <tbody>
@@ -66,6 +67,7 @@
                 $lastname = $user['lastname'];
                 $admin = in_array('ADMIN', $roles[$user['ID']])? "TRUE":"FALSE";
                 $role = "";
+                $phoneno=$user['phoneno'];
                 if (in_array('DOCTOR', $roles[$user['ID']])){
                     $role = "DOCTOR";
                 }elseif (in_array('SUPPORT', $roles[$user['ID']])){
@@ -78,6 +80,7 @@
                 <td> $lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
+                <td> $phoneno </td>
             </tr>
 _END;
              }?>

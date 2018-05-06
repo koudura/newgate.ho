@@ -101,3 +101,35 @@
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "floatleft floatright";
 }
+
+th {
+    color: #AF6964;
+}
+
+th,
+td {
+    padding: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .inputext {
+        margin: 30px;
+        border-style: hidden;
+        border-bottom-style: solid;
+        border-bottom-color: #556797;
+        width: 50%;
+    }
+    .bodbut {
+        color: #ffffff;
+        margin: 10px;
+        font-size: 12px;
+        border: 0 none;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background-color: #0C12B2;
+        font-family: roboto, medium;
+        border-radius: 0;
+        width: 100px;
+        height: 36px;
+    }
+}
