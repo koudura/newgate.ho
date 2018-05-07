@@ -26,10 +26,10 @@
         <div class = "navbar ">
             <div class ="navgrid">
                 <div class="damn">
-                <?php echo  (isAdmin()) ?  '<a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">ADMIN</button></a>': ''; ?>
-                <?php echo  (isDoctor()) ?  '<a href="/newgate.ho/pages/dashboard.php"><button class="bodbut">Doc Only</button></a>': '';  ?>
-                <?php echo  (isDoctorOrSupport()) ? '<a href="/newgate.ho/pages/dashboard.php"><button class="bodbut">Manage Patients</button></a>': '';  ?>
-                <a href="/newgate.ho/logout.php"><button class="bodbut">Logout</button></a>
+                <?php echo  (isAdmin()) ?  '<a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">ADMIN</button></a>': ''; ?>
+                <?php echo  (isDoctor()) ?  '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Doc Only</button></a>': '';  ?>
+                <?php echo  (isDoctorOrSupport()) ? '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Manage Patients</button></a>': '';  ?>
+                <a href="/newgate.ho/logout.php"><button class="nav-btn">Logout</button></a>
                 </div>
             </div>
         </div>

@@ -1,9 +1,16 @@
+.body{
+    background-color: #F9F8F8;
+}
+.card{
+    box-shadow: 3px 4px 5px rgb(77, 77, 77), 0 0 10px rgb(77, 77, 77);
+}
 .inputext {
     margin: 30px;
     border-style: hidden;
     border-bottom-style: solid;
     border-bottom-color: #556797;
     width: 90%;
+    outline: none;
 }
 
 .btn {
@@ -39,19 +46,36 @@
 
 .logo {
     background-color: #4975e9;
-    border-right: 1px solid#6e6d6d;
+    /* border-right: 1px solid#6e6d6d; */
     text-align: center;
+    box-shadow: 0px -3px 20px rgb(77, 77, 77);
 }
 
 .navbar {
-    border-right: 1px solid#6e6d6d;
+    /* border-right: 1px solid#6e6d6d; */
+    box-shadow: -3px 0px 20px rgb(77, 77, 77);
 }
 
 .profile {
     background-color: #0C12B2;
+    box-shadow: 5px -3px 20px rgb(77, 77, 77);
 }
 
 .bodbut {
+    color: #ffffff;
+    margin: 10px;
+    font-size: 12px;
+    border: 0 none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #0C12B2;
+    font-family: roboto, medium;
+    border-radius: 0;
+    width: 100px;
+    height: 36px;
+}
+
+.nav-btn{
     color: #ffffff;
     margin: 10px;
     font-size: 12px;
@@ -72,6 +96,11 @@
     grid-template-areas: "logo profile" "navbar stuff";
     width: 100vw;
     height: 100vh;
+}
+
+.stuff{
+    margin: 20px;
+    box-shadow: 0px 0px 20px rgb(77, 77, 77);
 }
 
 .navgrid {

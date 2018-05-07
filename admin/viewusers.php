@@ -37,14 +37,14 @@
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="assets/assets/newgate.svg" alt="logo here">
+            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
         </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
             <div class ="navgrid">
                 <div class="damn">
-                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Users</button></a> 
-                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Questionnaires</button></a>
+                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Users</button></a> 
+                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Questionnaires</button></a>
                 </div>
             </div>
         </div>
