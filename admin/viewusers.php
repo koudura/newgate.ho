@@ -1,6 +1,7 @@
 <?php
     require_once("../functions/conn.php");
     require_once("../functions/functions.php");
+    require_once("../user.php");
     session_start();
     if (!isset($_SESSION["ID"]) || !isAdmin()){
         doUnauthorized();        
@@ -8,19 +9,7 @@
 
     $conn = connect();
     $stmt = $conn->query("SELECT * FROM tbl_users");
-    $users = $stmt->fetchall(PDO::FETCH_ASSOC);
-
-    $stmt2 = $conn->query("SELECT userID, role FROM tbl_roles");
-    $rol = $stmt2->fetchall(PDO::FETCH_ASSOC);
-    $roles = array();
-    foreach ($rol as $r) {
-        if (array_key_exists($r['userID'],$roles)){
-            array_push($roles[$r['userID']], $r['role']);
-        }else{
-            $roles[$r['userID']]  = array($r['role']);
-        }
-    }
-    
+    $users = User::getAllUsers($conn);    
 ?>
 
 
@@ -62,28 +51,21 @@
         </thead>
         <tbody>
             <?php foreach ($users as $user) {
-                $email = $user['email'];
-                $firstname = $user['firstname'];
-                $lastname = $user['lastname'];
-                $admin = in_array('ADMIN', $roles[$user['ID']])? "TRUE":"FALSE";
-                $role = "";
-                $phoneno=$user['phoneno'];
-                if (in_array('DOCTOR', $roles[$user['ID']])){
-                    $role = "DOCTOR";
-                }elseif (in_array('SUPPORT', $roles[$user['ID']])){
-                    $role = "SUPPORT";
-                }
+                $admin = ($user->isAdmin())?"True":"False";
+                $role = ($user->isDoctor())?"Doctor":"Support";
+                
                 echo <<<_END
             <tr>
-                <td> $email</td>
-                <td> $firstname</td>
-                <td> $lastname</td>
+                <td> $user->email</td>
+                <td> $user->firstname</td>
+                <td> $user->lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
-                <td> $phoneno </td>
+                <td> $user->phonenos </td>
             </tr>
 _END;
-             }?>
+             }
+             ?>
         
         
         </tbody>

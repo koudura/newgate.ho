@@ -2,7 +2,9 @@
     require_once("functions/functions.php");
     session_start();
     if (!isset($_SESSION["ID"])){ 
-        header("Location: /newgate.ho/login.php");
+        // header("Location: /newgate.ho/login.php");
+        echo("dejiii");
+        print_r($_SESSION);
     }
     
 ?>

@@ -1,4 +1,5 @@
 <?php
+    require_once("user.php");
     require_once("functions/conn.php");
     require_once("functions/functions.php");
 
@@ -8,29 +9,10 @@
 
     if (isset($_POST["submit"])){
         $conn = connect();
-        $stmt = $conn->prepare("SELECT * FROM tbl_users WHERE email = :email AND password = :password");
-        $data = array("email"=> $_POST['email'], "password" => sha1($_POST['password']));
-        $stmt->execute($data);
-
-        if( $result = $stmt->fetch(PDO::FETCH_ASSOC) ){
-        
-            $id = $result["ID"];
-            $stmt2 = $conn->query("SELECT role FROM tbl_roles WHERE userID = $id");
-            $result2 = $stmt2->fetchall(PDO::FETCH_ASSOC);
-            $rolearray = array();
-            foreach ($result2 as $row) {
-                array_push($rolearray,$row["role"]);
-            }
-            session_start();
-            $_SESSION['ID'] = $id;
-            $_SESSION['email'] = $result["email"];
-            $_SESSION['role'] = $rolearray;
-            header("Location: dashboard.php");
-        }
+        $user = User::getUserWithLD($conn, $_POST["email"], $_POST["password"]);
+        $user->saveToSession();       
+        header("Location: dashboard.php");
     }
-
-
-
 
 ?>
 

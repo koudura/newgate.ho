@@ -1,6 +1,7 @@
 <?php
     require_once("../functions/conn.php");
     require_once("../functions/functions.php");
+    require_once("../user.php");
     session_start();
     if (!isset($_SESSION["ID"]) || !isAdmin()){
         doUnauthorized();        
@@ -8,18 +9,8 @@
     if (isset($_POST["submit"])){
         if(isset($_POST['role'])){
             $conn = connect();
-            $stmt = $conn->prepare("INSERT INTO tbl_users (email, firstname, lastname, password) VALUES (:email, :firstname, :lastname, :password)");
-            $data = array("email" => $_POST["email"],
-                          "firstname" => $_POST["firstname"],
-                          "lastname" => $_POST["lastname"],
-                          "password" => strtolower($_POST["password"])
-                         );
-            if ($stmt->execute()){
-                $id = $conn->lastInsertId();
-                foreach ($_POST['role'] as $value) {
-                    $stmt2 = $conn->query("INSERT INTO rel_user_roles (userID, roleID) VALUES ($id, $value)");
-                }
-            }
+            $user = new User(null, $_POST['email'], $_POST['firstname'], $_POST['lastname'], "", $_POST['role']);
+            $user->saveToDB($conn);
         }
         
     }

@@ -1,5 +1,6 @@
 .body{
     background-color: #F9F8F8;
+    --deji: rgba(77, 77, 77, 0.315);
 }
 .card{
     box-shadow: 3px 4px 5px rgb(77, 77, 77), 0 0 10px rgb(77, 77, 77);
@@ -42,6 +43,7 @@
 .lago {
     height: 100px;
     width: 100px;
+    margin-top: -9px;
 }
 
 .logo {
@@ -78,21 +80,22 @@
 .nav-btn{
     color: #ffffff;
     margin: 10px;
-    font-size: 12px;
+    font-size: 11px;
     border: 0 none;
     letter-spacing: 1px;
     text-transform: uppercase;
     background-color: #0C12B2;
     font-family: roboto, medium;
-    border-radius: 0;
+    border-radius: 4px;
     width: 181px;
-    height: 36px;
+    height: 36px; 
+    box-shadow: 1px 1px 10px rgb(77, 77, 77);
 }
 
 .grid {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 12% 88%;
     grid-template-areas: "logo profile" "navbar stuff";
     width: 100vw;
     height: 100vh;
@@ -100,7 +103,8 @@
 
 .stuff{
     margin: 20px;
-    box-shadow: 0px 0px 20px rgb(77, 77, 77);
+    box-shadow: 2px 2px 20px rgba(77, 77, 77, 0.315);
+    border-radius: 4px;
 }
 
 .navgrid {
