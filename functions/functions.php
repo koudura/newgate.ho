@@ -17,6 +17,7 @@
 
     function doUnauthorized(){
         header('Location: /newgate.ho/errors/401.php');
+        exit();
     }
     /**
      * END OF AUTH FUNCTIONS
