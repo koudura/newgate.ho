@@ -71,9 +71,8 @@ class User {
     
     function saveToSession(){        
         session_start();
-        $_SESSION['ID'] = $this->id;
-        $_SESSION['email'] = $this->email;
-        $_SESSION['role'] = $this->role;
+        $_SESSION['user'] = $this;
+        
     }
 
     function isAdmin(){

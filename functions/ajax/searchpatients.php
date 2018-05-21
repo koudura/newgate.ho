@@ -1,10 +1,7 @@
 <?php
-    require_once();
-    $fnamecond;
-    $lnamecond;
-    $emailcomd;
-
-
+    require_once("../conn.php");
+    require_once("../functions.php");
+    
 
 
 ?>

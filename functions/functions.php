@@ -28,7 +28,7 @@
     }
 
     function tpost($var){
-        return (isset($_POST[$var])) ? $_POST[$var]: '';
+        return (isset($_POST[$var])) ? $_POST[$var] : NULL;
     }
 
 ?>

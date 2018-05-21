@@ -3,19 +3,26 @@
     require_once('../functions/functions.php');
 
     session_start();
-    if (!isset($_SESSION["ID"]) || !isDoctorOrSupport()){
+    $currentUser;
+    if (!isset($_SESSION["user"])){ 
+        doUnauthorized();        
+    }
+    $currentUser = $_SESSION['user'];
+    if (!$currentUser->isDoctorOrSupport()){
         doUnauthorized();        
     }
 
-    if (isset($_POST['submit'])  && (date('d/m/Y') <= date($_POST['dob']) )  ){
+    if (isset($_POST['submit'])  && (date('m/d/Y') <= date($_POST['dob']) )  ){
         
         $conn = connect();
-        $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob) VALUES (:firstname, :lastname, :email, :phone_num, :dob)");
+        $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
         $data = array(
             'firstname' => $_POST['firstname'],
             'lastname' => $_POST['lastname'],
             'email' => $_POST['email'],
             'phone_num' => $_POST['phone_num'],
+            'height' => $_POST['height'],
+            'weight' => $_POST['weight'],
             'dob' => $_POST['dob']
         );
 
@@ -26,7 +33,7 @@
     }
 
     $d1 = date('d/m/Y');
-    $d2 = date('27/2/2018');
+    $d2 = date('5/21/2018');
     echo $d1. "----". $d2;
     echo $d1 > $d2;
 ?>
@@ -47,6 +54,7 @@
         <input type="email" name="email" placeholder="email">
         <input type="text" name="phone_num" placeholder="phone num">
         <input type="date" name="dob" placeholder="date of birth">
+        <input type="number" name="height" placeholder="height">
         <input type="submit" name="submit" value="submit">
     </form>
 
