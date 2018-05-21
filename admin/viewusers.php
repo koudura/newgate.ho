@@ -31,12 +31,10 @@
         </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
-            <div class ="navgrid">
                 <div class="damn">
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Users</button></a> 
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Questionnaires</button></a>
                 </div>
-            </div>
         </div>
  <div class = "stuff">        
     <table>

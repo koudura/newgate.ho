@@ -22,15 +22,13 @@
             <img class = "lago" src="assets/images/newgate.svg" alt="">
         </div>
         <div class = "profile">adsdas</div>
-        <div class = "navbar ">
-            <div class ="navgrid">
+        <div class = "navbar">      
                 <div class="damn">
                 <?php echo  ($current_user->isAdmin()) ?  '<a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">ADMIN</button></a>': ''; ?>
                 <?php echo  ($current_user->isDoctor()) ?  '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Doc Only</button></a>': '';  ?>
                 <?php echo  ($current_user->isDoctor() || $current_user->isSupport()) ? '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Manage Patients</button></a>': '';  ?>
                 <a href="/newgate.ho/logout.php"><button class="nav-btn">Logout</button></a>
-                </div>
-            </div>
+                </div>  
         </div>
         <div class = "stuff"></div>
     </div>

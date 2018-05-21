@@ -43,16 +43,29 @@
     <title>Add patients</title>
 </head>
 <body>
-    
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <input type="text" name="firstname" placeholder="firstname">
-        <input type="text" name="lastname" placeholder="lastname">
-        <input type="email" name="email" placeholder="email">
-        <input type="text" name="phone_num" placeholder="phone num">
-        <input type="date" name="dob" placeholder="date of birth">
-        <input type="number" name="height" placeholder="height">
-        <input type="submit" name="submit" value="submit">
-    </form>
+    <div class="grid">
+        <div class = "logo">
+            <img class = "lago" src="assets/images/newgate.svg" alt="">
+        </div>
 
+        
+        <div class = "profile">adsdas</div>
+
+
+        <div class = "navbar"></div>
+
+
+        <div class = "stuff">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                <input type="text" name="firstname" placeholder="firstname">
+                <input type="text" name="lastname" placeholder="lastname">
+                <input type="email" name="email" placeholder="email">
+                <input type="text" name="phone_num" placeholder="phone num">
+                <input type="date" name="dob" placeholder="date of birth">
+                <input type="number" name="height" placeholder="height">
+                <input type="submit" name="submit" value="submit">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
