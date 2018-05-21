@@ -19,6 +19,14 @@
         header('Location: /newgate.ho/errors/401.php');
         exit();
     }
+
+    function getCurrentUserOrDie(){
+        if(!isset($_SESSION['user'])){
+            doUnauthorized();
+        }else{
+            return $_SESSION['user'];
+        }
+    }
     /**
      * END OF AUTH FUNCTIONS
      */
