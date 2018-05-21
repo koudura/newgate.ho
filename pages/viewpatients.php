@@ -1,11 +1,12 @@
 <?php
     require_once("../functions/conn.php");
     require_once("../functions/functions.php");
+    require_once("../classes/user.php");
     session_start();
-    if (!isset($_SESSION["ID"]) || !isDoctorOrSupport()){
-        doUnauthorized();        
+    $current_user = getCurrentUserOrDie();
+    if (!$current_user->isDoctor() && $current_user->isSupport()) {
+        doUnauthorized();      
     }
-
     $conn = connect();
     $stmt = $conn->query("SELECT * FROM tbl_patients");
     $patients = $stmt->fetchall(PDO::FETCH_ASSOC);

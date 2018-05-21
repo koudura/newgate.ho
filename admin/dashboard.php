@@ -1,8 +1,10 @@
 <?php
     require_once("../functions/functions.php");
+    require_once("../classes/user.php");
     session_start();
-    if (!isset($_SESSION["ID"]) || !isAdmin()){
-        doUnauthorized();        
+    $current_user = getCurrentUserOrDie();
+    if (!$current_user->isAdmin()) {
+        doUnauthorized();      
     }
 
 ?>

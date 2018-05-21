@@ -34,8 +34,10 @@ class User {
             foreach ($result2 as $row) {
                 array_push($rolearray,$row["role"]);
             }
-        }        
-        return new User($id, $result["email"], $result["firstname"], $result["lastname"], $result["phoneno"], $rolearray);
+            return new User($id, $result["email"], $result["firstname"], $result["lastname"], $result["phoneno"], $rolearray);
+        }
+        return null;     
+        
     }
 
     static function getUserWithLD($conn, $email, $password){     

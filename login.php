@@ -10,8 +10,10 @@
     if (isset($_POST["submit"])){
         $conn = connect();
         $user = User::getUserWithLD($conn, $_POST["email"], $_POST["password"]);
-        $user->saveToSession();       
-        header("Location: dashboard.php");
+        if (isset($user)){
+            $user->saveToSession();
+            header("Location: dashboard.php");
+        }
     }
 
 ?>

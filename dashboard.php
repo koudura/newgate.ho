@@ -1,11 +1,8 @@
 <?php
     require_once("functions/functions.php");
+    require_once("classes/user.php");
     session_start();
-    if (!isset($_SESSION["ID"])){ 
-        // header("Location: /newgate.ho/login.php");
-        echo("dejiii");
-        print_r($_SESSION);
-    }
+    $current_user = getCurrentUserOrDie();
     
 ?>
 
@@ -28,9 +25,9 @@
         <div class = "navbar ">
             <div class ="navgrid">
                 <div class="damn">
-                <?php echo  (isAdmin()) ?  '<a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">ADMIN</button></a>': ''; ?>
-                <?php echo  (isDoctor()) ?  '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Doc Only</button></a>': '';  ?>
-                <?php echo  (isDoctorOrSupport()) ? '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Manage Patients</button></a>': '';  ?>
+                <?php echo  ($current_user->isAdmin()) ?  '<a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">ADMIN</button></a>': ''; ?>
+                <?php echo  ($current_user->isDoctor()) ?  '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Doc Only</button></a>': '';  ?>
+                <?php echo  ($current_user->isDoctor() || $current_user->isSupport()) ? '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Manage Patients</button></a>': '';  ?>
                 <a href="/newgate.ho/logout.php"><button class="nav-btn">Logout</button></a>
                 </div>
             </div>

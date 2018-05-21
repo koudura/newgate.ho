@@ -1,15 +1,11 @@
 <?php
     require_once('../functions/conn.php');
     require_once('../functions/functions.php');
-
+    require_once("../classes/user.php");
     session_start();
-    $currentUser;
-    if (!isset($_SESSION["user"])){ 
-        doUnauthorized();        
-    }
-    $currentUser = $_SESSION['user'];
-    if (!$currentUser->isDoctorOrSupport()){
-        doUnauthorized();        
+    $current_user = getCurrentUserOrDie();
+    if (!$current_user->isDoctor() && $current_user->isSupport()) {
+        doUnauthorized();      
     }
 
     if (isset($_POST['submit'])  && (date('m/d/Y') <= date($_POST['dob']) )  ){
