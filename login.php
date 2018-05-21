@@ -1,5 +1,5 @@
 <?php
-    require_once("user.php");
+    require_once("classes/user.php");
     require_once("functions/conn.php");
     require_once("functions/functions.php");
 
