@@ -1,0 +1,54 @@
+<?php
+    require_once('../functions/conn.php');
+    require_once('../functions/functions.php');
+
+    session_start();
+    if (!isset($_SESSION["ID"]) || !isDoctorOrSupport()){
+        doUnauthorized();        
+    }
+
+    if (isset($_POST['submit'])  && (date('d/m/Y') <= date($_POST['dob']) )  ){
+        
+        $conn = connect();
+        $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob) VALUES (:firstname, :lastname, :email, :phone_num, :dob)");
+        $data = array(
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+            'email' => $_POST['email'],
+            'phone_num' => $_POST['phone_num'],
+            'dob' => $_POST['dob']
+        );
+
+        if($stmt->execute($data)){
+            header('Location: /newgate.ho/pages/viewpatients.php');
+        }
+
+    }
+
+    $d1 = date('d/m/Y');
+    $d2 = date('27/2/2018');
+    echo $d1. "----". $d2;
+    echo $d1 > $d2;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add patients</title>
+</head>
+<body>
+    
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <input type="text" name="firstname" placeholder="firstname">
+        <input type="text" name="lastname" placeholder="lastname">
+        <input type="email" name="email" placeholder="email">
+        <input type="text" name="phone_num" placeholder="phone num">
+        <input type="date" name="dob" placeholder="date of birth">
+        <input type="submit" name="submit" value="submit">
+    </form>
+
+</body>
+</html>
