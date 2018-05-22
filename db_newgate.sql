@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 22, 2018 at 05:27 PM
+-- Generation Time: May 22, 2018 at 07:12 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.0.29
 
@@ -21,6 +21,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_allergies`
+--
+
+DROP TABLE IF EXISTS `tbl_allergies`;
+CREATE TABLE IF NOT EXISTS `tbl_allergies` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `patientID` int(11) NOT NULL,
+  `desription` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `patient-allergies` (`patientID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_diagnosis`
+--
+
+DROP TABLE IF EXISTS `tbl_diagnosis`;
+CREATE TABLE IF NOT EXISTS `tbl_diagnosis` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `sessionID` int(11) NOT NULL,
+  `diagnosis` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `session-diagnosis` (`sessionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -53,6 +84,22 @@ INSERT INTO `tbl_patients` (`ID`, `firstname`, `lastname`, `email`, `phone_num`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_prescriptions`
+--
+
+DROP TABLE IF EXISTS `tbl_prescriptions`;
+CREATE TABLE IF NOT EXISTS `tbl_prescriptions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `diagnosisID` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `dosage` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `diagnosis-prescription` (`diagnosisID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_roles`
 --
 
@@ -73,6 +120,22 @@ INSERT INTO `tbl_roles` (`ID`, `userID`, `role`) VALUES
 (1, 1, 'ADMIN'),
 (2, 3, 'DOCTOR'),
 (3, 1, 'DOCTOR');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_sessions`
+--
+
+DROP TABLE IF EXISTS `tbl_sessions`;
+CREATE TABLE IF NOT EXISTS `tbl_sessions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `patientID` int(11) NOT NULL,
+  `bill` float NOT NULL,
+  `paid` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `patient-sessions` (`patientID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -103,10 +166,34 @@ INSERT INTO `tbl_users` (`ID`, `email`, `firstname`, `lastname`, `password`) VAL
 --
 
 --
+-- Constraints for table `tbl_allergies`
+--
+ALTER TABLE `tbl_allergies`
+  ADD CONSTRAINT `patient-allergies` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_diagnosis`
+--
+ALTER TABLE `tbl_diagnosis`
+  ADD CONSTRAINT `session-diagnosis` FOREIGN KEY (`sessionID`) REFERENCES `tbl_sessions` (`ID`);
+
+--
+-- Constraints for table `tbl_prescriptions`
+--
+ALTER TABLE `tbl_prescriptions`
+  ADD CONSTRAINT `diagnosis-prescription` FOREIGN KEY (`diagnosisID`) REFERENCES `tbl_diagnosis` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tbl_roles`
 --
 ALTER TABLE `tbl_roles`
   ADD CONSTRAINT `tbl_roles_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `tbl_users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_sessions`
+--
+ALTER TABLE `tbl_sessions`
+  ADD CONSTRAINT `patient-sessions` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
