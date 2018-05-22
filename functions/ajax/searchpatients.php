@@ -7,8 +7,7 @@
     $conn = connect();
 
     $idcond = Input::post('id', NULL);
-    $fnamecond = Input::post('name', NULL);
-    $lnamecond = Input::post('name', NULL);
+    $namecond = Input::post('name', NULL);
     $emailcond = Input::post('email', NULL);
     
     $patients = array();
@@ -17,8 +16,10 @@
         if ($patient){
             array_push($patients, $patient);
         }
+        echo json_encode($patients);
     }else{
-        
+        $patients = Patient::getPatientsByNameAndEmail($conn, $namecond, $emailcond);
+        echo json_encode($patients);
     }
-
+  
 ?>

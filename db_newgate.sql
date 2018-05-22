@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 21, 2018 at 04:36 PM
+-- Generation Time: May 22, 2018 at 05:27 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.0.29
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
-CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_newgate`;
 
 -- --------------------------------------------------------
 
@@ -41,13 +39,17 @@ CREATE TABLE IF NOT EXISTS `tbl_patients` (
   `height` float DEFAULT NULL,
   `weight` float DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `tbl_patients`
+-- Dumping data for table `tbl_patients`
 --
 
-TRUNCATE TABLE `tbl_patients`;
+INSERT INTO `tbl_patients` (`ID`, `firstname`, `lastname`, `email`, `phone_num`, `dob`, `height`, `weight`) VALUES
+(1, 'deji', 'akande', 'dejiakande33@gmail.com', '08143671138', '1998-11-06', 34, 50),
+(2, 'isaac', 'olawale', 'isaac@olawale.com', '', '1998-05-13', 99, 99),
+(3, 'jedidiah', 'enikuomehin', 'jedidiah@jed.com', '08012345678', '2001-02-03', 59, 34);
+
 -- --------------------------------------------------------
 
 --
@@ -63,11 +65,6 @@ CREATE TABLE IF NOT EXISTS `tbl_roles` (
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `tbl_roles`
---
-
-TRUNCATE TABLE `tbl_roles`;
 --
 -- Dumping data for table `tbl_roles`
 --
@@ -93,11 +90,6 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `tbl_users`
---
-
-TRUNCATE TABLE `tbl_users`;
 --
 -- Dumping data for table `tbl_users`
 --

@@ -49,6 +49,7 @@
                 return $default;
             }
         }
+        
 
         static function htmlpost($var, $default = NULL){
             if( isset($_POST[$var])){

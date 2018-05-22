@@ -1,8 +1,8 @@
 <?php
 class Patient {
-    public $id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight;
-    function __construct($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight){
-        $this->id = $id;
+    public $ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight;
+    function __construct($ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight){
+        $this->ID = $ID;
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -35,7 +35,17 @@ class Patient {
     }
 
     static function getPatientsByName($conn, $name){
-        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE firstname LIKE %".$name."%  OR lastname LIKE %" );
+        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE firstname LIKE '%".$name."%'  OR lastname LIKE '%".$name."'%");
+        return $stmt->fetchall(PDO::FETCH_ASSOC);
+    }
+
+    static function getPatientsByNameAndEmail($conn, $name, $email){
+        $cname = ($name)? "firstname LIKE '%".$name."%'  OR lastname LIKE '%".$name."%'"  : "FALSE" ;
+        $cemail = ($email)? "email LIKE '%".$email."%'"  : "FALSE" ;
+        if($cname=="FALSE" && $cemail=="FALSE"){
+            $cname = "TRUE";
+        }
+        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE $cname OR $cemail");
         return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
