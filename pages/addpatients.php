@@ -62,16 +62,16 @@
         <div class = "stuff text-center">
         <div class = "logingrid">   
         <div></div>
-        <div>            
+        <div class = "card">            
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                    <input class="inputext" type="text" name="firstname" placeholder="firstname" value="<?php echo Input::htmlpost('firstname');?>" required><br>
-                    <input class="inputext" type="text" name="lastname" placeholder="lastname" value="<?php echo Input::htmlpost('lastname');?>" required><br>
-                    <input class="inputext" type="email" name="email" placeholder="email" value="<?php echo Input::htmlpost('email');?>"><br>
-                    <input class="inputext" type="text" name="phone_num" placeholder="phone num" value="<?php echo Input::htmlpost('phone_num');?>"><br>
-                    <input class="inputext" type="date" name="dob" placeholder="date of birth" value="<?php echo Input::htmlpost('dob');?>" required><br>
-                    <input class="inputext" type="number" name="height" placeholder="height" value="<?php echo Input::htmlpost('height');?>"><br>
-                    <input class="inputext" type="number" name="weight" placeholder="weight" value="<?php echo Input::htmlpost('weight');?>"><br>
-                    <input class="inputext" type="submit" name="submit" value="submit">
+                    <input class="inputext addp" type="text" name="firstname" placeholder="firstname" value="<?php echo Input::htmlpost('firstname');?>" required><br>
+                    <input class="inputext addp" type="text" name="lastname" placeholder="lastname" value="<?php echo Input::htmlpost('lastname');?>" required><br>
+                    <input class="inputext addp" type="email" name="email" placeholder="email" value="<?php echo Input::htmlpost('email');?>"><br>
+                    <input class="inputext addp" type="text" name="phone_num" placeholder="phone num" value="<?php echo Input::htmlpost('phone_num');?>"><br>
+                    <input class="inputext addp" type="date" name="dob" placeholder="date of birth" value="<?php echo Input::htmlpost('dob');?>" required><br>
+                    <input class="inputext addp" type="number" name="height" placeholder="height" value="<?php echo Input::htmlpost('height');?>"><br>
+                    <input class="inputext addp" type="number" name="weight" placeholder="weight" value="<?php echo Input::htmlpost('weight');?>"><br>
+                    <input class="bodbut addp" type="submit" name="submit" value="submit">
                 </form>   
         </div>  
         <div></div>
