@@ -29,7 +29,7 @@
         
             $patient = new Patient(NULL, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
             $patient->saveToDB($conn);
-
+            redirect("viewpatients.php");
         }
     }
 

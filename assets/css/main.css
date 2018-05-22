@@ -8,7 +8,7 @@
 }
 
 .inputext {
-    margin: 30px;
+    margin: 10px;
     border-style: hidden;
     border-bottom-style: solid;
     border-bottom-color: #556797;
@@ -139,6 +139,18 @@ th {
 th,
 td {
     padding: 30px;
+}
+
+.basictext {
+    font-family: roboto;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 600px) {
