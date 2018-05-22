@@ -26,7 +26,7 @@
                 <div class="damn">
                 <?php echo  ($current_user->isAdmin()) ?  '<a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">ADMIN</button></a>': ''; ?>
                 <?php echo  ($current_user->isDoctor()) ?  '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Doc Only</button></a>': '';  ?>
-                <?php echo  ($current_user->isDoctor() || $current_user->isSupport()) ? '<a href="/newgate.ho/pages/dashboard.php"><button class="nav-btn">Manage Patients</button></a>': '';  ?>
+                <?php echo  ($current_user->isDoctor() || $current_user->isSupport()) ? '<a href="/newgate.ho/pages/managepatients.php"><button class="nav-btn">Manage Patients</button></a>': '';  ?>
                 <a href="/newgate.ho/logout.php"><button class="nav-btn">Logout</button></a>
                 </div>  
         </div>
