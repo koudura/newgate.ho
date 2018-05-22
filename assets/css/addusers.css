@@ -1,5 +1,4 @@
 input[type=checkbox]+label {
-    display: block;
     margin-top: 0.2em;
 }
 
@@ -8,6 +7,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]+label:before {
+    margin-left: 10px;
     content: "\2714";
     border: 0.1em solid #000;
     border-radius: 0.2em;
@@ -27,7 +27,11 @@ input[type=checkbox]:checked+label:before {
 }
 
 .inputext {
-    width: 50%;
+    width: 90%;
+}
+
+.checkmarc {
+    margin: 10px;
 }
 
 .content {
@@ -36,4 +40,14 @@ input[type=checkbox]:checked+label:before {
 
 .card {
     margin-top: 50px;
+}
+
+.bodbut {
+    float: right;
+    margin-right: 10%;
+}
+
+.basictext {
+    font-family: roboto;
+    margin: 10px;
 }

@@ -41,7 +41,7 @@
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Add Patient</button></a>
                 </div>
         </div>
-        <div class = "stuff text-center">
+        <div class = "stuff ">
             <div class="middlegrid">
                 <div></div>
                 <div class = "card">
@@ -57,9 +57,10 @@
                     <div clas = "container">
                         <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="1" >
                         <label for="rol1">Admin</label>
-                        <input class="checkmarc" id="rol2" type="checkbox" name="role[]" value="2" >
+                        <br>
+                        <input class="checkmarc" id="rol2" type="radio" name="role[]" value="2" >
                         <label for="rol2">Doctor</label>
-                        <input class="checkmarc" id="rol3" type="checkbox" name="role[]" value="3" >
+                        <input class="checkmarc" id="rol3" type="radio" name="role[]" value="3" >
                         <label for="rol3">Support</label>
                     </div>
                     <br>
