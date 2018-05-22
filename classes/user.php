@@ -1,17 +1,17 @@
 <?php
 class User {
-    public $email, $firstname, $lastname, $phonenos, $role;
-    function __construct($id, $email, $firstname, $lastname, $phonenos, $role){
+    public $id, $email, $firstname, $lastname, $role;
+    function __construct($id, $email, $firstname, $lastname, $role){
         $this->id = $id;
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
-        $this->phonenos = $phonenos;
+        // $this->phonenos = $phonenos;
         $this->role = $role;
     }
 
     function saveToDB($conn){
-        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, phoneno, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '$this->phonenos', '".sha1($this->password)."')";
+        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '".sha1($this->password)."')";
         if ($conn->exec($query)){
             $id = $conn->lastInsertId();
             $query = "INSERT INTO tbl_roles(userID, role) VALUES($id, :role)";  
@@ -33,7 +33,7 @@ class User {
             foreach ($result2 as $row) {
                 array_push($rolearray,$row["role"]);
             }
-            return new User($id, $result["email"], $result["firstname"], $result["lastname"], $result["phoneno"], $rolearray);
+            return new User($id, $result["email"], $result["firstname"], $result["lastname"], $rolearray);
         }
         return null;     
     }
@@ -62,7 +62,7 @@ class User {
             foreach ($result2 as $row) {
                 array_push($rolearray,$row["role"]);
             }
-            $user = new User($id, $result["email"], $result["firstname"], $result["lastname"], $result["phoneno"], $rolearray);
+            $user = new User($id, $result["email"], $result["firstname"], $result["lastname"], $rolearray);
             array_push($users, $user);
         }
         return $users; 

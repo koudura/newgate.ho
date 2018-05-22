@@ -22,6 +22,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/addusers.css"/>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,36 +31,41 @@
 </head>
 <body>
     <div class="grid">
-        <div class = "logo">sss</div>
+        <div class = "logo">
+            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+        </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
                 <div class="damn">
-                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Patient</button></a> 
-                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Add Patient</button></a>
+                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Patient</button></a> 
+                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Add Patient</button></a>
                 </div>
         </div>
-        <div class = "stuff">
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <input type="email" name="email" placeholder="email" required>
-        <br>
-        <input type="text" name="firstname" value="" required>
-        <br>
-        <input type="text" name="lastname" value="" required>
-        <br>
-        <ul>
-            <h4>Roles</h4>
-            <li><label>Admin <input type="checkbox" name="role[]" value="1" ></label></li>
-            <li><label>Doctor <input type="checkbox" name="role[]" value="2" ></label></li>
-            <li><label>Support <input type="checkbox" name="role[]" value="3" ></label></li>
-        </ul>
-        <br>
-        <input type="submit" name="submit" value="Add User">
-        
-    </form>
-    <p>Default password is lastname in lower case</p>
+        <div class = "stuff text-center">
+            <div class = "card">
+                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                <input class="inputext" type="email" name="email" placeholder="email" required>
+                <br>
+                <input class="inputext" type="text" name="firstname" value="" required>
+                <br>
+                <input class="inputext" type="text" name="lastname" value="" required>
+                <br>
+                <br>
+                <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="1" >
+                <label for="rol1">Admin</label>
+                <input class="checkmarc" id="rol2" type="checkbox" name="role[]" value="2" >
+                <label for="rol2">Doctor</label>
+                <input class="checkmarc" id="rol3" type="checkbox" name="role[]" value="3" >
+                <label for="rol3">Support</label>
+                <br>
+                <input class="bodbut" type="submit" name="submit" value="Add User">
+            </form>
+            <p class="basictext">Default password is lastname in lower case</p>
+            </div>
         </div>
     </div>
     
     
 </body>
 </html>
+ 

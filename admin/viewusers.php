@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>View Users</title>
-</head>>
+</head>
 <body>
     <div class="grid">
         <div class = "logo">
@@ -35,6 +35,7 @@
                 <div class="damn">
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Users</button></a> 
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Questionnaires</button></a>
+                <a href="/newgate.ho/admin/addusers.php"><button class="nav-btn">Add Users</button></a>
                 </div>
         </div>
  <div class = "stuff">        
@@ -61,7 +62,6 @@
                 <td> $user->lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
-                <td> $user->phonenos </td>
             </tr>
 _END;
              }
