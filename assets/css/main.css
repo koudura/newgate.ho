@@ -12,7 +12,6 @@
     border-style: hidden;
     border-bottom-style: solid;
     border-bottom-color: #556797;
-    width: 90%;
     outline: none;
 }
 
@@ -120,10 +119,10 @@
     background-color: #4975e9;
 }
 
-.logingrid {
+.middlegrid {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-columns: ". made ."
+    grid-template-columns: ". middle ."
 }
 
 .topgrid {
