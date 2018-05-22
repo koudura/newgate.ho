@@ -3,9 +3,10 @@
     require_once("functions/conn.php");
     require_once("functions/functions.php");
     
+    session_start();
 
-    if (isset($_SESSION["ID"])){
-        header("Location: /newgate.ho/dashboard.php");      
+    if (isset($_SESSION["user"])){
+        header("Location: /newgate.ho/pages/dashboard.php");      
     }
 
     if (isset($_POST["submit"])){

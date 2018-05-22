@@ -28,7 +28,7 @@
             $dob = Input::post('dob');
         
             $patient = new Patient(NULL, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
-            echo $patient->saveToDB($conn);
+            $patient->saveToDB($conn);
 
         }
     }
