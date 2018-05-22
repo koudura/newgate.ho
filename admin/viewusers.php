@@ -39,7 +39,7 @@
                 </div>
         </div>
  <div class = "stuff">        
-    <table>
+    <table class="genTab">
         <thead>
             <tr>
                 <th>Email</th>
@@ -47,7 +47,6 @@
                 <th>Lastname</th>
                 <th>Admin</th>
                 <th>Role</th>
-                <th>Phone Number</th>
             </tr>
         </thead>
         <tbody>

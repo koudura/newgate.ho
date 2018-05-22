@@ -41,19 +41,19 @@
  <div class = "stuff">
 
     <div>
-        <input class = "inputext" type="number" name="id" onkeyup="typeSearch()" id="id" placeholder = "Enter Patient ID">
-        <input class = "inputext" type="text" name="name" onkeyup="typeSearch()" id="name" placeholder = "Enter Patient Number">
-        <input class = "inputext" type="email" name="email" onkeyup="typeSearch()" id="email" placeholder = "Enter Patient ">
+        <input class = "inputext" type="number" name="id" onkeyup="typeSearch()" id="id" placeholder = "Search by ID">
+        <input class = "inputext" type="text" name="name" onkeyup="typeSearch()" id="name" placeholder = "Search by Name">
+        <input class = "inputext" type="email" name="email" onkeyup="typeSearch()" id="email" placeholder = "Search by Email">
     </div>
             
-    <table id="patientTable">
+    <table id="patientTable" class="genTab">
         <thead>
             <tr>
-                <td> ID </td>
-                <td>Firstname</td>
-                <td>Lastname</td>
-                <td>Phone No</td>
-                <td>Email</td>
+                <th> ID </th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Phone No</th>
+                <th>Email</th>
              
             </tr>
         </thead>
