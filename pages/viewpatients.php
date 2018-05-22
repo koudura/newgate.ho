@@ -31,8 +31,14 @@
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
                 <div class="damn">
+<<<<<<< HEAD
                     <a href="/newgate.ho/admin/viewpatients.php"><button class="bodbut">Manage Patients</button></a> 
                 </div>
+=======
+                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Patients</button></a> 
+                <a href="/newgate.ho/pages/addpatients.php"><button class="nav-btn">Add Patients</button></a>
+            </div>
+>>>>>>> e8a278ff2910d6b274804cd762d40fa3997c36aa
         </div>
  <div class = "stuff">
             

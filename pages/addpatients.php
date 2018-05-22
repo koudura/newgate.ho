@@ -58,8 +58,9 @@
         <div class = "navbar"></div>
 
 
-        <div class = "stuff">
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <div class = "stuff text-center">
+            <div class = "card">
+                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                 <input type="text" name="firstname" placeholder="firstname" value="<?php echo Input::htmlpost('firstname');?>" required><br>
                 <input type="text" name="lastname" placeholder="lastname" value="<?php echo Input::htmlpost('lastname');?>" required><br>
                 <input type="email" name="email" placeholder="email" value="<?php echo Input::htmlpost('email');?>"><br>
@@ -68,7 +69,8 @@
                 <input type="number" name="height" placeholder="height" value="<?php echo Input::htmlpost('height');?>"><br>
                 <input type="number" name="weight" placeholder="weight" value="<?php echo Input::htmlpost('weight');?>"><br>
                 <input type="submit" name="submit" value="submit">
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </body>
