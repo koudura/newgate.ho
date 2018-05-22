@@ -2,6 +2,7 @@
     require_once("classes/user.php");
     require_once("functions/conn.php");
     require_once("functions/functions.php");
+    
 
     if (isset($_SESSION["ID"])){
         header("Location: /newgate.ho/dashboard.php");      
@@ -46,7 +47,7 @@
                     <p class="details">Enter your details to continue</p>
                 </div>
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                    <input type="email" name="email" placeholder="Email" class="inputext" required><br>
+                    <input type="email" name="email" placeholder="Email" class="inputext" value="<?php echo Input::post('email');?>" required><br>
                     <input type="password" name="password" placeholder="Password" class="inputext" required><br><br>
                     <input type="submit" name="submit" value="Continue" class="bodbut" style="float:right">
                 </form>   

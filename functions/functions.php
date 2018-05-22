@@ -36,8 +36,38 @@
         header("Location: $url");
     }
 
-    function tpost($var){
-        return (isset($_POST[$var])) ? $_POST[$var] : NULL;
+    class Input{
+        static function post($var, $default = NULL){
+            if( isset($_POST[$var])){
+                $res = $_POST[$var];
+                if(trim($res)){
+                    return $res;
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
+
+        static function htmlpost($var, $default = NULL){
+            if( isset($_POST[$var])){
+                $res = $_POST[$var];
+                if(trim($res)){
+                    return htmlspecialchars($res);
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
+
+
+        static function toMysqlDate($datestr){
+            return date('Y-m-d', strtotime($datestr));
+        }
+
     }
 
 ?>

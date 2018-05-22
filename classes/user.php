@@ -11,7 +11,7 @@ class User {
     }
 
     function saveToDB($conn){
-        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, phoneno, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '$this->phonenos', '$this->lastname')";
+        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, phoneno, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '$this->phonenos', '".sha1($this->password)."')";
         if ($conn->exec($query)){
             $id = $conn->lastInsertId();
             $query = "INSERT INTO tbl_roles(userID, role) VALUES($id, :role)";  
@@ -21,7 +21,6 @@ class User {
                 $stmt->execute();
             }
         }
-
     }
 
     static function getUser($conn, $stmt, $data){
@@ -37,7 +36,6 @@ class User {
             return new User($id, $result["email"], $result["firstname"], $result["lastname"], $result["phoneno"], $rolearray);
         }
         return null;     
-        
     }
 
     static function getUserWithLD($conn, $email, $password){     
