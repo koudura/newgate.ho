@@ -2,14 +2,15 @@
     require_once("../functions/conn.php");
     require_once("../functions/functions.php");
     require_once("../classes/user.php");
+    require_once("../classes/patient.php");
+
     session_start();
     $current_user = getCurrentUserOrDie();
     if (!$current_user->isDoctor() && $current_user->isSupport()) {
         doUnauthorized();      
     }
     $conn = connect();
-    $stmt = $conn->query("SELECT * FROM tbl_patients");
-    $patients = $stmt->fetchall(PDO::FETCH_ASSOC);
+    $patients = Patient::getAllPatients($conn);
     
 ?>
 
@@ -30,42 +31,43 @@
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
                 <div class="damn">
-                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Users</button></a> 
-                <a href="/newgate.ho/admin/viewusers.php"><button class="bodbut">Manage Questionnaires</button></a>
+<<<<<<< HEAD
+                    <a href="/newgate.ho/admin/viewpatients.php"><button class="bodbut">Manage Patients</button></a> 
+                </div>
+=======
+                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Patients</button></a> 
+                <a href="/newgate.ho/pages/addpatients.php"><button class="nav-btn">Add Patients</button></a>
             </div>
+>>>>>>> e8a278ff2910d6b274804cd762d40fa3997c36aa
         </div>
  <div class = "stuff">
             
     <table>
         <thead>
             <tr>
-                <td>Email</td>
+                <td> ID </td>
                 <td>Firstname</td>
                 <td>Lastname</td>
-                <td>Admin</td>
-                <td>Role</td>
+                <td>Phone No</td>
+                <td>Email</td>
+                <td>DOB</td>
+                <td>Height</td>
+                <td>Weight</td>
             </tr>
         </thead>
 
         <tbody>
-            <?php foreach ($users as $user) {
-                $email = $user['email'];
-                $firstname = $user['firstname'];
-                $lastname = $user['lastname'];
-                $admin = in_array('ADMIN', $roles[$user['ID']])? "TRUE":"FALSE";
-                $role = "";
-                if (in_array('DOCTOR', $roles[$user['ID']])){
-                    $role = "DOCTOR";
-                }elseif (in_array('SUPPORT', $roles[$user['ID']])){
-                    $role = "SUPPORT";
-                }
+            <?php foreach ($patients as $patient) {
                 echo <<<_END
             <tr>
-                <td> $email</td>
-                <td> $firstname</td>
-                <td> $lastname</td>
-                <td> $admin </td>
-                <td> $role </td>
+                <td> $patient->id </td>
+                <td> $patient->firstname</td>
+                <td> $patient->lastname</td>
+                <td> $patient->phone_num </td>
+                <td> $patient->email </td>
+                <td> $patient->dob</td>
+                <td> $patient->height</td>
+                <td> $patient->weight</td>
             </tr>
 _END;
              }?>
