@@ -20,7 +20,11 @@
 </head>
 <body>
     <div class="grid">
-        <div class = "logo">sss</div>
+        <div class = "logo">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
+        </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar">
         <nav>

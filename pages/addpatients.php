@@ -49,7 +49,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-           <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+           <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
 
         
