@@ -29,7 +29,7 @@
         
             $patient = new Patient(NULL, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
             $patient->saveToDB($conn);
-
+            redirect("viewpatients.php");
         }
     }
 
@@ -44,11 +44,12 @@
     <title>Add patients</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/addpatients.css"/>
 </head>
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="assets/images/newgate.svg" alt="">
+           <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
         </div>
 
         
@@ -59,19 +60,21 @@
 
 
         <div class = "stuff text-center">
-            <div class = "card">
+        <div class = "logingrid">   
+        <div></div>
+        <div class = "card">            
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                <input type="text" name="firstname" placeholder="firstname" value="<?php echo Input::htmlpost('firstname');?>" required><br>
-                <input type="text" name="lastname" placeholder="lastname" value="<?php echo Input::htmlpost('lastname');?>" required><br>
-                <input type="email" name="email" placeholder="email" value="<?php echo Input::htmlpost('email');?>"><br>
-                <input type="text" name="phone_num" placeholder="phone num" value="<?php echo Input::htmlpost('phone_num');?>"><br>
-                <input type="date" name="dob" placeholder="date of birth" value="<?php echo Input::htmlpost('dob');?>" required><br>
-                <input type="number" name="height" placeholder="height" value="<?php echo Input::htmlpost('height');?>"><br>
-                <input type="number" name="weight" placeholder="weight" value="<?php echo Input::htmlpost('weight');?>"><br>
-                <input type="submit" name="submit" value="submit">
-                </form>
-            </div>
-        </div>
-    </div>
+                    <input class="inputext addp" type="text" name="firstname" placeholder="firstname" value="<?php echo Input::htmlpost('firstname');?>" required><br>
+                    <input class="inputext addp" type="text" name="lastname" placeholder="lastname" value="<?php echo Input::htmlpost('lastname');?>" required><br>
+                    <input class="inputext addp" type="email" name="email" placeholder="email" value="<?php echo Input::htmlpost('email');?>"><br>
+                    <input class="inputext addp" type="text" name="phone_num" placeholder="phone num" value="<?php echo Input::htmlpost('phone_num');?>"><br>
+                    <input class="inputext addp" type="date" name="dob" placeholder="date of birth" value="<?php echo Input::htmlpost('dob');?>" required><br>
+                    <input class="inputext addp" type="number" name="height" placeholder="height" value="<?php echo Input::htmlpost('height');?>"><br>
+                    <input class="inputext addp" type="number" name="weight" placeholder="weight" value="<?php echo Input::htmlpost('weight');?>"><br>
+                    <input class="bodbut addp" type="submit" name="submit" value="submit">
+                </form>   
+        </div>  
+        <div></div>
+    </div> 
 </body>
 </html>
