@@ -1,13 +1,16 @@
 <?php
     class Diagnosis{
-        function __construct($id, $condition, $date, $medication){
-            $this->id = $id;
-            $this->condition = $condition;
+        function __construct($ID, $patient_ID, $diagnosis, $date, $medication){
+            $this->ID = $id;
+            $this->patient_ID = $patient_ID;
+            $this->diagnosis = $diagnosis;
             $this->date = $date;
-            $this->medication = $medication;
         }
-        static function getDiagnosisFromDB($conn, $id){
+        static function getDiagnosisFromDB($conn, $ID, $patient_ID){
              
+        }
+        static function getAllDiagnosisFromDB($conn, $patientID){
+
         }
     }
 ?>
