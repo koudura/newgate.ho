@@ -40,6 +40,7 @@ input[type=checkbox]:checked+label:before {
 
 .card {
     margin-top: 50px;
+    padding-left: 20px;
 }
 
 .bodbut {

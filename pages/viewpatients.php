@@ -56,6 +56,7 @@
                 <th>Lastname</th>
                 <th>Phone No</th>
                 <th>Email</th>
+                <th>Manage</th>
              
             </tr>
         </thead>
@@ -63,14 +64,16 @@
         <tbody>
             <?php foreach ($patients as $patient) {
                 echo <<<_END
+            
             <tr>
-                <td> $patient->ID </td>
-                <td> $patient->firstname</td>
-                <td> $patient->lastname</td>
-                <td> $patient->phone_num </td>
-                <td> $patient->email </td>
-                
+                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->ID </a></td     >
+                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->firstname </a></td>
+                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->lastname </a></td>
+                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->phone_num </a></td>
+                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->email </a></td>
+                <td> <a href="/newgate.ho/pages/editpatients.php?id=$patient->ID">Manage </a></td>
             </tr>
+            
 _END;
              }?>
         
@@ -106,9 +109,9 @@ _END;
                             tstring += "<td>"+ data[i]['lastname'] +"</td>";
                             tstring += "<td>"+ data[i]['phone_num'] +"</td>";
                             tstring += "<td>"+ data[i]['email'] +"</td>";
-                            tstring += "<tr>";
+                            tstring += '<td> <a href="editpatients.php?id='+data[i]['ID']  + '">Manage</a></td>';
+                            tstring += "</tr>";
                         }
-                        
                     }
                     pTab.innerHTML = tstring;
                 }

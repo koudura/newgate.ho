@@ -182,6 +182,10 @@ li {
     margin-top: 10px;
 }
 
+td a {
+    display: block;
+}
+
 @media only screen and (max-width: 600px) {
     .inputext {
         margin: 30px;
