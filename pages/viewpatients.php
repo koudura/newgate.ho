@@ -19,6 +19,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/viewpatien.css"/>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
@@ -40,19 +43,19 @@
  <div class = "stuff">
 
     <div>
-        <input type="number" name="id" onkeyup="typeSearch()" id="id">
-        <input type="text" name="name" onkeyup="typeSearch()" id="name">
-        <input type="email" name="email" onkeyup="typeSearch()" id="email">
+        <input class = "inputext" type="number" name="id" onkeyup="typeSearch()" id="id" placeholder = "Search by ID">
+        <input class = "inputext" type="text" name="name" onkeyup="typeSearch()" id="name" placeholder = "Search by Name">
+        <input class = "inputext" type="email" name="email" onkeyup="typeSearch()" id="email" placeholder = "Search by Email">
     </div>
             
-    <table id="patientTable">
+    <table id="patientTable" class="genTab">
         <thead>
             <tr>
-                <td> ID </td>
-                <td>Firstname</td>
-                <td>Lastname</td>
-                <td>Phone No</td>
-                <td>Email</td>
+                <th> ID </th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Phone No</th>
+                <th>Email</th>
              
             </tr>
         </thead>

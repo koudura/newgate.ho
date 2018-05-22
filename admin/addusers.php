@@ -32,7 +32,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
@@ -41,27 +43,37 @@
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Add Patient</button></a>
                 </div>
         </div>
-        <div class = "stuff text-center">
-            <div class = "card">
-                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                <input class="inputext" type="email" name="email" placeholder="email" required>
-                <br>
-                <input class="inputext" type="text" name="firstname" value="" required>
-                <br>
-                <input class="inputext" type="text" name="lastname" value="" required>
-                <br>
-                <br>
-                <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="1" >
-                <label for="rol1">Admin</label>
-                <input class="checkmarc" id="rol2" type="checkbox" name="role[]" value="2" >
-                <label for="rol2">Doctor</label>
-                <input class="checkmarc" id="rol3" type="checkbox" name="role[]" value="3" >
-                <label for="rol3">Support</label>
-                <br>
-                <input class="bodbut" type="submit" name="submit" value="Add User">
-            </form>
+        <div class = "stuff ">
+            <div class="middlegrid">
+                <div></div>
+                <div class = "card">
+                    <div class = "content">
+                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                    <input class="inputext" type="email" name="email" placeholder="Email" required>
+                    <br>
+                    <input class="inputext" type="text" name="firstname" placeholder="Firstname" value="" required>
+                    <br>
+                    <input class="inputext" type="text" name="lastname" placeholder="Lastname" value="" required>
+                    <br>
+                    <br>
+                    <div clas = "container">
+                        <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="1" >
+                        <label for="rol1">Admin</label>
+                        <br>
+                        <input class="checkmarc" id="rol2" type="radio" name="role[]" value="2" >
+                        <label for="rol2">Doctor</label>
+                        <input class="checkmarc" id="rol3" type="radio" name="role[]" value="3" >
+                        <label for="rol3">Support</label>
+                    </div>
+                    <br>
+                    <input class="bodbut" type="submit" name="submit" value="Add User">
+                    </form>
+                    </div>
             <p class="basictext">Default password is lastname in lower case</p>
             </div>
+                <div></div>
+            </div>
+            
         </div>
     </div>
     

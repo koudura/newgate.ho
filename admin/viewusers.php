@@ -28,7 +28,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
@@ -39,7 +41,7 @@
                 </div>
         </div>
  <div class = "stuff">        
-    <table>
+    <table class="genTab">
         <thead>
             <tr>
                 <th>Email</th>
@@ -47,7 +49,6 @@
                 <th>Lastname</th>
                 <th>Admin</th>
                 <th>Role</th>
-                <th>Phone Number</th>
             </tr>
         </thead>
         <tbody>
