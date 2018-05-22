@@ -12,7 +12,7 @@
         $user = User::getUserWithLD($conn, $_POST["email"], $_POST["password"]);
         if (isset($user)){
             $user->saveToSession();
-            header("Location: dashboard.php");
+            header("Location: pages/dashboard.php");
         }
     }
 
