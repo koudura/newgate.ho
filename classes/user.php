@@ -11,13 +11,7 @@ class User {
     }
 
     function saveToDB($conn){
-<<<<<<< HEAD
-        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, password) VALUES(null, '$this->email', '$this->lastname', '$this->phonenos', '$this->lastname')";
-||||||| merged common ancestors
-        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, phoneno, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '$this->phonenos', '$this->lastname')";
-=======
-        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, phoneno, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '$this->phonenos', '".sha1($this->password)."')";
->>>>>>> ea5caf5aad1fb7a86e8f807c66be7912e627024c
+        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '".sha1($this->password)."')";
         if ($conn->exec($query)){
             $id = $conn->lastInsertId();
             $query = "INSERT INTO tbl_roles(userID, role) VALUES($id, :role)";  
