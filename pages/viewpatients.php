@@ -10,8 +10,7 @@
         doUnauthorized();      
     }
     $conn = connect();
-    $stmt = $conn->query("SELECT * FROM tbl_patients");
-    $patients = $stmt->fetchall(PDO::FETCH_ASSOC);
+    $patients = Patient::getAllPatients($conn);
     
 ?>
 
@@ -41,33 +40,29 @@
     <table>
         <thead>
             <tr>
-                <td>Email</td>
+                <td> ID </td>
                 <td>Firstname</td>
                 <td>Lastname</td>
-                <td>Admin</td>
-                <td>Role</td>
+                <td>Phone No</td>
+                <td>Email</td>
+                <td>DOB</td>
+                <td>Height</td>
+                <td>Weight</td>
             </tr>
         </thead>
 
         <tbody>
-            <?php foreach ($users as $user) {
-                $email = $user['email'];
-                $firstname = $user['firstname'];
-                $lastname = $user['lastname'];
-                $admin = in_array('ADMIN', $roles[$user['ID']])? "TRUE":"FALSE";
-                $role = "";
-                if (in_array('DOCTOR', $roles[$user['ID']])){
-                    $role = "DOCTOR";
-                }elseif (in_array('SUPPORT', $roles[$user['ID']])){
-                    $role = "SUPPORT";
-                }
+            <?php foreach ($patients as $patient) {
                 echo <<<_END
             <tr>
-                <td> $email</td>
-                <td> $firstname</td>
-                <td> $lastname</td>
-                <td> $admin </td>
-                <td> $role </td>
+                <td> $patient->id </td>
+                <td> $patient->firstname</td>
+                <td> $patient->lastname</td>
+                <td> $patient->phone_num </td>
+                <td> $patient->email </td>
+                <td> $patient->dob</td>
+                <td> $patient->height</td>
+                <td> $patient->weight</td>
             </tr>
 _END;
              }?>

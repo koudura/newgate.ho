@@ -61,7 +61,6 @@
                 <td> $user->lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
-                <td> $user->phonenos </td>
             </tr>
 _END;
              }
