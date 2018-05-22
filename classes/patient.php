@@ -34,28 +34,20 @@ class Patient {
         return self::getPatient($conn, $stmt, $data);
     }
 
-    static function getPatientsByName($conn, $id){
-        $stmt = $conn->prepare("SELECT * FROM tbl_patients WHERE firstname LIKE ");
-        $data = array("id"=> $id);
-        return self::getPatient($conn, $stmt, $data);
+    static function getPatientsByName($conn, $name){
+        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE firstname LIKE %".$name."%  OR lastname LIKE %" );
+        return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
     static function getAllPatients($conn){
-        $users = array();
-        $stmt = $conn->query("SELECT * FROM tbl_users");
+        $patients = array();
+        $stmt = $conn->query("SELECT * FROM tbl_patients");
         $results = $stmt->fetchall(PDO::FETCH_ASSOC);
         foreach($results as $result){        
-            $id = $result["ID"];
-            $stmt = $conn->query("SELECT role FROM tbl_roles WHERE userID = $id");
-            $result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
-            $rolearray = array();
-            foreach ($result2 as $row) {
-                array_push($rolearray,$row["role"]);
-            }
-            $user = new User($id, $result["email"], $result["firstname"], $result["lastname"], $result["phone_num"], $rolearray);
-            array_push($users, $user);
+            $patient = new Patient($result['ID'], $result["email"], $result["firstname"], $result["lastname"], $result["phone_num"], $result['dob'], $result['height'], $result['weight']);
+            array_push($patients, $patient);
         }
-        return $users; 
+        return $patients; 
 
     }
 
