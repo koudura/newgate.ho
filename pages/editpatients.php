@@ -79,11 +79,11 @@
                     <input type="hidden" name="id" value="<?php echo $currentP->ID;?>">
                     <input class="inputext addp" type="text" name="firstname" placeholder="firstname" value="<?php echo htmlspecialchars($currentP->firstname);?>" required><br>
                     <input class="inputext addp" type="text" name="lastname" placeholder="lastname" value="<?php echo htmlspecialchars($currentP->lastname);?>" required><br>
-                    <input class="inputext addp" type="email" name="email" placeholder="email" value="<?php echo htmlspecialchars($currentP->email);?>"><br>
-                    <input class="inputext addp" type="text" name="phone_num" placeholder="phone num" value="<?php echo htmlspecialchars($currentP->phone_num);?>"><br>
+                    <input class="inputext addp" type="email" name="email" placeholder="email" value="<?php echo htmlspecialchars($currentP->email);?>"required><br>
+                    <input class="inputext addp" type="text" name="phone_num" placeholder="phone num" value="<?php echo htmlspecialchars($currentP->phone_num);?>"required><br>
                     <input class="inputext addp" type="date" name="dob" placeholder="date of birth" value="<?php echo htmlspecialchars($currentP->dob);?>" required><br>
-                    <input class="inputext addp" type="number" name="height" placeholder="height" value="<?php echo htmlspecialchars($currentP->height);?>"><br>
-                    <input class="inputext addp" type="number" name="weight" placeholder="weight" value="<?php echo htmlspecialchars($currentP->weight);?>"><br>
+                    <input class="inputext addp" type="number" name="height" placeholder="height" value="<?php echo htmlspecialchars($currentP->height);?>"required><br>
+                    <input class="inputext addp" type="number" name="weight" placeholder="weight" value="<?php echo htmlspecialchars($currentP->weight);?>"required><br>
                     <input class="bodbut addp" type="submit" name="submit" value="submit">
                 </form>   
         </div>  

@@ -36,7 +36,7 @@
         <div class = "navbar ">
                 <div class="damn">
                 <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Users</button></a> 
-                <a href="/newgate.ho/admin/viewusers.php"><button class="nav-btn">Manage Questionnaires</button></a>
+                <a href="/newgate.ho/admin/viewquestionnaires.php"><button class="nav-btn">Manage Questionnaires</button></a>
                 <a href="/newgate.ho/admin/addusers.php"><button class="nav-btn">Add Users</button></a>
                 </div>
         </div>
