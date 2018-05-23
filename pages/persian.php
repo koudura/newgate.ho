@@ -16,9 +16,9 @@
     $currentP;
     $allergies;
     $sessions;
-    if(isset($_GET['id'])){
+    if(isset($_GET['ID'])){
         $conn = connect();
-        $id = Input::get('id');
+        $id = Input::get('ID');
         $currentP = Patient::getPatientByID($conn,$id);
         if(!$currentP){
             exit();

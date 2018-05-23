@@ -44,7 +44,9 @@ $current_user = getCurrentUserOrDie();
         </a>
     </div>
 </header>
-<div class="stuff"></div>
+<section class="main-container">
+
+</section>
 
 </body>
 </html>
