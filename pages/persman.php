@@ -5,6 +5,7 @@
     require_once("../classes/patient.php");
     require_once("../classes/allergy.php");
     require_once("../classes/session.php");
+    require_once("../classes/diagnosis.php");
 
     session_start();
     $current_user = getCurrentUserOrDie();
@@ -15,9 +16,6 @@
     $currentP;
     $allergies;
     $sessions;
-    $diagnoses;
-    $prescriptions;
-
     if(isset($_GET['id'])){
         $conn = connect();
         $id = Input::get('id');
