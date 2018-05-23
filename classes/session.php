@@ -8,14 +8,14 @@
             $this->paid = $paid;
         }
         static function getSessionFromDB($conn, $ID){
-            $query = "SELECT * FROM tbl_session WHERE ID=$ID";
+            $query = "SELECT * FROM tbl_sessions WHERE ID=$ID";
             $stmt = $conn->query($query);
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             return new Session($ID, $result["patientID"], $result["consultation_bill"], $result['startdate'], $result["paid"]);
         }
 
         static function getSessionFromPatient($conn, $patientID){
-            $query = "SELECT * FROM tbl_session WHERE patientID=$patientID";
+            $query = "SELECT * FROM tbl_sessions WHERE patientID=$patientID";
             $stmt = $conn->query($query);
             $sessions = array();
             if($rows = $stmt->fetchall(PDO::FETCH_ASSOC)){
@@ -23,7 +23,7 @@
                     array_push($sessions, new Session($result['ID'], $result["patientID"], $result["consultation_bill"], $result['startdate'], $result["paid"]));
                 }
             }
-            return $session;
+            return $sessions;
         }
 
         static function getAllSessionsFromDB($conn){
