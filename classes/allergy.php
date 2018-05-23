@@ -1,10 +1,19 @@
 <?php
     class Allergy{
-        function __construct($ID, $patientID, $name, $desc){
+        function __construct($ID, $patientID, $description){
             $this->ID = $ID;
             $this->patientID = $patientID;
-            $this->desc = $desc;
+            $this->description = $description;
         }
+
+        function saveToDB($conn){
+            $query = "INSERT INTO tbl_allergies(ID, patientID, description) VALUES(null, $this->patientID, $this->description)";
+            if($conn->exec($query)){
+                return TRUE;
+            }
+        }
+
+
         static function getAllergyFromDB($conn, $ID){
             $query = "SELECT * FROM tbl_allergies WHERE ID=$ID";
             $stmt = $conn->query($query);
