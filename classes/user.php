@@ -6,18 +6,17 @@ class User {
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
-        // $this->phonenos = $phonenos;
         $this->role = $role;
     }
 
     function saveToDB($conn){
-        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '".sha1($this->password)."')";
+        $query = "INSERT INTO tbl_users(ID, email, firstname, lastname, password) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '".sha1(strtolower($this->lastname))."')";
         if ($conn->exec($query)){
             $id = $conn->lastInsertId();
             $query = "INSERT INTO tbl_roles(userID, role) VALUES($id, :role)";  
             $stmt = $conn->prepare($query);
             $stmt->bindParam(":role", $r);
-            foreach ($this->role as $r){
+            foreach($this->role as $r){
                 $stmt->execute();
             }
         }

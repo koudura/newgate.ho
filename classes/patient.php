@@ -1,8 +1,8 @@
 <?php
 class Patient {
-    public $id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight;
-    function __construct($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight){
-        $this->id = $id;
+    public $ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight;
+    function __construct($ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight){
+        $this->ID = $ID;
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -17,6 +17,12 @@ class Patient {
         if($conn->exec($query)){
             return TRUE;
         }
+    }
+
+    function updateDB($conn){
+        $stmt = $conn->prepare("UPDATE tbl_patients SET email=:email, firstname=:firstname, lastname=:lastname, phone_num=:phone_num, dob=:dob, height=:height, weight=:weight WHERE ID=:ID");
+        $data = array('ID' => $this->ID, 'email' => $this->email, 'firstname' => $this->firstname, 'lastname' =>  $this->lastname, 'phone_num' => $this->phone_num, 'dob' => $this->dob, 'height' => $this->height, 'weight' => $this->weight);
+        $stmt->execute($data);
     }
 
     static function getPatient($conn, $stmt, $data){
@@ -35,7 +41,17 @@ class Patient {
     }
 
     static function getPatientsByName($conn, $name){
-        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE firstname LIKE %".$name."%  OR lastname LIKE %" );
+        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE firstname LIKE '%".$name."%'  OR lastname LIKE '%".$name."'%");
+        return $stmt->fetchall(PDO::FETCH_ASSOC);
+    }
+
+    static function getPatientsByNameAndEmail($conn, $name, $email){
+        $cname = ($name)? "firstname LIKE '%".$name."%'  OR lastname LIKE '%".$name."%'"  : "FALSE" ;
+        $cemail = ($email)? "email LIKE '%".$email."%'"  : "FALSE" ;
+        if($cname=="FALSE" && $cemail=="FALSE"){
+            $cname = "TRUE";
+        }
+        $stmt = $conn->query("SELECT * FROM tbl_patients WHERE $cname OR $cemail");
         return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
