@@ -14,8 +14,9 @@
     $patient;
 
     if(isset($_GET['ID'])){
+        $conn = connect();
         $id = Input::get('ID');
-        $patient = Patient::getPatientByID($id);
+        $patient = Patient::getPatientByID($conn, $id);
     }
 
     if (isset($_POST['submit'])){
