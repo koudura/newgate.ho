@@ -56,6 +56,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/editq.css"/>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <title> EDIT Questionnaire </title>
@@ -63,41 +64,43 @@
 <body>
     <div class = "grid">
         <div class = "logo">
-            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
         <div class = "profile"></div>
         <div class = "navbar"></div>
-        <div class = "stuff"></div>
-    </div>
+        <div class = "stuff">
+            <div class = "card text-center">
+                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                    <input class="nav-btn" type="submit" name="delete" value="Delete Questionnaire!!!" >
+                </form>
 
-    <div>
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-            <input type="submit" name="delete" value="Delete Questionnaire!!!" >
-        </form>
-
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-            <input type="text" name="title" placeholder="Title" value="<?php echo htmlspecialchars($currentQ->title);?>" required>
-            <div id="questdiv">
-                <?php 
-                $ind = 0;
-                foreach ($currentQ->jsonQ as $key => $value) {
-                    $ind = $key;
-                    echo '<div> <input type="text" name="'.$key.'" value="'.htmlspecialchars($value).'" required>  </div>';
-                }
-             ?>
-                
+                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                    <input class="inputext" type="text" name="title" placeholder="Title" value="<?php echo htmlspecialchars($currentQ->title);?>" required>
+                    <div id="questdiv">
+                    <?php 
+                        $ind = 0;
+                        foreach ($currentQ->jsonQ as $key => $value) {
+                        $ind = $key;
+                        echo '<div> <input class="inputext" type="text" name="'.$key.'" value="'.htmlspecialchars($value).'" required>  </div>';
+                    }
+                    ?> 
             </div>
-            <input type="hidden" name="id" value="<?php echo $currentQ->ID; ?>" >
-            <input type="hidden" name="count" value="<?php echo $key; ?>" id="count">
-            <input type="button" value="Add Question" onclick="addQuestion()">
-            <input type="button" value="Delete Last Question" onclick="deleteLastQuestion()">
-            <input type="submit" name="submit" value="submit" >
+            <div class="lobot">
+                <input class="nav-btn" type="hidden" name="id" value="<?php echo $currentQ->ID; ?>" >
+                <input class="nav-btn" type="hidden" name="count" value="<?php echo $key; ?>" id="count">
+                <input class="nav-btn" type="button" value="Add Question" onclick="addQuestion()">
+                <input class="nav-btn" type="button" value="Delete Last Question" onclick="deleteLastQuestion()">
+                <input class="nav-btn" type="submit" name="submit" value="submit" >
+
+            </div>
         </form>
         
         
     </div>
-
-
+        </div>
+    </div>
     <script>
         function addQuestion(){
             let qDiv = document.getElementById('questdiv');
@@ -105,6 +108,7 @@
             let nDiv = document.createElement("div");
             let inp = document.createElement("INPUT");
             inp.setAttribute("type","text");
+            inp.setAttribute("class","inputext");
             inp.setAttribute("name", count + "");
             inp.setAttribute("required", true);
             nDiv.appendChild(inp);

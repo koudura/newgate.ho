@@ -26,6 +26,7 @@
         </div>
         <div class = "profile">adsdas
             <a href="/newgate.ho/logout.php"><button class="nav-btn">Logout</button></a>
+            <p>Welcome</p>
         </div>
         <div class = "navbar">      
                 <div class="damn">
