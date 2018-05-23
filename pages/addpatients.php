@@ -15,7 +15,6 @@
         if ( date('Y-m-d') < Input::toMysqlDate(Input::post('dob')) ){
             echo "<script>alert('Invalid Date');</script>";
         }else{
-            var_dump($_POST);
             $conn = connect();
             $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
             

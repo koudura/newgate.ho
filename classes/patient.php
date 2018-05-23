@@ -19,6 +19,12 @@ class Patient {
         }
     }
 
+    function updateDB($conn){
+        $stmt = $conn->prepare("UPDATE tbl_patients SET email=:email, firstname=:firstname, lastname=:lastname, phone_num=:phone_num, dob=:dob, height=:height, weight=:weight WHERE ID=:ID");
+        $data = array('ID' => $this->ID, 'email' => $this->email, 'firstname' => $this->firstname, 'lastname' =>  $this->lastname, 'phone_num' => $this->phone_num, 'dob' => $this->dob, 'height' => $this->height, 'weight' => $this->weight);
+        $stmt->execute($data);
+    }
+
     static function getPatient($conn, $stmt, $data){
         $stmt->execute($data);
         if( $result = $stmt->fetch(PDO::FETCH_ASSOC) ){        
