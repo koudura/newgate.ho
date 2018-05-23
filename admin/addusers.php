@@ -10,7 +10,7 @@
     if (isset($_POST["submit"])){
         if(isset($_POST['role'])){
             $conn = connect();
-            $user = new User(null, $_POST['email'], $_POST['firstname'], $_POST['lastname'], "", $_POST['role']);
+            $user = new User(null, $_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['role']);
             $user->saveToDB($conn);
         }
         
@@ -57,12 +57,12 @@
                     <br>
                     <br>
                     <div clas = "container">
-                        <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="1" >
+                        <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="ADMIN" >
                         <label for="rol1">Admin</label>
                         <br>
-                        <input class="checkmarc" id="rol2" type="radio" name="role[]" value="2" >
+                        <input class="checkmarc" id="rol2" type="radio" name="role[]" value="DOCTOR" >
                         <label for="rol2">Doctor</label>
-                        <input class="checkmarc" id="rol3" type="radio" name="role[]" value="3" >
+                        <input class="checkmarc" id="rol3" type="radio" name="role[]" value="SUPPORT" >
                         <label for="rol3">Support</label>
                     </div>
                     <br>
