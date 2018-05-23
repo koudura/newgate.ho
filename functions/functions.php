@@ -49,11 +49,37 @@
                 return $default;
             }
         }
+
+        static function get($var, $default = NULL){
+            if( isset($_GET[$var])){
+                $res = $_GET[$var];
+                if(trim($res)){
+                    return $res;
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
         
 
         static function htmlpost($var, $default = NULL){
             if( isset($_POST[$var])){
                 $res = $_POST[$var];
+                if(trim($res)){
+                    return htmlspecialchars($res);
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
+
+        static function htmlget($var, $default = NULL){
+            if( isset($_GET[$var])){
+                $res = $_GET[$var];
                 if(trim($res)){
                     return htmlspecialchars($res);
                 }else{
