@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2018 at 10:43 AM
+-- Generation Time: May 23, 2018 at 11:22 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.0.29
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -21,6 +22,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
+CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db_newgate`;
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,7 @@ DROP TABLE IF EXISTS `tbl_questionnaires`;
 CREATE TABLE IF NOT EXISTS `tbl_questionnaires` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `jsonQ` json NOT NULL,
+  `jsonQ` varchar(60000) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -116,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `tbl_questionnaires` (
 --
 
 INSERT INTO `tbl_questionnaires` (`ID`, `title`, `jsonQ`) VALUES
-(1, 'Dummy Title', '{\"1\": \"Question 1\", \"2\": \"Question 2\", \"3\": \"Question 3\"}'),
+(1, 'Dummy Title', '{\"1\":\"Question 1\",\"2\":\"Question 2\",\"3\":\"Question 3.5.5.\"}'),
 (2, 'Dummy Titler', '{\"1\": \"Question 1\", \"2\": \"Question 2.5.5\", \"3\": \"Question 3\"}');
 
 -- --------------------------------------------------------
@@ -217,6 +220,7 @@ ALTER TABLE `tbl_roles`
 --
 ALTER TABLE `tbl_sessions`
   ADD CONSTRAINT `patient-sessions` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
