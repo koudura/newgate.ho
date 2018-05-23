@@ -1,8 +1,8 @@
 <?php
     class Prescription{
-        function __construct($ID, $diagnosis_ID, $name, $dose, $bill){
+        function __construct($ID, $diagnosisID, $name, $dose, $bill){
             $this->ID = $ID;
-            $this->diagnosis_ID = $diagnosis_ID;
+            $this->diagnosisID = $diagnosisID;
             $this->name = $name;
             $this->dose = $dose;
             $this->bill = $bill;
@@ -14,12 +14,23 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             return new Prescription($ID, $result["diagnosisID"], $result["name"], $result["dose"], $result["bill"]);            
         }
-        static function getAllPrescreptionsFromDB($conn, $diagnosis_ID){
-            $stmt = $conn->query("SELECT * FROM tbl_prscriptions WHERE diagnosisID = $diagnosis_ID");
+
+        static function getPrescriptionsFromDiagnosis($conn, $diagnosisID){
+            $stmt = $conn->query("SELECT * FROM tbl_prscriptions WHERE diagnosisID = $diagnosisID");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Prescription($row[$ID], $diagnosis_ID, $result["name"], $result["dose"], $result["bill"]));
+                array_push($array, new Prescription($row[$ID], $diagnosisID, $result["name"], $result["dose"], $result["bill"]));
+            }
+            return $array;            
+        }
+
+        static function getAllPrescreptionsFromDB($conn, $diagnosisID){
+            $stmt = $conn->query("SELECT * FROM tbl_prscriptions WHERE diagnosisID = $diagnosisID");
+            $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+            $array = array();
+            foreach ($result as $row) {
+                array_push($array, new Prescription($row[$ID], $diagnosisID, $result["name"], $result["dose"], $result["bill"]));
             }
             return $array;            
         }

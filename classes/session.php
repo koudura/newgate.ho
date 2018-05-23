@@ -1,8 +1,8 @@
 <?php
     class Session{
-        function __construct($ID, $patient_ID, $consultation_bill, $paid){
+        function __construct($ID, $patientID, $consultation_bill, $paid){
             $this->ID =$ID;
-            $this->patient_ID = $patient_ID;
+            $this->patientID = $patientID;
             $this->consultation_bill = $consultation_bill;
             $this->paid = $paid;
         }
@@ -12,12 +12,25 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             return new Session($ID, $result["patientID"], $result["consultation_bill"], $result["paid"]);
         }
-        static function getAllSessionsFromDB($conn, $patient_ID){
+
+        static function getSessionFromPatient($conn, $patientID){
+            $query = "SELECT * FROM tbl_session WHERE patientID=$patientID";
+            $stmt = $conn->query($query);
+            $sessions = array();
+            if($rows = $stmt->fetchall(PDO::FETCH_ASSOC)){
+                foreach($rows as $result){
+                    array_push($sessions, new Session($result['ID'], $result["patientID"], $result["consultation_bill"], $result["paid"]));
+                }
+            }
+            return $session;
+        }
+
+        static function getAllSessionsFromDB($conn, $patientID){
             $stmt = $conn->query("SELECT * FROM tbl_sessions WHERE sessionID = $session_ID");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Session($row["ID"], $patient_ID, $row["consultation_bill"], $result["paid"]));
+                array_push($array, new Session($row["ID"], $patientID, $row["consultation_bill"], $result["paid"]));
             }
             return $array;
 
