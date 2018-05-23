@@ -20,7 +20,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
         <div class = "profile">adsdas
             <a href="/newgate.ho/logout.php"><button class="nav-btn">Logout</button></a>

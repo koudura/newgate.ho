@@ -49,7 +49,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-           <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+           <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
 
         
@@ -60,7 +62,7 @@
 
 
         <div class = "stuff text-center">
-        <div class = "logingrid">   
+        <div class = "middlegrid">   
         <div></div>
         <div class = "card">            
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">

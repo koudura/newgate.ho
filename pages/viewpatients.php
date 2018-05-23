@@ -19,6 +19,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/newgate.ho/assets/css/viewpatien.css"/>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/newgate.ho/assets/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,9 @@
 <body>
     <div class="grid">
         <div class = "logo">
-            <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            <a href="/newgate.ho/pages/dashboard.php">
+                <img class = "lago" src="../assets/images/newgate.svg" alt="logo here">
+            </a>
         </div>
         <div class = "profile">adsdas</div>
         <div class = "navbar ">
@@ -40,19 +43,20 @@
  <div class = "stuff">
 
     <div>
-        <input type="number" name="id" onkeyup="typeSearch()" id="id">
-        <input type="text" name="name" onkeyup="typeSearch()" id="name">
-        <input type="email" name="email" onkeyup="typeSearch()" id="email">
+        <input class = "inputext" type="number" name="id" onkeyup="typeSearch()" id="id" placeholder = "Search by ID">
+        <input class = "inputext" type="text" name="name" onkeyup="typeSearch()" id="name" placeholder = "Search by Name">
+        <input class = "inputext" type="email" name="email" onkeyup="typeSearch()" id="email" placeholder = "Search by Email">
     </div>
             
-    <table id="patientTable">
+    <table id="patientTable" class="genTab">
         <thead>
             <tr>
-                <td> ID </td>
-                <td>Firstname</td>
-                <td>Lastname</td>
-                <td>Phone No</td>
-                <td>Email</td>
+                <th> ID </th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Phone No</th>
+                <th>Email</th>
+                <th>Manage</th>
              
             </tr>
         </thead>
@@ -60,14 +64,16 @@
         <tbody>
             <?php foreach ($patients as $patient) {
                 echo <<<_END
+            
             <tr>
                 <td> $patient->ID </td>
-                <td> $patient->firstname</td>
-                <td> $patient->lastname</td>
+                <td> $patient->firstname </td>
+                <td> $patient->lastname </td>
                 <td> $patient->phone_num </td>
-                <td> $patient->email </td>
-                
+                <td> $patient->email</td>
+                <td> <a href="/newgate.ho/pages/editpatients.php?id=$patient->ID">Edit </a></td>
             </tr>
+            
 _END;
              }?>
         
@@ -103,9 +109,9 @@ _END;
                             tstring += "<td>"+ data[i]['lastname'] +"</td>";
                             tstring += "<td>"+ data[i]['phone_num'] +"</td>";
                             tstring += "<td>"+ data[i]['email'] +"</td>";
-                            tstring += "<tr>";
+                            tstring += '<td> <a href="editpatients.php?id='+data[i]['ID']  + '">Manage</a></td>';
+                            tstring += "</tr>";
                         }
-                        
                     }
                     pTab.innerHTML = tstring;
                 }
