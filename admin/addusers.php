@@ -56,7 +56,7 @@
                     <input class="inputext" type="text" name="lastname" placeholder="Lastname" value="" required>
                     <br>
                     <br>
-                    <div clas = "container">
+                    <div clas = "container basictext">
                         <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="ADMIN" >
                         <label for="rol1">Admin</label>
                         <br>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 22, 2018 at 07:12 PM
+-- Generation Time: May 23, 2018 at 10:43 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.0.29
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `tbl_patients` (
 
 INSERT INTO `tbl_patients` (`ID`, `firstname`, `lastname`, `email`, `phone_num`, `dob`, `height`, `weight`) VALUES
 (1, 'deji', 'akande', 'dejiakande33@gmail.com', '08143671138', '1998-11-06', 34, 50),
-(2, 'isaac', 'olawale', 'isaac@olawale.com', '', '1998-05-13', 99, 99),
+(2, 'isaac', 'olawale', 'isaac@olawale.com', '5557775555', '1998-05-13', 91, 80),
 (3, 'jedidiah', 'enikuomehin', 'jedidiah@jed.com', '08012345678', '2001-02-03', 59, 34);
 
 -- --------------------------------------------------------
@@ -96,6 +96,28 @@ CREATE TABLE IF NOT EXISTS `tbl_prescriptions` (
   PRIMARY KEY (`ID`),
   KEY `diagnosis-prescription` (`diagnosisID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_questionnaires`
+--
+
+DROP TABLE IF EXISTS `tbl_questionnaires`;
+CREATE TABLE IF NOT EXISTS `tbl_questionnaires` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `jsonQ` json NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_questionnaires`
+--
+
+INSERT INTO `tbl_questionnaires` (`ID`, `title`, `jsonQ`) VALUES
+(1, 'Dummy Title', '{\"1\": \"Question 1\", \"2\": \"Question 2\", \"3\": \"Question 3\"}'),
+(2, 'Dummy Titler', '{\"1\": \"Question 1\", \"2\": \"Question 2.5.5\", \"3\": \"Question 3\"}');
 
 -- --------------------------------------------------------
 
@@ -131,7 +153,8 @@ DROP TABLE IF EXISTS `tbl_sessions`;
 CREATE TABLE IF NOT EXISTS `tbl_sessions` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `patientID` int(11) NOT NULL,
-  `bill` float NOT NULL,
+  `consultation_bill` float NOT NULL,
+  `startdate` date NOT NULL,
   `paid` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `patient-sessions` (`patientID`)
