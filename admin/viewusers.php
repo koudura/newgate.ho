@@ -49,6 +49,7 @@
                 <th>Lastname</th>
                 <th>Admin</th>
                 <th>Role</th>
+                <th>Manage</th>
             </tr>
         </thead>
         <tbody>
@@ -63,6 +64,7 @@
                 <td> $user->lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
+                <td> <a href="/newgate.ho/admin/editusers.php?id=$user->id">Edit </a></td>
             </tr>
 _END;
              }

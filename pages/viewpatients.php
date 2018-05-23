@@ -66,12 +66,12 @@
                 echo <<<_END
             
             <tr>
-                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->ID </a></td     >
-                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->firstname </a></td>
-                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->lastname </a></td>
-                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->phone_num </a></td>
-                <td> <a href="/newgate.ho/pages/editpatients.php">$patient->email </a></td>
-                <td> <a href="/newgate.ho/pages/editpatients.php?id=$patient->ID">Manage </a></td>
+                <td> $patient->ID </td>
+                <td> $patient->firstname </td>
+                <td> $patient->lastname </td>
+                <td> $patient->phone_num </td>
+                <td> $patient->email</td>
+                <td> <a href="/newgate.ho/pages/editpatients.php?id=$patient->ID">Edit </a></td>
             </tr>
             
 _END;
