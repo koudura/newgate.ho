@@ -1,16 +1,17 @@
 <?php
     class Session{
-        function __construct($ID, $patientID, $consultation_bill, $paid){
+        function __construct($ID, $patientID, $consultation_bill, $startdate, $paid){
             $this->ID =$ID;
             $this->patientID = $patientID;
             $this->consultation_bill = $consultation_bill;
+            $this->startdate = $startdate;
             $this->paid = $paid;
         }
         static function getSessionFromDB($conn, $ID){
             $query = "SELECT * FROM tbl_session WHERE ID=$ID";
             $stmt = $conn->query($query);
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
-            return new Session($ID, $result["patientID"], $result["consultation_bill"], $result["paid"]);
+            return new Session($ID, $result["patientID"], $result["consultation_bill"], $result['startdate'], $result["paid"]);
         }
 
         static function getSessionFromPatient($conn, $patientID){
@@ -19,18 +20,18 @@
             $sessions = array();
             if($rows = $stmt->fetchall(PDO::FETCH_ASSOC)){
                 foreach($rows as $result){
-                    array_push($sessions, new Session($result['ID'], $result["patientID"], $result["consultation_bill"], $result["paid"]));
+                    array_push($sessions, new Session($result['ID'], $result["patientID"], $result["consultation_bill"], $result['startdate'], $result["paid"]));
                 }
             }
             return $session;
         }
 
-        static function getAllSessionsFromDB($conn, $patientID){
-            $stmt = $conn->query("SELECT * FROM tbl_sessions WHERE sessionID = $session_ID");
+        static function getAllSessionsFromDB($conn){
+            $stmt = $conn->query("SELECT * FROM tbl_sessions");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Session($row["ID"], $patientID, $row["consultation_bill"], $result["paid"]));
+                array_push($array, new Session($row["ID"], $row['patientID'], $row["consultation_bill"], $result['startdate'],$result["paid"]));
             }
             return $array;
 
