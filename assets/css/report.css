@@ -3,7 +3,7 @@
 
 }
 
-.heading h1, h6 {
+.heading h1{
     color: #C50000;
     font-size:2.5rem;
     font-weight:  400;
@@ -38,7 +38,7 @@ h6 {
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 10px;
-
+    margin-left: 30%;
 }
 
 .col-md-4 {
@@ -66,10 +66,9 @@ h6 {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    box-shadow: 0 1px 5px 2px rgb(22, 107, 167);
+    box-shadow: 0 1px 5px 5px rgb(22, 107, 167);
     margin: 0 auto;
 }
-
 
 
 .cards-r .card-r .user-name {
@@ -87,8 +86,9 @@ h6 {
     margin: 10px 0;
 }
 
-.tab {
-
+.history_display{
+    background: white;
+    box-shadow: 3px 4px 5px rgb(77, 77, 77), 0 0 10px rgb(77, 77, 77);
 }
 
 .tablinks{
@@ -98,4 +98,27 @@ h6 {
 
 .tablinks:hover .fas{
     color:#C50000;
+}
+
+#sessions{
+    display: block;
+}
+
+.txt{
+    color:  #A8B1B8;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.val {
+    margin-left: 15px;
+    color: #166BA7;
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: inline-block;
+    text-decoration: overline #C50000;
+}
+
+.height .val{
+    position: absolute;
 }
