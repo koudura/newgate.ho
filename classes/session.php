@@ -39,8 +39,18 @@
 
         }
 
-        static function getLast($conn){
-            $query = "SELECT * FROM tbl_sessions ORDER BY ID DESC";
+        static function getAllSessionsFromPatient($conn, $patientID){
+                    $stmt = $conn->query("SELECT * FROM tbl_sessions WHERE patientID=$patientID");
+                    $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+                    $array = array();
+                    foreach ($result as $row) {
+                        array_push($array, new Session($row["ID"], $row['patientID'], $row["docID"],$row["consultation_bill"], $row['startdate'],$row   ["paid"]));
+                    }
+                    return $array;
+
+                }
+        static function getLastForPatient($conn, $patientID){
+            $query = "SELECT * FROM tbl_sessions WHERE patientID=$patientID ORDER BY ID DESC";
             $stmt = $conn->query($query);
             $session;
             if($result = $stmt->fetch(PDO::FETCH_ASSOC)){
