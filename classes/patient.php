@@ -1,7 +1,9 @@
 <?php
+require_once('session.php');
+require_once('user.php');
 class Patient {
     public $ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight;
-    function __construct($ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight){
+    function __construct($ID, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight, $sessbill=null, $docID=null){
         $this->ID = $ID;
         $this->email = $email;
         $this->firstname = $firstname;
@@ -10,11 +12,21 @@ class Patient {
         $this->dob = $dob;
         $this->height = $height;
         $this->weight = $weight;
+        $this->sessbill = $sessbill;
+        $this->docID=$docID;
     }
+
 
     function saveToDB($conn){
         $query = "INSERT INTO tbl_patients(ID, email, firstname, lastname, phone_num, dob, height, weight) VALUES(null, '$this->email', '$this->firstname', '$this->lastname', '$this->phone_num', '$this->dob', '$this->height', '$this->weight')";
         if($conn->exec($query)){
+            if(isset($this->sessbill)){
+                $id = $conn->lastInsertId();
+                $now = date('Y-m-d');
+                $session = new Session(null, $id, $this->docID, $this->sessbill, $now, 0);
+                $session->saveToDB($conn);
+                return TRUE;
+            }
             return TRUE;
         }
     }
@@ -65,6 +77,11 @@ class Patient {
         }
         return $patients; 
 
+    }
+
+    function getCurrentSession($conn){
+        #get session with latest start date
+        return 1;
     }
 
 }

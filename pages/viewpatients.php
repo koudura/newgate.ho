@@ -42,9 +42,13 @@ $patients = Patient::getAllPatients($conn);
     </nav>
 </section>
 <header>
-    <div class="search-field">
-        <i class="fas fa-search"></i>
-        <input type="text" name="" value="">
+    <div class="name-field">
+        <H1><?php 
+        $name = ($current_user->isDoctor())?"DR ":"";
+        $name .= strtoupper($current_user->firstname).", ";
+        $name .= strtoupper($current_user->lastname);
+        echo $name;
+        ?></H1>
     </div>
     <div class="user-field">
         <a href="#"><i class="b far fa-question-circle"></i></a>
@@ -88,8 +92,8 @@ $patients = Patient::getAllPatients($conn);
                 <td> $patient->phone_num </td>
                 <td> $patient->email</td>
                 <td> 
-                <a href="patientfile.php?id=$patient->ID"><button class="bodbut">View</button></a>
-                <a href="managepatients.php?id=$patient->ID"><button class="bodbut">Edit</button></a>
+                <a href="patientfile.php?ID=$patient->ID"><button class="bodbut">View</button></a>
+                <a href="managepatients.php?ID=$patient->ID"><button class="bodbut">Edit</button></a>
                 </td>
             </tr>
             
@@ -128,7 +132,7 @@ _END;
                             tstring += "<td>"+ data[i]['lastname'] +"</td>";
                             tstring += "<td>"+ data[i]['phone_num'] +"</td>";
                             tstring += "<td>"+ data[i]['email'] +"</td>";
-                            tstring += '<td> <a href="patientfile.php?id='+data[i]['ID']  + '">Manage</a></td>';
+                            tstring += '<td> <a href="patientfile.php?ID='+data[i]['ID']  + '">Manage</a></td>';
                             tstring += "</tr>";
                         }
                     }

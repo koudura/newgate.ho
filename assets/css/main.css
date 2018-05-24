@@ -1,9 +1,17 @@
+@font-face {
+    font-family: 'roboto';
+    src: url("fonts/roboto/Roboto-Regular.ttf");
+    font-weight: inherit;
+    font-style: normal;
+}
+
 .body {
     background-color: #F9F8F8;
     --deji: rgba(77, 77, 77, 0.315);
 }
 
 .card {
+    padding-bottom: 15px;
     box-shadow: 3px 4px 5px rgb(77, 77, 77), 0 0 10px rgb(77, 77, 77);
 }
 
@@ -29,7 +37,7 @@
 
 .details {
     margin: 10px 0px 0px 30px;
-    font-family: Roboto;
+    font-family: roboto sans-serif;
     font-size: 19px;
     float: left;
     color: #8E8E8E;
@@ -63,9 +71,9 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     background-color: #2890C1;
-    font-family: roboto, medium;
+    font-family: roboto, sans-serif;
     border-radius: 0;
-    width: 100px;
+    width: 110px;
     height: 36px;
     transition: all 0.3s ease-in-out;
 }
@@ -81,7 +89,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     background-color: #2890C1;
-    font-family: roboto, medium;
+    font-family: roboto, sans-serif;
     border-radius: 4px;
     width: 181px;
     height: 36px;
@@ -104,19 +112,19 @@
 }
 
 .floatleft {
-    background-color: #4975e9;
+    background-color:  #2890C1;
     padding: 17px 0px 0px 0px;
     color: #ffffff;
 }
 
 .floatright {
-    background-color: #4975e9;
+    background-color:  #2890C1;
 }
 
 .middlegrid {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-columns: ". middle ."
+    grid-template-columns: ". middle .";
 }
 
 .topgrid {

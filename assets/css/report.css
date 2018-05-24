@@ -1,0 +1,101 @@
+
+.heading {
+
+}
+
+.heading h1, h6 {
+    color: #C50000;
+    font-size:2.5rem;
+    font-weight:  400;
+    margin-bottom: 5px;
+    margin-left: 40%
+}
+
+h6 {
+    color: #2890C1;
+    font-size:1.6rem;
+    font-weight:  400;
+    margin-bottom: 5px;
+    margin-left: 43%
+}
+
+
+.heading p{
+    color:  #A8B1B8;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    margin-left: 42%
+}
+
+.cards-r {
+
+}
+
+.cards-r .card-r {
+    background-color: white;
+    box-shadow: 3px 4px 5px rgb(77, 77, 77), 0 0 10px rgb(77, 77, 77);
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+
+}
+
+.col-md-4 {
+    padding: 0 15px;
+    display: inline-block;
+}
+
+.col-md-3 {
+    padding: 0 15px;
+    display: inline-block;
+}
+
+
+.col-md-9 {
+    padding: 0 15px;
+    display: inline-block;
+}
+
+.cards-r .card-r .patient-img{
+    background: url("../images/emma.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px 2px rgb(22, 107, 167);
+    margin: 0 auto;
+}
+
+
+
+.cards-r .card-r .user-name {
+    font-size: 1.4rem;
+    color :#C50000;
+    display:block;
+    text-align:  center;
+    margin: 10px 0;
+}
+
+.cards-r .card-r .user-detail{
+    display: block;
+    font-size: 1rem;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.tab {
+
+}
+
+.tablinks{
+    color:white;
+    width:25%;
+}
+
+.tablinks:hover .fas{
+    color:#C50000;
+}

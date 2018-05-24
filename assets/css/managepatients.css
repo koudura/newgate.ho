@@ -1,0 +1,40 @@
+.addp {
+    margin: 20px;
+}
+
+.inputext {
+    width: 90%;
+}
+
+#submit, #add{
+    float: right;
+}
+
+#card{
+    padding: 10px;
+}
+.main-container{
+    padding-top: 0;
+}
+
+#info{
+    display: block;
+}
+
+#header-tab {
+    margin-bottom: 20px;
+}
+
+#header-tab h3{
+    display: inline;
+}
+
+.emp{
+    display: inline;
+    color: rgb(14, 228, 6);
+}
+
+form{
+    display: inline;
+    margin-left: 10px;
+}

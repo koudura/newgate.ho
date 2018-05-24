@@ -22,6 +22,7 @@ $quests = Questionnaire::getAll($conn);
     <meta charset="UTF-8">
 
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/viewquestionnaire.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/web-fonts-with-css/css/fontawesome-all.css">
@@ -38,15 +39,19 @@ $quests = Questionnaire::getAll($conn);
     <nav>
         <a href="viewusers.php" class="dash_btn"><i class="fas fa-address-book"></i>User Explorer</a>
         <a href="addusers.php" class="dash_btn"><i class="fas fa-plus-circle"></i>Add User</a>
-        <a href="#" class="active dash_btn"><i class="far fa-question-circle"></i>Questionnaire</a>
+        <a href="#" class="active dash_btn"><i class="fas fa-question"></i>Questionnaire</a>
         <a href="../pages/dashboard.php" class="dash_btn"><i class="fas fa-home"></i>Home</a>
         <a href="../logout.php" class="dash_btn"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </nav>
 </section>
 <header>
-    <div class="search-field">
-        <i class="fas fa-search"></i>
-        <input type="text" name="" value="">
+    <div class="name-field">
+        <H1><?php 
+        $name = ($current_user->isDoctor())?"DR ":"";
+        $name .= strtoupper($current_user->firstname).", ";
+        $name .= strtoupper($current_user->lastname);
+        echo $name;
+        ?></H1>
     </div>
     <div class="user-field">
         <a href="#"><i class="b far fa-question-circle"></i></a>
@@ -82,6 +87,7 @@ _END;
 
             </tbody>
         </table>
+        <a id="addbtn" href="addquestionnaires.php"><button class="bodbut">Add</button></a>
     </div>
 </section>
 
