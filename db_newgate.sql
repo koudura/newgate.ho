@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 24, 2018 at 01:29 PM
+-- Generation Time: May 24, 2018 at 04:17 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.0.29
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -21,8 +22,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
-CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_newgate`;
 
 -- --------------------------------------------------------
 
@@ -227,6 +226,30 @@ INSERT INTO `tbl_users` (`ID`, `email`, `firstname`, `lastname`, `password`) VAL
 (1, 'admin1@newgate.ho', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
 (3, 'doc1@newgate.ho', 'donald', 'doc', 'a5beb9d1b0e50129affe6e13e42d9e5f5942cda7');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_questionnaires`
+--
+
+DROP TABLE IF EXISTS `tbl_user_questionnaires`;
+CREATE TABLE IF NOT EXISTS `tbl_user_questionnaires` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `questionnaireID` int(11) NOT NULL,
+  `response` varchar(60000) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `user-filltable` (`userID`),
+  KEY `questionnaire-filltable` (`questionnaireID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user_questionnaires`
+--
+
+INSERT INTO `tbl_user_questionnaires` (`ID`, `userID`, `questionnaireID`, `response`) VALUES
+(1, 3, 2, '{\"1\":\"Ans1\",\"2\":\"Ans2\",\"3\":\"Ans3\"}');
+
 --
 -- Constraints for dumped tables
 --
@@ -263,6 +286,14 @@ ALTER TABLE `tbl_roles`
 ALTER TABLE `tbl_sessions`
   ADD CONSTRAINT `doc-sessions` FOREIGN KEY (`docID`) REFERENCES `tbl_users` (`ID`),
   ADD CONSTRAINT `patient-sessions` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_user_questionnaires`
+--
+ALTER TABLE `tbl_user_questionnaires`
+  ADD CONSTRAINT `questionnaire-filltable` FOREIGN KEY (`questionnaireID`) REFERENCES `tbl_questionnaires` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user-filltable` FOREIGN KEY (`userID`) REFERENCES `tbl_users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
