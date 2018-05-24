@@ -1,38 +1,54 @@
 <?php
-require_once('../functions/conn.php');
-require_once('../functions/functions.php');
-require_once("../classes/user.php");
-require_once("../classes/patient.php");
-require_once("../classes/diagnosis.php");
+    require_once('../functions/conn.php');
+    require_once('../functions/functions.php');
+    require_once("../classes/user.php");
+    require_once("../classes/patient.php");
+    require_once("../classes/diagnosis.php");
 
-session_start();
-$current_user = getCurrentUserOrDie();
-if (!$current_user->isDoctor() && $current_user->isSupport()) {
-    doUnauthorized();
-}
+    session_start();
+    $current_user = getCurrentUserOrDie();
+    if (!$current_user->isDoctor() && $current_user->isSupport()) {
+        doUnauthorized();
+    }
 
-if (isset($_POST['submit'])) {
-
-    if (date('Y-m-d') < Input::toMysqlDate(Input::post('dob'))) {
-        echo "<script>alert('Invalid Date');</script>";
-    } else {
-        var_dump($_POST);
+    $currentP;
+    if(isset($_GET['ID'])){
         $conn = connect();
-        $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
-
-        $firstname = Input::post('firstname');
-        $lastname = Input::post('lastname');
-        $email = Input::post('email');
-        $phone_num = Input::post('phone_num');
-        $height = Input::post('height');
-        $weight = Input::post('weight');
-        $dob = Input::post('dob');
-
-        $patient = new Patient(NULL, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
-        $patient->saveToDB($conn);
+        $id = Input::get('ID');
+        $currentP = Patient::getPatientByID($conn,$id);
+        if(!$currentP){
+            exit();
+        }
+        $allergies = Allergy::getAllergyFromPatient($conn,$currentP->ID);
+        $sessions = Session::getSessionFromPatient($conn, $currentP->ID);
 
     }
-}
+
+
+
+
+    if (isset($_POST['submit'])) {
+
+        if (date('Y-m-d') < Input::toMysqlDate(Input::post('dob'))) {
+            echo "<script>alert('Invalid Date');</script>";
+        } else {
+            var_dump($_POST);
+            $conn = connect();
+            $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
+
+            $firstname = Input::post('firstname');
+            $lastname = Input::post('lastname');
+            $email = Input::post('email');
+            $phone_num = Input::post('phone_num');
+            $height = Input::post('height');
+            $weight = Input::post('weight');
+            $dob = Input::post('dob');
+
+            $patient = new Patient(NULL, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
+            $patient->saveToDB($conn);
+
+        }
+    }
 
 ?>
 <!DOCTYPE html>
