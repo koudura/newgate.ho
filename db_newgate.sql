@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2018 at 11:22 AM
+-- Generation Time: May 24, 2018 at 02:42 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.0.29
 
@@ -22,8 +22,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
-CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_newgate`;
 
 -- --------------------------------------------------------
 
@@ -73,16 +71,18 @@ CREATE TABLE IF NOT EXISTS `tbl_patients` (
   `height` float DEFAULT NULL,
   `weight` float DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_patients`
 --
 
 INSERT INTO `tbl_patients` (`ID`, `firstname`, `lastname`, `email`, `phone_num`, `dob`, `height`, `weight`) VALUES
-(1, 'deji', 'akande', 'dejiakande33@gmail.com', '08143671138', '1998-11-06', 34, 50),
-(2, 'isaac', 'olawale', 'isaac@olawale.com', '5557775555', '1998-05-13', 91, 80),
-(3, 'jedidiah', 'enikuomehin', 'jedidiah@jed.com', '08012345678', '2001-02-03', 59, 34);
+(1, 'Adedeji', 'Akande', 'dejiakande33@gmail.com', '08143671138', '1998-11-06', 34, 50),
+(2, 'Isaac', 'Olawale', 'isaac@olawale.com', '5557775555', '1998-05-13', 91, 80),
+(3, 'jedidiah', 'enikuomehin', 'jedidiah@jed.com', '08012345678', '2001-02-03', 59, 34),
+(4, 'Don', 'Falcone', 'don@falcone.com', '7779998889', '1984-05-16', 44, 51),
+(8, 'John', 'Titor', 'john@titor.com', '09078996754', '1867-03-14', 45, 45);
 
 -- --------------------------------------------------------
 
@@ -156,12 +156,25 @@ DROP TABLE IF EXISTS `tbl_sessions`;
 CREATE TABLE IF NOT EXISTS `tbl_sessions` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `patientID` int(11) NOT NULL,
+  `docID` int(11) NOT NULL,
   `consultation_bill` float NOT NULL,
   `startdate` date NOT NULL,
   `paid` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `patient-sessions` (`patientID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `patient-sessions` (`patientID`),
+  KEY `doc-sessions` (`docID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_sessions`
+--
+
+INSERT INTO `tbl_sessions` (`ID`, `patientID`, `docID`, `consultation_bill`, `startdate`, `paid`) VALUES
+(1, 1, 1, 345, '2018-05-09', 0),
+(2, 2, 3, 300, '2018-05-08', 0),
+(3, 3, 1, 222, '2018-05-15', 0),
+(4, 4, 3, 44, '2018-05-07', 0),
+(5, 8, 3, 45, '2018-05-24', 0);
 
 -- --------------------------------------------------------
 
@@ -219,6 +232,7 @@ ALTER TABLE `tbl_roles`
 -- Constraints for table `tbl_sessions`
 --
 ALTER TABLE `tbl_sessions`
+  ADD CONSTRAINT `doc-sessions` FOREIGN KEY (`docID`) REFERENCES `tbl_users` (`ID`),
   ADD CONSTRAINT `patient-sessions` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
