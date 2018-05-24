@@ -23,7 +23,9 @@ class Patient {
             if(isset($this->sessbill)){
                 $id = $conn->lastInsertId();
                 $now = date('Y-m-d');
-                $session = new Session(null, $id, $this->sessbill, $now, 0);
+                $session = new Session(null, $id, $this->docID, $this->sessbill, $now, 0);
+                $session->saveToDB($conn);
+                return TRUE;
             }
             return TRUE;
         }

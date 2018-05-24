@@ -76,10 +76,14 @@ if (isset($_POST['delete'])) {
     </nav>
 </section>
 <header>
-    <div class="search-field">
-        <i class="fas fa-search"></i>
-        <input type="text" name="" value="">
-    </div>
+    <div class="name-field">
+            <H1><?php 
+            $name = ($current_user->isDoctor())?"DR ":"";
+            $name .= strtoupper($current_user->firstname).", ";
+            $name .= strtoupper($current_user->lastname);
+            echo $name;
+            ?></H1>
+        </div>
     <div class="user-field">
         <a href="#"><i class="b far fa-question-circle"></i></a>
         <a href="#" class="notification"><i class="b fas fa-bell"></i><span class="circle">3</span></a>

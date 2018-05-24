@@ -1,8 +1,9 @@
 <?php
     class Session{
-        function __construct($ID, $patientID, $consultation_bill, $startdate, $paid){
+        function __construct($ID, $patientID, $docID, $consultation_bill, $startdate, $paid){
             $this->ID =$ID;
             $this->patientID = $patientID;
+            $this->docID = $docID;
             $this->consultation_bill = $consultation_bill;
             $this->startdate = $startdate;
             $this->paid = $paid;
@@ -11,7 +12,7 @@
             $query = "SELECT * FROM tbl_sessions WHERE ID=$ID";
             $stmt = $conn->query($query);
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
-            return new Session($ID, $result["patientID"], $result["consultation_bill"], $result['startdate'], $result["paid"]);
+            return new Session($ID, $result["patientID"], $result["docID"], $result["consultation_bill"], $result['startdate'], $result["paid"]);
         }
 
         static function getSessionFromPatient($conn, $patientID){
@@ -20,7 +21,7 @@
             $sessions = array();
             if($rows = $stmt->fetchall(PDO::FETCH_ASSOC)){
                 foreach($rows as $result){
-                    array_push($sessions, new Session($result['ID'], $result["patientID"], $result["consultation_bill"], $result['startdate'], $result["paid"]));
+                    array_push($sessions, new Session($result['ID'], $result["patientID"], $result["docID"],$result["consultation_bill"], $result['startdate'], $result["paid"]));
                 }
             }
             return $sessions;
@@ -31,11 +32,17 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Session($row["ID"], $row['patientID'], $row["consultation_bill"], $result['startdate'],$result["paid"]));
+                array_push($array, new Session($row["ID"], $row['patientID'], $result["docID"],$row["consultation_bill"], $result['startdate'],$result["paid"]));
             }
             return $array;
 
         }
+
+        function saveToDB($conn){
+            $query = "INSERT INTO tbl_sessions(ID, patientID, docID, consultation_bill, startdate, paid) VALUES(null, '$this->patientID', '$this->docID', '$this->consultation_bill', '$this->startdate', '$this->paid')";
+            $conn->exec($query);
+        }
+
         function getTotalBill($conn){
             $query = "SELECT ID FROM tbl_diagnosis WHERE sessionID=$ID";
             $stmt = $conn->query($query);
