@@ -48,7 +48,6 @@
         
             $patient = new Patient($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
             $patient->updateDB($conn);
-            // redirect("viewpatients.php");
 
         }
     }

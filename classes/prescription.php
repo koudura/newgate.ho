@@ -26,17 +26,17 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Prescription($row[$ID], $diagnosisID, $result["name"], $result["dosage"], $result["bill"]));
+                array_push($array, new Prescription($row["ID"], $diagnosisID, $row["name"], $row["dosage"], $row["bill"]));
             }
             return $array;            
         }
 
-        static function getAllPrescriptionsFromDB($conn, $diagnosisID){
-            $stmt = $conn->query("SELECT * FROM tbl_prescriptions WHERE diagnosisID = $diagnosisID");
+        static function getAllPrescriptionsFromDB($conn){
+            $stmt = $conn->query("SELECT * FROM tbl_prescriptions");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Prescription($row[$ID], $diagnosisID, $result["name"], $result["dosage"], $result["bill"]));
+                array_push($array, new Prescription($row["ID"], $row["diagnosisID"], $row["name"], $row["dosage"], $row["bill"]));
             }
             return $array;            
         }

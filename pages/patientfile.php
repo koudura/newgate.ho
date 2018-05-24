@@ -6,6 +6,7 @@ require_once("../classes/patient.php");
 require_once("../classes/allergy.php");
 require_once("../classes/session.php");
 require_once("../classes/diagnosis.php");
+require_once("../classes/prescription.php");
 
 session_start();
 $conn = connect();
@@ -27,28 +28,28 @@ if (isset($_GET['ID'])) {
 
 }
 
-if (isset($_POST['submitinfo'])) {
+// if (isset($_POST['submitinfo'])) {
 
-    if (date('Y-m-d') < Input::toMysqlDate(Input::post('dob'))) {
-        echo "<script>alert('Invalid Date');</script>";
-    } else {
-        $conn = connect();
-        $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
+//     if (date('Y-m-d') < Input::toMysqlDate(Input::post('dob'))) {
+//         echo "<script>alert('Invalid Date');</script>";
+//     } else {
+//         $conn = connect();
+//         $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
 
-        $id = Input::post('id');
-        $firstname = Input::post('firstname');
-        $lastname = Input::post('lastname');
-        $email = Input::post('email');
-        $phone_num = Input::post('phone_num');
-        $height = Input::post('height');
-        $weight = Input::post('weight');
-        $dob = Input::post('dob');
+//         $id = Input::post('id');
+//         $firstname = Input::post('firstname');
+//         $lastname = Input::post('lastname');
+//         $email = Input::post('email');
+//         $phone_num = Input::post('phone_num');
+//         $height = Input::post('height');
+//         $weight = Input::post('weight');
+//         $dob = Input::post('dob');
 
-        $patient = new Patient($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
-        $patient->updateDB($conn);
-        redirect("viewpatients.php");
-    }
-}
+//         $patient = new Patient($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
+//         $patient->updateDB($conn);
+//         redirect("viewpatients.php");
+//     }
+// }
 
 ?>
 
@@ -146,7 +147,12 @@ if (isset($_POST['submitinfo'])) {
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php
+                            $allergies = Allergy::getAllAllergies($conn, $id);
+                            foreach ($allergies as $allergy){
+                                echo "<tr><td>".$allergy->description."</td></tr>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -157,10 +163,21 @@ if (isset($_POST['submitinfo'])) {
                         <th>
                             Name
                         </th>
+                        <th>
+                            Dosage
+                        </th>
+                        <th>
+                            $ Bill
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-
+                        <?php
+                            $prescriptions = Prescription::getAllPrescriptionsFromPatient($conn, $id);
+                            foreach ($prescriptions as $prescription){
+                                echo "<tr><td>".$prescription->name."</td><td>".$prescription->dosage."</td><td>".$prescription->bill."</td></tr>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -180,11 +197,17 @@ if (isset($_POST['submitinfo'])) {
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <?php
+                            $diagnosiss = Diagnosis::getAllDiagnosisFromPatient($conn, $id);
+                            foreach ($diagnosiss as $diagnosis){
+                                $prescriptions = Prescription::getPrescriptionsFromDiagnosis($conn, $diagnosis->ID);
+                                $strng = "";
+                                foreach ($prescriptions as $prescription){
+                                    $strng .= $prescription->name." ";
+                                }
+                                echo "<tr><td>".$diagnosis->diagnosis."</td><td>".$diagnosis->date."</td><td>".$string."</td></tr>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -211,9 +234,10 @@ if (isset($_POST['submitinfo'])) {
                     </thead>
                     <tbody>
                     <?php
+                    $sessions = Session::getAllSessionsFromPatient($conn, $id);
                     foreach ($sessions as $sess) {
                         $docname = $sess->getDoctorName($conn);
-                        $paid = ($sess->paid == 1) ? "TRUE" : "FALSE";
+                        $paid = ($sess->paid == 1) ? "PAID" : "PENDING";
                         echo <<<_END
                                 <tr>
                                     <td>

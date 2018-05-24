@@ -26,7 +26,7 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Allergy($row[$ID], $patientID, $row["description"]));
+                array_push($array, new Allergy($row["ID"], $patientID, $row["description"]));
             }
             return $array;
         }
@@ -36,7 +36,7 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Allergy($row[$ID], $patientID, $row["description"]));
+                array_push($array, new Allergy($row["ID"], $patientID, $row["description"]));
             }
             return $array;
         }

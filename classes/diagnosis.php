@@ -33,12 +33,12 @@
             return $diagnoses;
         }
 
-        static function getAllDiagnosisFromDB($conn, $sessionID){
+        static function getAllDiagnosisFromDB($conn){
             $stmt = $conn->query("SELECT * FROM tbl_diagnosis WHERE sessionID = $sessionID");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Diagnosis($row["ID"], $sessionID, $row["diagnosis"], $result["ddate"]));
+                array_push($array, new Diagnosis($row["ID"], $sessionID, $row["diagnosis"], $row["ddate"]));
             }
             return $array;
         }
