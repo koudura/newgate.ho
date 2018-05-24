@@ -24,3 +24,16 @@
 #header-tab {
     margin-bottom: 20px;
 }
+
+#header-tab h3{
+    display: inline;
+}
+
+.emp{
+    display: inline;
+    color: rgb(14, 228, 6);
+}
+
+form{
+    display: inline;
+}

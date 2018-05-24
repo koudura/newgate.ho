@@ -60,24 +60,25 @@
 
         function getDoctorName($conn){
             $doc = $this->getDoctor($conn);
-            return $doc->firstname." ". $doc->lastname;
+            return "Dr. ".$doc->firstname." ".$doc->lastname;
         }
 
         function getTotalBill($conn){
-            $query = "SELECT ID FROM tbl_diagnosis WHERE sessionID=$ID";
+            $query = "SELECT ID FROM tbl_diagnosis WHERE sessionID=$this->ID";
             $stmt = $conn->query($query);
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $bill = 0;
             foreach ($result as $row) {
                 $diagnosisID = $row["ID"];
-                $query = "SELECT * FROM tbl_prescriptions WHERE diagnosisID=$ID";
+                $query = "SELECT * FROM tbl_prescriptions WHERE diagnosisID=$diagnosisID";
                 $stmt = $conn->query($query);
                 $result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
                 $array = array();
                 foreach ($result2 as $row2) {
-                    $bill += row2["bill"];
+                    $bill += $row2["bill"];
                 }
             }
+            return $bill+$this->consultation_bill;
             
         }
         function getDiagnosis($conn){

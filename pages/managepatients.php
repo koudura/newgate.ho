@@ -136,8 +136,18 @@
 </header>
 <section class="main-container">
     <div class="stuff">
-        <div id="header-tab" class="card">
-            <h3>SESSION #2 - IN-CHARGE: DR. Akande Adedeji - TOTAL BILL: $500</h3>
+        <div id="header-tab" >
+            <h3><?php
+            $conn = Connect();
+            $sess = SESSION::getLast($conn);
+            $name = $sess->getDoctorName($conn);
+            echo "<p class='emp'>SESSION</p> #".$sess->ID."   <p class='emp'>IN-CHARGE</p>: ".$name."   <p class='emp'>TOTAL BILL</p>: $".$sess->getTotalBill($conn);
+            ?>
+            </h3>
+            <form>
+                <input type='submit' name="paid" value="Paid" />
+                <input type='submit' name="paid" value="Pending" />
+            </form>
         </div>
         <div class="card">
             <div class="history_display">

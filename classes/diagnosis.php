@@ -8,7 +8,7 @@
         }
 
         function saveToDB($conn){
-            $query = "INSERT INTO tbl_diagnosis(ID, sessionID, diagnosis, ddate) VALUES(:ID, :sessionID, :diagnosis, :ddate)";
+            $query = "INSERT INTO tbl_diagnosis(ID, sessionID, diagnosis, date) VALUES(:ID, :sessionID, :diagnosis, :ddate)";
             $stmt = $conn->prepare($query);
             $stmt->execute(array('ID'=>null, 'sessionID'=>$this->sessionID, 'diagnosis'=>$this->diagnosis, 'ddate'=>$this->date));
         }
