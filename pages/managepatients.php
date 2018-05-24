@@ -36,8 +36,8 @@
             echo "<script>alert('Invalid Date');</script>";
         } else {
             $conn = connect();
-            
             $id = Input::post('pID');
+            $currentP = Patient::getPatientByID($conn,$id);
             $firstname = Input::post('firstname');
             $lastname = Input::post('lastname');
             $email = Input::post('email');
@@ -48,7 +48,7 @@
         
             $patient = new Patient($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
             $patient->updateDB($conn);
-            redirect("viewpatients.php");
+            // redirect("viewpatients.php");
 
         }
     }
@@ -56,33 +56,48 @@
     if (isset($_POST['submitallergy'])) {
 
         $id = Input::post('pID');
+        $currentP = Patient::getPatientByID($conn,$id);
         $desc = Input::post('desc');
         $allergy = new Allergy(null,$id,$desc);
         $allergy->saveToDB($conn);
-        redirect("viewpatients.php");   
+        // redirect("viewpatients.php");   
     }
 
     if (isset($_POST['submitdiag'])) {
-
+        $id = Input::post('pID');
+        $currentP = Patient::getPatientByID($conn,$id);
         $sess = Session::getLast($conn);
         $sessid = $sess->ID;
         $now = date('Y-m-d');
         $diagnosis = Input::post('diagnosis');
         $diag = new Diagnosis(null,$sessid,$diagnosis, $now);
         $diag->saveToDB($conn);
-        redirect("viewpatients.php");   
+        // redirect("viewpatients.php");   
     }
 
-    if (isset($_POST['submitprescript'])) {
-
+    if (isset($_POST['submitprescript'])) {        
+        $id = Input::post('pID');
+        $currentP = Patient::getPatientByID($conn,$id);
         $name = Input::post('name');
         $dosage = Input::post('dosage');
         $diagID = Input::post('diagnosisID');
         $bill = Input::post('bill');
         $pres = new Prescription(null,$diagID,$name, $dosage, $bill);
         $pres->saveToDB($conn);
-        redirect("viewpatients.php");   
+        // redirect("viewpatients.php");   
     }
+
+    
+
+    if (isset($_POST['paid'])) {        
+        $id = Input::post('pID');
+        $currentP = Patient::getPatientByID($conn,$id);
+        $paid = Input::post('paid'); 
+        $sess = Session::getLast($conn);
+        $sess->paid = ($paid=="Paid")?1:0;
+        $sess->updatePaid($conn);
+    }
+
 
 
 ?>
@@ -141,12 +156,14 @@
             $conn = Connect();
             $sess = SESSION::getLast($conn);
             $name = $sess->getDoctorName($conn);
-            echo "<p class='emp'>SESSION</p> #".$sess->ID."   <p class='emp'>IN-CHARGE</p>: ".$name."   <p class='emp'>TOTAL BILL</p>: $".$sess->getTotalBill($conn);
+            $status = ($sess->paid)?"PAID":"PENDING";
+            echo "<p class='emp'>SESSION</p> #".$sess->ID."   <p class='emp'>IN-CHARGE</p>: ".$name." <p class='emp'>TOTAL BILL</p>: $".$sess->getTotalBill($conn)." <p class='emp'>PAYMENT</p>: ".$status;
             ?>
             </h3>
-            <form>
-                <input type='submit' name="paid" value="Paid" />
-                <input type='submit' name="paid" value="Pending" />
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <input type="hidden" name="pID" value="<?php echo $currentP->ID;?>">
+                <input class="bodbut" type='submit' name="paid" value="Paid" />
+                <input class="bodbut" type='submit' name="paid" value="Pending" />
             </form>
         </div>
         <div class="card">
@@ -188,6 +205,7 @@
 
                 <div id="diagnosis" class="tabcontent">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                        <input type="hidden" name="pID" value="<?php echo $currentP->ID;?>">
                         <input class="inputext addp" type="text" name="diagnosis" placeholder="diagnosis"
                             value="" required><br>
                         <input id="add_diag" class="bodbut addp" type="submit" name="submitdiag" value="Add">
@@ -197,6 +215,7 @@
 
                 <div id="prescription" class="tabcontent">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <input type="hidden" name="pID" value="<?php echo $currentP->ID;?>">
                                 <input class="inputext addp" type="text" name="name" placeholder="prescription"
                                     value="" required><br>
                                 <input class="inputext addp" type="text" name="dosage" placeholder="dosage"

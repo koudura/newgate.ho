@@ -54,6 +54,12 @@
             $conn->exec($query);
         }
 
+        function updatePaid($conn){
+            $query = "UPDATE tbl_sessions SET paid='$this->paid' WHERE ID = $this->ID";
+            $conn->exec($query);
+
+        }
+
         function getDoctor($conn){
             return User::getUserWithID($conn, $this->docID);
         }
