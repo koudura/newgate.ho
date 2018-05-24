@@ -34,12 +34,12 @@ $current_user = getCurrentUserOrDie();
 </section>
 <header>
     <div class="name-field">
-        <H1><?php 
-        $name = ($current_user->isDoctor())?"DR ":"";
-        $name .= strtoupper($current_user->firstname).", ";
-        $name .= strtoupper($current_user->lastname);
-        echo $name;
-        ?></H1>
+        <H1><?php
+            $name = ($current_user->isDoctor()) ? "DR " : "";
+            $name .= strtoupper($current_user->firstname[0]) .  ", ";
+            $name .= ucwords($current_user->lastname);
+            echo $name;
+            ?></H1>
     </div>
     <div class="user-field">
         <a href="#"><i class="b far fa-question-circle"></i></a>
@@ -51,33 +51,40 @@ $current_user = getCurrentUserOrDie();
     </div>
 </header>
 <section class="source-container">
-<div class="col-4" >
+    <div class="col-4">
 
-				<div style="text-align: center border: 500px; border-radius: 500px border-color: black;">
-                <br><br>
-                <div class = "backg-image">
-					 <img src="../assets/images/Reggie.png" style="width: 90%; height: auto;"> 
-                </div>
-                <img src="../assets/images/Reggie.png" style="width: 90%; height: auto; border: 10px solid  rgb(182, 180, 180); border-radius: 500px; padding: 2px;">
-					<br><br> 
-                    <p style="font-size: 30px; line-height: 4px; letter-spacing: 2px;  margin-left: 20px; text-shadow: 1px 1px purple; text-align: center;"><b>Reggie Couz</b></p><br>
-</div>
-			</div>
-
-			<div class="col-5" style="color: white; text-align: center ">
-				<br><br>	
-					<hr width="50%" style="border: 1px solid blue">
-					<h2 style="text-shadow: 1px 1px purple; text-align: center; color: black;">MEDICAL PROFILE</h2>
-					<hr width="50%" style="border: 1px solid blue">
-					<br>
-                    <p><b>Status:</b> Administrator</p>
-                    <p><b>Date of birth:</b> june 28 1975</p>
-                    <p><b>Degree:</b> B.sc Medicine and Surgery</p><br>
+        <div style="text-align: center border: 500px; border-radius: 500px border-color: black;">
+            <br><br>
+            <div class="backg-image">
+                <img src="../assets/images/Reggie.png" style="width: 90%; height: auto;">
             </div>
-            
-            <aside class="col-12" style="text-align: center; color: white;  padding: 50px">
-		<hr width="100%" style="border: 1px solid blue">
-	</aside> 
+            <img src="../assets/images/Reggie.png"
+                 style="width: 90%; height: auto; border: 10px solid  rgb(182, 180, 180); border-radius: 500px; padding: 2px;">
+            <br><br>
+            <p style="font-size: 30px; line-height: 4px; letter-spacing: 2px;  margin-left: 20px; text-shadow: 1px 1px purple; text-align: center;">
+                <b><?php
+                    $name = ($current_user->isDoctor()) ? "Dr " : "";
+                    $name .= ucwords($current_user->firstname) . ", ";
+                    $name .= ucwords($current_user->lastname);
+                    echo $name;
+                    ?></b></p><br>
+        </div>
+    </div>
+
+    <div class="col-5" style="color: white; text-align: center ">
+        <br><br>
+        <hr width="50%" style="border: 1px solid blue">
+        <h2 style="text-shadow: 1px 1px purple; text-align: center; color: black;">MEDICAL PROFILE</h2>
+        <hr width="50%" style="border: 1px solid blue">
+        <br>
+        <p><b>Status:</b> Administrator</p>
+        <p><b>Date of birth:</b> june 28 1975</p>
+        <p><b>Degree:</b> B.sc Medicine and Surgery</p><br>
+    </div>
+
+    <aside class="col-12" style="text-align: center; color: white;  padding: 50px">
+        <hr width="100%" style="border: 1px solid blue">
+    </aside>
 </section>
 
 </body>

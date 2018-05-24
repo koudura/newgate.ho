@@ -6,7 +6,7 @@ require_once("../classes/patient.php");
 
 session_start();
 $current_user = getCurrentUserOrDie();
-if (!$current_user->isDoctor() && $current_user->isSupport()) {
+if (!$current_user->isDoctor() && !$current_user->isSupport()) {
     doUnauthorized();
 }
 $conn = connect();
@@ -83,6 +83,10 @@ $patients = Patient::getAllPatients($conn);
 
             <tbody>
             <?php foreach ($patients as $patient) {
+                $link ="";
+                if($current_user->isDoctor()){
+                    $link  = '<a href="managepatients.php?ID=$patient->ID"><button class="bodbut">Edit</button></a>';
+                }
                 echo <<<_END
             
             <tr>
@@ -93,7 +97,7 @@ $patients = Patient::getAllPatients($conn);
                 <td> $patient->email</td>
                 <td> 
                 <a href="patientfile.php?ID=$patient->ID"><button class="bodbut">View</button></a>
-                <a href="managepatients.php?ID=$patient->ID"><button class="bodbut">Edit</button></a>
+                $link
                 </td>
             </tr>
             

@@ -11,7 +11,7 @@ session_start();
 $conn = connect();
 
 $current_user = getCurrentUserOrDie();
-if (!$current_user->isDoctor() && $current_user->isSupport()) {
+if (!$current_user->isDoctor() && !$current_user->isSupport()) {
     doUnauthorized();
 }
 
@@ -111,7 +111,7 @@ if (isset($_POST['submitinfo'])) {
             <span class="user-name"><?php echo htmlspecialchars($currentP->firstname . " " . $currentP->lastname); ?></span>
             <span class="user-detail">ID <?php echo $currentP->ID; ?></span>
             <hr>
-            <div class="col-md-3">
+            <div class="col-md-9">
                 <span class="height txt">Height</span>
                 <span class="height val"><?php echo htmlspecialchars($currentP->height); ?></span>
             </div>
@@ -119,7 +119,7 @@ if (isset($_POST['submitinfo'])) {
                 <span class="weight txt">Weight</span>
                 <span class="weight val"><?php echo htmlspecialchars($currentP->weight); ?></span>
             </div>
-            <a class="edit_btn" href="managepatients.php?ID=<?php echo $currentP->ID; ?>">EDIT</a>
+            <a class="edit_btn" href="managepatients.php?ID=<?php echo $currentP->ID; ?>"><i class="fas fa-user-edit"></i>Edit</a>
         </div>
     </div>
     <div class="card-r">

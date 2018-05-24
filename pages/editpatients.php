@@ -6,7 +6,7 @@ require_once("../classes/patient.php");
 
 session_start();
 $current_user = getCurrentUserOrDie();
-if (!$current_user->isDoctor() && $current_user->isSupport()) {
+if (!$current_user->isDoctor() && !$current_user->isSupport()) {
     doUnauthorized();
 }
 

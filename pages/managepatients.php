@@ -12,7 +12,7 @@
 
 
     $current_user = getCurrentUserOrDie();
-    if (!$current_user->isDoctor() && $current_user->isSupport()) {
+    if (!$current_user->isDoctor() && !$current_user->isSupport()) {
         doUnauthorized();
     }
 
@@ -97,9 +97,6 @@
         $sess->paid = ($paid=="Paid")?1:0;
         $sess->updatePaid($conn);
     }
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -157,7 +154,7 @@
             $sess = SESSION::getLast($conn);
             $name = $sess->getDoctorName($conn);
             $status = ($sess->paid)?"PAID":"PENDING";
-            echo "<p class='emp'>SESSION</p> #".$sess->ID."    <p class='emp'>IN-CHARGE</p>: ".$name."  <p class='emp'>TOTAL BILL</p>: N ".$sess->getTotalBill($conn)." <p class='emp'>PAYMENT</p>: ".$status;
+            echo "<p class='emp'>SESSION</p> #".$sess->ID."    <p class='emp'>IN-CHARGE</p>: ".$name."  <p class='emp'>TOTAL BILL</p>: N".$sess->getTotalBill($conn)."  <p class='emp'>PAYMENT</p>: ".$status;
             ?>
             </h3>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
