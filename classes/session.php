@@ -39,6 +39,16 @@
 
         }
 
+        static function getLast($conn){
+            $query = "SELECT * FROM tbl_sessions ORDER BY ID DESC";
+            $stmt = $conn->query($query);
+            $session;
+            if($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $session = new Session($result['ID'], $result["patientID"], $result["docID"],$result["consultation_bill"], $result['startdate'], $result["paid"]);
+            }
+            return $session;
+        }
+
         function saveToDB($conn){
             $query = "INSERT INTO tbl_sessions(ID, patientID, docID, consultation_bill, startdate, paid) VALUES(null, '$this->patientID', '$this->docID', '$this->consultation_bill', '$this->startdate', '$this->paid')";
             $conn->exec($query);

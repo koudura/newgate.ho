@@ -4,8 +4,13 @@
     require_once("../classes/user.php");
     require_once("../classes/patient.php");
     require_once("../classes/diagnosis.php");
+    require_once("../classes/allergy.php");
+    require_once("../classes/prescription.php");
 
     session_start();
+    $conn = connect();
+
+
     $current_user = getCurrentUserOrDie();
     if (!$current_user->isDoctor() && $current_user->isSupport()) {
         doUnauthorized();
@@ -47,6 +52,38 @@
 
         }
     }
+
+    if (isset($_POST['submitallergy'])) {
+
+        $id = Input::post('pID');
+        $desc = Input::post('desc');
+        $allergy = new Allergy(null,$id,$desc);
+        $allergy->saveToDB($conn);
+        redirect("viewpatients.php");   
+    }
+
+    if (isset($_POST['submitdiag'])) {
+
+        $sess = Session::getLast($conn);
+        $sessid = $sess->ID;
+        $now = date('Y-m-d');
+        $diagnosis = Input::post('diagnosis');
+        $diag = new Diagnosis(null,$sessid,$diagnosis, $now);
+        $diag->saveToDB($conn);
+        redirect("viewpatients.php");   
+    }
+
+    if (isset($_POST['submitprescript'])) {
+
+        $name = Input::post('name');
+        $dosage = Input::post('dosage');
+        $diagID = Input::post('diagnosisID');
+        $bill = Input::post('bill');
+        $pres = new Prescription(null,$diagID,$name, $dosage, $bill);
+        $pres->saveToDB($conn);
+        redirect("viewpatients.php");   
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -113,9 +150,9 @@
 
                 <div id="allergies" class="tabcontent">
                     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                        <input class="inputext addp" type="hidden" name="id" value="<?php echo $patient->ID; ?>" required><br>
+                        <input class="inputext addp" type="hidden" name="pID" value="<?php echo $currentP->ID; ?>" required><br>
                         <input class="inputext addp" type="text" name="desc" placeholder="Description" required><br>
-                        <input class="bodbut addp" type="submit" name="submit" value="submit">
+                        <input class="bodbut addp" type="submit" name="submitallergy" value="submit">
                     </form>   
                 </div>
                 <div id="info" class="tabcontent">                    
@@ -141,30 +178,33 @@
 
                 <div id="diagnosis" class="tabcontent">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                                <input class="inputext addp" type="text" name="Diagnosis" placeholder="diagnosis"
-                                    value="<?php echo Input::htmlpost('diagnosis'); ?>" required><br>
-                                <input id="add_diag" class="bodbut addp" type="submit" name="add" value="Add">
-                            </form>
+                        <input class="inputext addp" type="text" name="diagnosis" placeholder="diagnosis"
+                            value="" required><br>
+                        <input id="add_diag" class="bodbut addp" type="submit" name="submitdiag" value="Add">
+                    </form>
                     
                 </div>
 
                 <div id="prescription" class="tabcontent">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                                <input class="inputext addp" type="text" name="prescription" placeholder="prescription"
-                                    value="<?php echo Input::htmlpost('prescription'); ?>" required><br>
+                                <input class="inputext addp" type="text" name="name" placeholder="prescription"
+                                    value="" required><br>
                                 <input class="inputext addp" type="text" name="dosage" placeholder="dosage"
                                     value="<?php echo Input::htmlpost('dosage'); ?>" required><br>
-                                <select class="inputext addp" >
+                                <input class="inputext addp" type="number" name="bill" placeholder="Bill"
+                                    value="<?php echo Input::htmlpost('bill'); ?>" required><br>
+                                <select class="inputext addp" name="diagnosisID" required>
                                     <?php
                                         $conn = connect();
-                                        $currentP = 1;
-                                        $diags = Diagnosis::getAllDiagnosisFromDB($conn, $currentP);
+                                        $lastSess = Session::getLast($conn);
+                                        $sessID = $lastSess->ID;
+                                        $diags = Diagnosis::getDiagnosisFromSession($conn, $sessID);
                                         foreach ($diags as $diag){
-                                            echo "<option value=".diag["id"].">".diag["diagnosis"]."</option>";
+                                            echo "<option value=".$diag->ID.">".$diag->diagnosis."</option>";
                                         }
                                     ?>
                                 </select><br>
-                                <input id="add_presc" class="bodbut addp" type="submit" name="add" value="Prescription">
+                                <input id="add_presc" class="bodbut addp" type="submit" name="submitprescript" value="Add Prescription">
                             </form>
                 </div>
 
