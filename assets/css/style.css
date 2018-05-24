@@ -30,7 +30,7 @@ header {
     box-shadow: 0 1px 5px 2px rgb(22, 107, 167);
 }
 
-header .search-field {
+header .name-field {
     display: inline-block;
     width: 50%;
     color: #A8B1B8;
@@ -93,14 +93,15 @@ header .user-field a {
 }
 
 .logo {
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 135px;
     margin-left: 20%;
 }
 
 #sideMenu {
     background: #2890C1;
     width: 280px;
+    height: 100vh;
     box-shadow: 0 -3px 1px rgb(77, 77, 77);
     position: absolute;
     bottom: 0;

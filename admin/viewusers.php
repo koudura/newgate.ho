@@ -44,9 +44,13 @@ $users = User::getAllUsers($conn);
     </nav>
 </section>
 <header>
-    <div class="search-field">
-        <i class="fas fa-search"></i>
-        <input type="text" name="" value="">
+    <div class="name-field">
+        <H1><?php 
+        $name = ($current_user->isDoctor())?"DR ":"";
+        $name .= strtoupper($current_user->firstname).", ";
+        $name .= strtoupper($current_user->lastname);
+        echo $name;
+        ?></H1>
     </div>
     <div class="user-field">
         <a href="#"><i class="b far fa-question-circle"></i></a>
@@ -82,7 +86,7 @@ $users = User::getAllUsers($conn);
                 <td> $user->lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
-                <td> <a href="/newgate.ho/admin/editusers.php?id=$user->id">Edit </a></td>
+                <td> <a href="../admin/editusers.php?id=$user->id">Edit </a></td>
             </tr>
 _END;
             }
