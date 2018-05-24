@@ -88,9 +88,9 @@ if (isset($_POST['submit'])) {
             <div class="history_display">
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'info')"><i class="fas fa-syringe"></i>Info</button>
-                    <button class="tablinks" onclick="openCity(event, 'diagnosis')"><i class="fas fa-clock"></i>Diagnosis</button>
-                    <button class="tablinks" onclick="openCity(event, 'prescription')"><i class="fas fa-phone"></i>Prescription</button>
-                    <button class="tablinks" onclick="openCity(event, 'allergies')"><i class="fas fa-phone"></i>Allergies</button>
+                    <button class="tablinks " onclick="openCity(event, 'diagnosis')"><i class="fas fa-clock"></i>Diagnosis</button>
+                    <button class="tablinks " onclick="openCity(event, 'prescription')"><i class="fas fa-phone"></i>Prescription</button>
+                    <button class="tablinks " onclick="openCity(event, 'allergies')"><i class="fas fa-phone"></i>Allergies</button>
                 </div>
 
                 <div id="allergies" class="tabcontent">
