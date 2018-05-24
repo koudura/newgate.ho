@@ -156,14 +156,14 @@
             $sess = SESSION::getLast($conn);
             $name = $sess->getDoctorName($conn);
             $status = ($sess->paid)?"PAID":"PENDING";
-            echo "<p class='emp'>SESSION</p> #".$sess->ID."   <p class='emp'>IN-CHARGE</p>: ".$name." <p class='emp'>TOTAL BILL</p>: $".$sess->getTotalBill($conn)." <p class='emp'>PAYMENT</p>: ".$status;
+            echo "<p class='emp'>SESSION</p> #".$sess->ID."    <p class='emp'>IN-CHARGE</p>: ".$name."  <p class='emp'>TOTAL BILL</p>: N ".$sess->getTotalBill($conn)." <p class='emp'>PAYMENT</p>: ".$status;
             ?>
             </h3>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <input type="hidden" name="pID" value="<?php echo $currentP->ID;?>">
                 <input class="bodbut" type='submit' name="paid" value="Paid" />
                 <input class="bodbut" type='submit' name="paid" value="Pending" />
-            </form>
+            </form
         </div>
         <div class="card">
             <div class="history_display">

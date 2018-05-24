@@ -50,15 +50,34 @@ $current_user = getCurrentUserOrDie();
         </a>
     </div>
 </header>
-<section class="main-container">
-    <div id="pers-info" class="card">
-        <div id="grid1">
-            <div id="grid2">
-                
-            </div>
-        </div>
-    </div>
+<section class="source-container">
+<div class="col-4" >
 
+				<div style="text-align: center border: 500px; border-radius: 500px border-color: black;">
+                <br><br>
+                <div class = "backg-image">
+					 <img src="../assets/images/Reggie.png" style="width: 90%; height: auto;"> 
+                </div>
+                <img src="../assets/images/Reggie.png" style="width: 90%; height: auto; border: 10px solid  rgb(182, 180, 180); border-radius: 500px; padding: 2px;">
+					<br><br> 
+                    <p style="font-size: 30px; line-height: 4px; letter-spacing: 2px;  margin-left: 20px; text-shadow: 1px 1px purple; text-align: center;"><b>Reggie Couz</b></p><br>
+</div>
+			</div>
+
+			<div class="col-5" style="color: white; text-align: center ">
+				<br><br>	
+					<hr width="50%" style="border: 1px solid blue">
+					<h2 style="text-shadow: 1px 1px purple; text-align: center; color: black;">MEDICAL PROFILE</h2>
+					<hr width="50%" style="border: 1px solid blue">
+					<br>
+                    <p><b>Status:</b> Administrator</p>
+                    <p><b>Date of birth:</b> june 28 1975</p>
+                    <p><b>Degree:</b> B.sc Medicine and Surgery</p><br>
+            </div>
+            
+            <aside class="col-12" style="text-align: center; color: white;  padding: 50px">
+		<hr width="100%" style="border: 1px solid blue">
+	</aside> 
 </section>
 
 </body>
