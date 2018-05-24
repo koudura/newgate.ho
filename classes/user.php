@@ -1,8 +1,9 @@
 <?php
 class User {
-    public $id, $email, $firstname, $lastname, $role;
+    public $id, $ID, $email, $firstname, $lastname, $role;
     function __construct($id, $email, $firstname, $lastname, $role){
         $this->id = $id;
+        $this->ID = $id;
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
