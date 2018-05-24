@@ -1,6 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
+@import url("https://fonts.googleapis.com/css?family=roboto:100,300,400,500,700");
 @import 'sass/_var.scss';
 
+@font-face {
+    font-family: 'roboto';
+    src: url("fonts/roboto/Roboto-Regular.ttf");
+    font-weight: inherit;
+    font-style: normal;
+}
 /*$blueDark: #166BA7;
 $blueLight: #2890C1;
 $grayDark: #A8B1B8;
@@ -12,7 +18,7 @@ $whiteWash : #FFFFFF;*/
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'roboto', sans-serif;
     margin: 0;
     background: #E2EBF6;
     height: 100vh;
