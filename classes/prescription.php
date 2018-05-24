@@ -22,7 +22,7 @@
         }
 
         static function getPrescriptionsFromDiagnosis($conn, $diagnosisID){
-            $stmt = $conn->query("SELECT * FROM tbl_prscriptions WHERE diagnosisID = $diagnosisID");
+            $stmt = $conn->query("SELECT * FROM tbl_prescriptions WHERE diagnosisID = $diagnosisID");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
@@ -31,8 +31,8 @@
             return $array;            
         }
 
-        static function getAllPrescreptionsFromDB($conn, $diagnosisID){
-            $stmt = $conn->query("SELECT * FROM tbl_prscriptions WHERE diagnosisID = $diagnosisID");
+        static function getAllPrescriptionsFromDB($conn, $diagnosisID){
+            $stmt = $conn->query("SELECT * FROM tbl_prescriptions WHERE diagnosisID = $diagnosisID");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
