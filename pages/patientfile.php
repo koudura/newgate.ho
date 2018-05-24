@@ -112,12 +112,12 @@ if (isset($_POST['submitinfo'])) {
             <span class="user-detail">ID <?php echo $currentP->ID; ?></span>
             <hr>
             <div class="col-md-3">
-                <span class="height">Height</span>
-                <span class="weight">Weight</span>
+                <span class="height txt">Height</span>
+                <span class="height val"><?php echo htmlspecialchars($currentP->height); ?></span>
             </div>
             <div class="col-md-9">
-                <span class="height"><?php echo htmlspecialchars($currentP->height); ?></span>
-                <span class="weight"><?php echo htmlspecialchars($currentP->weight); ?></span>
+                <span class="weight txt">Weight</span>
+                <span class="weight val"><?php echo htmlspecialchars($currentP->weight); ?></span>
             </div>
             <a class="edit_btn" href="managepatients.php?ID=<?php echo $currentP->ID; ?>">EDIT</a>
         </div>
@@ -139,11 +139,11 @@ if (isset($_POST['submitinfo'])) {
             <div id="allergies" class="tabcontent">
                 <table id="allegy_table" class="genTab">
                     <thead>
-                        <tr>
-                            <th>
-                                Description
-                            </th>
-                        </tr>
+                    <tr>
+                        <th>
+                            Description
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
 
@@ -180,11 +180,11 @@ if (isset($_POST['submitinfo'])) {
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -246,9 +246,9 @@ _END;
                         tabcontent[i].style.display = "none";
                     }
                     tablinks = document.getElementsByClassName("tablinks");
-                     for (i = 0; i < tablinks.length; i++) {
-                         tablinks[i].className = tablinks[i].className.replace(" active", "");
-                     }
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
                     document.getElementById(Name).style.display = "block";
                     evt.currentTarget.className += " active";
                 }
