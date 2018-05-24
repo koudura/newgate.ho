@@ -85,7 +85,7 @@ $patients = Patient::getAllPatients($conn);
             <?php foreach ($patients as $patient) {
                 $link ="";
                 if($current_user->isDoctor()){
-                    $link  = '<a href="managepatients.php?ID=$patient->ID"><button class="bodbut">Edit</button></a>';
+                    $link  = '<a href="managepatients.php?ID='.$patient->ID.'"><button class="bodbut">Edit</button></a>';
                 }
                 echo <<<_END
             
