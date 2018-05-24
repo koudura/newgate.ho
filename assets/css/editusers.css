@@ -1,15 +1,26 @@
-.addp {
-    margin: 20px;
-}
-
 .inputext {
     width: 90%;
 }
 
-#submit{
-    float: right;
+.checkmarc {
+    margin: 10px;
 }
 
-#card{
-    padding: 10px;
+.content {
+    margin-top: 20px;
+}
+
+.card {
+    margin-top: 50px;
+    padding-left: 20px;
+}
+
+.bodbut {
+    float: right;
+    margin-right: 10%;
+}
+
+.basictext {
+    font-family: roboto;
+    margin: 10px;
 }

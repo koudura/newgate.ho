@@ -2,6 +2,7 @@
 class User {
     public $id, $email, $firstname, $lastname, $role;
     function __construct($id, $email, $firstname, $lastname, $role){
+//        print_r($role);
         $this->id = $id;
         $this->email = $email;
         $this->firstname = $firstname;
@@ -19,6 +20,20 @@ class User {
             foreach($this->role as $r){
                 $stmt->execute();
             }
+        }
+    }
+
+    function updateToDB($conn){
+        $query = "UPDATE tbl_users SET email='$this->email', firstname='$this->firstname', lastname='$this->lastname'  WHERE ID=$this->id";
+        $conn->exec($query);
+        $query = "DELETE FROM tbl_roles WHERE userID=$this->id";
+        $conn->exec($query);
+        $query = "INSERT INTO tbl_roles(userID, role) VALUES($this->id, :role)";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":role", $r);
+        foreach($this->role as $r){
+            $stmt->execute();
+
         }
     }
 

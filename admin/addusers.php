@@ -82,7 +82,7 @@ if (isset($_POST["submit"])) {
                                    required>
                             <br>
                             <br>
-                            <div clas="container basictext">
+                            <div class="container basictext">
                                 <input class="checkmarc" id="rol1" type="checkbox" name="role[]" value="ADMIN">
                                 <label for="rol1">Admin</label>
                                 <br>
