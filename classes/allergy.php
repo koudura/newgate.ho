@@ -8,7 +8,6 @@
 
         function saveToDB($conn){
             $query = "INSERT INTO tbl_allergies(ID, patientID, description) VALUES(null, $this->patientID, '$this->description')";
-            print_r($query);
             if($conn->exec($query)){
                 return TRUE;
             }

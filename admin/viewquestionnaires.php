@@ -22,6 +22,7 @@ $quests = Questionnaire::getAll($conn);
     <meta charset="UTF-8">
 
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/viewquestionnaire.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/web-fonts-with-css/css/fontawesome-all.css">
@@ -86,6 +87,7 @@ _END;
 
             </tbody>
         </table>
+        <a id="addbtn" href="addquestionnaires.php"><button class="bodbut">Add</button></a>
     </div>
 </section>
 

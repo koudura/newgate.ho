@@ -1,0 +1,9 @@
+#pers-info{
+    width: 1000px;
+    height: 400px;
+    margin-left: 50px;
+}
+
+#pers-grid{
+    display: grid;
+}

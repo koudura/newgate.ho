@@ -86,7 +86,7 @@ $users = User::getAllUsers($conn);
                 <td> $user->lastname</td>
                 <td> $admin </td>
                 <td> $role </td>
-                <td> <a href="../admin/editusers.php?id=$user->id">Edit </a></td>
+                <td> <a href="../admin/editusers.php?id=$user->id"><button class="bodbut">Edit </button></a></td>
             </tr>
 _END;
             }
