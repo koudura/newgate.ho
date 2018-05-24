@@ -88,7 +88,7 @@ if (isset($_POST["submit"])) {
                                 <br>
                                 <input class="checkmarc" id="rol2" type="radio" name="role[]" value="DOCTOR">
                                 <label for="rol2">Doctor</label>
-                                <input class="checkmarc" id="rol3" type="radio" name="role[]" value="SUPPORT">
+                                <input class="checkmarc" id="rol3" type="radio" name="role[]" value="SUPPORT" checked>
                                 <label for="rol3">Support</label>
                             </div>
                             <br>

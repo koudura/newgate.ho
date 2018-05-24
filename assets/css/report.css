@@ -8,7 +8,7 @@
     font-size:2.5rem;
     font-weight:  400;
     margin-bottom: 5px;
-    margin-left: 40%
+    margin-left: 38%
 }
 
 h6 {
@@ -16,7 +16,7 @@ h6 {
     font-size:1.6rem;
     font-weight:  400;
     margin-bottom: 5px;
-    margin-left: 43%
+    margin-left: 40%
 }
 
 
@@ -24,7 +24,7 @@ h6 {
     color:  #A8B1B8;
     font-size: 0.8rem;
     margin-bottom: 10px;
-    margin-left: 42%
+    margin-left: 40%
 }
 
 .cards-r {
@@ -35,7 +35,7 @@ h6 {
     background-color: white;
     box-shadow: 3px 4px 5px rgb(77, 77, 77), 0 0 10px rgb(77, 77, 77);
     transition: all 0.3s ease-in-out;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
     margin-bottom: 10px;
     margin-left: 30%;
@@ -46,14 +46,19 @@ h6 {
     display: inline-block;
 }
 
-.col-md-3 {
-    padding: 0 15px;
-    display: inline-block;
+.edit_btn nav a{
+    text-decoration: none;
 }
 
+.edit_btn .fas{
+    background: #E2EBF6;;
+    border-radius: 60%;
+}
+.edit_btn:hover .fas{
+    color: #C50000;
+}
 
 .col-md-9 {
-    padding: 0 15px;
     display: inline-block;
 }
 
@@ -116,7 +121,7 @@ h6 {
     font-size: 1.6rem;
     font-weight: 800;
     display: inline-block;
-    text-decoration: overline #C50000;
+    text-align: right;
 }
 
 .height .val{
