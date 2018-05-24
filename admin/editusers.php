@@ -29,12 +29,9 @@
 <section id="sideMenu">
     <img class="logo" src="../assets/images/newgate.svg" alt="logo here">
     <nav>
-
-        <a href="viewusers.php" class="active dash_btn"><i class="fas fa-address-book"></i>User Explorer</a>
-        <a href="addusers.php" class="dash_btn"><i class="fas fa-address-book"></i>Add User</a>
-        <a href="viewquestionnaires.php" class="dash_btn"><i class="far fa-question-circle"></i>Questionnaire</a>
+        <a href="viewusers.php" class="dash_btn"><i class="fas fa-long-arrow-alt-left"></i>Back</a>
+        <a href="#" class="active dash_btn"><i class="fas fa-user-edit"></i>Edit User</a>
         <a href="../pages/dashboard.php" class="dash_btn"><i class="fas fa-home"></i>Home</a>
-        <a href="../logout.php" class="dash_btn"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </nav>
 </section>
 <header>

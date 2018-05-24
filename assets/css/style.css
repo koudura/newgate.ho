@@ -101,6 +101,7 @@ header .user-field a {
 #sideMenu {
     background: #2890C1;
     width: 280px;
+    height: 100vh;
     box-shadow: 0 -3px 1px rgb(77, 77, 77);
     position: absolute;
     bottom: 0;
