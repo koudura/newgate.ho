@@ -67,6 +67,17 @@ class User {
         return $users; 
 
     }
+
+    static function getDoctors($conn){
+        $users = self::getAllUsers($conn);
+        $result = array();
+        foreach ($users as $user) {
+            if ($user->isDoctor()){
+                array_push($result, $user);
+            }
+        }
+        return $result;
+    }
     
     function saveToSession(){        
         session_start();

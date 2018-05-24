@@ -19,23 +19,20 @@
         if(!$currentP){
             exit();
         }
-        $allergies = Allergy::getAllergyFromPatient($conn,$currentP->ID);
-        $sessions = Session::getSessionFromPatient($conn, $currentP->ID);
-
+        
     }
 
 
 
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['submitinfo'])) {
 
         if (date('Y-m-d') < Input::toMysqlDate(Input::post('dob'))) {
             echo "<script>alert('Invalid Date');</script>";
         } else {
-            var_dump($_POST);
             $conn = connect();
-            $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
-
+            
+            $id = Input::post('pID');
             $firstname = Input::post('firstname');
             $lastname = Input::post('lastname');
             $email = Input::post('email');
@@ -43,9 +40,10 @@
             $height = Input::post('height');
             $weight = Input::post('weight');
             $dob = Input::post('dob');
-
-            $patient = new Patient(NULL, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
-            $patient->saveToDB($conn);
+        
+            $patient = new Patient($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
+            $patient->updateDB($conn);
+            redirect("viewpatients.php");
 
         }
     }
@@ -118,21 +116,22 @@
                 </div>
                 <div id="info" class="tabcontent">                    
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <input type="hidden" name="pID" value="<?php echo $currentP->ID;?>">
                                 <input class="inputext addp" type="text" name="firstname" placeholder="firstname"
-                                    value="<?php echo Input::htmlpost('firstname'); ?>" required><br>
+                                    value="<?php echo htmlspecialchars($currentP->firstname); ?>" required><br>
                                 <input class="inputext addp" type="text" name="lastname" placeholder="lastname"
-                                    value="<?php echo Input::htmlpost('lastname'); ?>" required><br>
+                                    value="<?php echo htmlspecialchars($currentP->lastname); ?>" required><br>
                                 <input class="inputext addp" type="email" name="email" placeholder="email"
-                                    value="<?php echo Input::htmlpost('email'); ?>"><br>
+                                    value="<?php echo htmlspecialchars($currentP->email); ?>"><br>
                                 <input class="inputext addp" type="text" name="phone_num" placeholder="phone num"
-                                    value="<?php echo Input::htmlpost('phone_num'); ?>"><br>
+                                    value="<?php echo htmlspecialchars($currentP->phone_num); ?>"><br>
                                 <input class="inputext addp" type="date" name="dob" placeholder="date of birth"
-                                    value="<?php echo Input::htmlpost('dob'); ?>" required><br>
+                                    value="<?php echo htmlspecialchars($currentP->dob); ?>" required><br>
                                 <input class="inputext addp" type="number" name="height" placeholder="height"
-                                    value="<?php echo Input::htmlpost('height'); ?>"><br>
+                                    value="<?php echo htmlspecialchars($currentP->height); ?>"><br>
                                 <input class="inputext addp" type="number" name="weight" placeholder="weight"
-                                    value="<?php echo Input::htmlpost('weight'); ?>"><br>
-                                <input id="submit_info" class="bodbut addp" type="submit" name="submit" value="submit">
+                                    value="<?php echo htmlspecialchars($currentP->weight); ?>"><br>
+                                <input id="submit_info" class="bodbut addp" type="submit" name="submitinfo" value="submit">
                             </form>
                 </div>
 
