@@ -22,6 +22,35 @@
             $stmt->execute($data);
         }
 
+        function filledByUser($conn, $userID){
+            $stmt = $conn->prepare("SELECT * FROM tbl_user_questionnaires WHERE userID = :userID AND questionnaireID = :qID");
+            $data = array('userID'=> $userID, 'qID'=>$this->ID);
+            $stmt->execute($data);
+            $result = $stmt;
+            $bool = FALSE;
+            if($row = $stmt->fetch()){
+                $bool = TRUE;
+            }
+            return $bool;
+        }
+
+        function fillByUser($conn, $userID, $response){
+            $stmt = $conn->prepare("INSERT INTO tbl_user_questionnaires (ID, userID, questionnaireID, response ) VALUES (NULL, :userID, :qID, :response)");
+            $data = array('userID'=> $userID, 'qID'=>$this->ID, 'response'=>$response);
+            $stmt->execute($data);
+        }
+
+        // static function questionnaireFilledByUser($conn, $userID){
+        //     $stmt = $conn->prepare("SELECT * FROM tbl_user_questionnaires WHERE userID = :userID AND questionnaireID = :qID");
+        //     $data = array('userID'=> $userID, 'qID'=>$this->ID);
+        //     $result = $stmt->execute($data);
+        //     $bool = FALSE;
+        //     if($row = $result->fetch()){
+        //         $bool = TRUE;
+        //     }
+        //     return $bool;
+        // }
+
         static function getAll($conn){
             $stmt = $conn->query("SELECT * FROM tbl_questionnaires");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);

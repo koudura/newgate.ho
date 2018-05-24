@@ -1,13 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 24, 2018 at 11:37 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 24, 2018 at 04:17 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.0.29
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,8 +22,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_newgate`
 --
-CREATE DATABASE IF NOT EXISTS `db_newgate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_newgate`;
 
 -- --------------------------------------------------------
 
@@ -29,18 +30,20 @@ USE `db_newgate`;
 --
 
 DROP TABLE IF EXISTS `tbl_allergies`;
-CREATE TABLE `tbl_allergies` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_allergies` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `patientID` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `patient-allergies` (`patientID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_allergies`
 --
 
 INSERT INTO `tbl_allergies` (`ID`, `patientID`, `description`) VALUES
-(1, 1, 'rashes');
+(1, 8, 'Allergic to silverware');
 
 -- --------------------------------------------------------
 
@@ -49,21 +52,23 @@ INSERT INTO `tbl_allergies` (`ID`, `patientID`, `description`) VALUES
 --
 
 DROP TABLE IF EXISTS `tbl_diagnosis`;
-CREATE TABLE `tbl_diagnosis` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_diagnosis` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `sessionID` int(11) NOT NULL,
+  `patientID` int(11) NOT NULL,
   `diagnosis` varchar(255) NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ddate` date NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `session-diagnosis` (`sessionID`),
+  KEY `patient-diagnosis` (`patientID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_diagnosis`
 --
 
-INSERT INTO `tbl_diagnosis` (`ID`, `sessionID`, `diagnosis`, `date`) VALUES
-(1, 5, 'a', '2018-05-24 00:00:00'),
-(2, 5, 'malaria', '2018-05-24 00:00:00'),
-(3, 5, 'ss', '2018-05-24 00:00:00');
+INSERT INTO `tbl_diagnosis` (`ID`, `sessionID`, `patientID`, `diagnosis`, `ddate`) VALUES
+(1, 5, 8, 'Mild Disorientation', '2018-05-24');
 
 -- --------------------------------------------------------
 
@@ -72,16 +77,17 @@ INSERT INTO `tbl_diagnosis` (`ID`, `sessionID`, `diagnosis`, `date`) VALUES
 --
 
 DROP TABLE IF EXISTS `tbl_patients`;
-CREATE TABLE `tbl_patients` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_patients` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone_num` varchar(255) NOT NULL,
   `dob` date NOT NULL,
   `height` float DEFAULT NULL,
-  `weight` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `weight` float DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_patients`
@@ -101,22 +107,24 @@ INSERT INTO `tbl_patients` (`ID`, `firstname`, `lastname`, `email`, `phone_num`,
 --
 
 DROP TABLE IF EXISTS `tbl_prescriptions`;
-CREATE TABLE `tbl_prescriptions` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_prescriptions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `diagnosisID` int(11) NOT NULL,
+  `patientID` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `dosage` varchar(255) NOT NULL,
-  `bill` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `bill` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `diagnosis-prescription` (`diagnosisID`),
+  KEY `patient-prescription` (`patientID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_prescriptions`
 --
 
-INSERT INTO `tbl_prescriptions` (`ID`, `diagnosisID`, `name`, `dosage`, `bill`) VALUES
-(1, 1, 'sleep', '500 hrs', 678),
-(2, 2, 'lonart', '500 mg', 10000),
-(3, 2, 'co-artem', '500mg', 1200);
+INSERT INTO `tbl_prescriptions` (`ID`, `diagnosisID`, `patientID`, `name`, `dosage`, `bill`) VALUES
+(1, 1, 8, 'Effective Transmission', '5mg daily', 5000);
 
 -- --------------------------------------------------------
 
@@ -125,19 +133,20 @@ INSERT INTO `tbl_prescriptions` (`ID`, `diagnosisID`, `name`, `dosage`, `bill`) 
 --
 
 DROP TABLE IF EXISTS `tbl_questionnaires`;
-CREATE TABLE `tbl_questionnaires` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_questionnaires` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `jsonQ` varchar(60000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jsonQ` varchar(60000) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_questionnaires`
 --
 
 INSERT INTO `tbl_questionnaires` (`ID`, `title`, `jsonQ`) VALUES
-(1, 'Dummy Title', '{"1":"Question 1","2":"Question 2","3":"Question 3.5.5."}'),
-(2, 'Dummy Titler', '{"1": "Question 1", "2": "Question 2.5.5", "3": "Question 3"}');
+(1, 'Dummy Title', '{\"1\":\"Question 1\",\"2\":\"Question 2\",\"3\":\"Question 3.5.5.\"}'),
+(2, 'Dummy Titler', '{\"1\": \"Question 1\", \"2\": \"Question 2.5.5\", \"3\": \"Question 3\"}');
 
 -- --------------------------------------------------------
 
@@ -146,11 +155,13 @@ INSERT INTO `tbl_questionnaires` (`ID`, `title`, `jsonQ`) VALUES
 --
 
 DROP TABLE IF EXISTS `tbl_roles`;
-CREATE TABLE `tbl_roles` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_roles` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
-  `role` enum('ADMIN','DOCTOR','SUPPORT') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `role` enum('ADMIN','DOCTOR','SUPPORT') NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `userID` (`userID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_roles`
@@ -168,14 +179,17 @@ INSERT INTO `tbl_roles` (`ID`, `userID`, `role`) VALUES
 --
 
 DROP TABLE IF EXISTS `tbl_sessions`;
-CREATE TABLE `tbl_sessions` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_sessions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `patientID` int(11) NOT NULL,
   `docID` int(11) NOT NULL,
   `consultation_bill` float NOT NULL,
   `startdate` date NOT NULL,
-  `paid` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `paid` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `patient-sessions` (`patientID`),
+  KEY `doc-sessions` (`docID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_sessions`
@@ -186,7 +200,7 @@ INSERT INTO `tbl_sessions` (`ID`, `patientID`, `docID`, `consultation_bill`, `st
 (2, 2, 3, 300, '2018-05-08', 0),
 (3, 3, 1, 222, '2018-05-15', 0),
 (4, 4, 3, 44, '2018-05-07', 0),
-(5, 8, 3, 45, '2018-05-24', 1);
+(5, 8, 3, 45, '2018-05-24', 0);
 
 -- --------------------------------------------------------
 
@@ -195,13 +209,14 @@ INSERT INTO `tbl_sessions` (`ID`, `patientID`, `docID`, `consultation_bill`, `st
 --
 
 DROP TABLE IF EXISTS `tbl_users`;
-CREATE TABLE `tbl_users` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_users` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_users`
@@ -211,108 +226,30 @@ INSERT INTO `tbl_users` (`ID`, `email`, `firstname`, `lastname`, `password`) VAL
 (1, 'admin1@newgate.ho', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
 (3, 'doc1@newgate.ho', 'donald', 'doc', 'a5beb9d1b0e50129affe6e13e42d9e5f5942cda7');
 
---
--- Indexes for dumped tables
---
+-- --------------------------------------------------------
 
 --
--- Indexes for table `tbl_allergies`
---
-ALTER TABLE `tbl_allergies`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `patient-allergies` (`patientID`);
-
---
--- Indexes for table `tbl_diagnosis`
---
-ALTER TABLE `tbl_diagnosis`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `session-diagnosis` (`sessionID`);
-
---
--- Indexes for table `tbl_patients`
---
-ALTER TABLE `tbl_patients`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `tbl_prescriptions`
---
-ALTER TABLE `tbl_prescriptions`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `diagnosis-prescription` (`diagnosisID`);
-
---
--- Indexes for table `tbl_questionnaires`
---
-ALTER TABLE `tbl_questionnaires`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `tbl_roles`
---
-ALTER TABLE `tbl_roles`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `userID` (`userID`);
-
---
--- Indexes for table `tbl_sessions`
---
-ALTER TABLE `tbl_sessions`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `patient-sessions` (`patientID`),
-  ADD KEY `doc-sessions` (`docID`);
-
---
--- Indexes for table `tbl_users`
---
-ALTER TABLE `tbl_users`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Table structure for table `tbl_user_questionnaires`
 --
 
+DROP TABLE IF EXISTS `tbl_user_questionnaires`;
+CREATE TABLE IF NOT EXISTS `tbl_user_questionnaires` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `questionnaireID` int(11) NOT NULL,
+  `response` varchar(60000) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `user-filltable` (`userID`),
+  KEY `questionnaire-filltable` (`questionnaireID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
 --
--- AUTO_INCREMENT for table `tbl_allergies`
+-- Dumping data for table `tbl_user_questionnaires`
 --
-ALTER TABLE `tbl_allergies`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_diagnosis`
---
-ALTER TABLE `tbl_diagnosis`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tbl_patients`
---
-ALTER TABLE `tbl_patients`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `tbl_prescriptions`
---
-ALTER TABLE `tbl_prescriptions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tbl_questionnaires`
---
-ALTER TABLE `tbl_questionnaires`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `tbl_roles`
---
-ALTER TABLE `tbl_roles`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tbl_sessions`
---
-ALTER TABLE `tbl_sessions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `tbl_users`
---
-ALTER TABLE `tbl_users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+INSERT INTO `tbl_user_questionnaires` (`ID`, `userID`, `questionnaireID`, `response`) VALUES
+(1, 3, 2, '{\"1\":\"Ans1\",\"2\":\"Ans2\",\"3\":\"Ans3\"}');
+
 --
 -- Constraints for dumped tables
 --
@@ -327,13 +264,15 @@ ALTER TABLE `tbl_allergies`
 -- Constraints for table `tbl_diagnosis`
 --
 ALTER TABLE `tbl_diagnosis`
-  ADD CONSTRAINT `session-diagnosis` FOREIGN KEY (`sessionID`) REFERENCES `tbl_sessions` (`ID`);
+  ADD CONSTRAINT `patient-diagnosis` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `session-diagnosis` FOREIGN KEY (`sessionID`) REFERENCES `tbl_sessions` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_prescriptions`
 --
 ALTER TABLE `tbl_prescriptions`
-  ADD CONSTRAINT `diagnosis-prescription` FOREIGN KEY (`diagnosisID`) REFERENCES `tbl_diagnosis` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `diagnosis-prescription` FOREIGN KEY (`diagnosisID`) REFERENCES `tbl_diagnosis` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient-prescription` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_roles`
@@ -347,6 +286,15 @@ ALTER TABLE `tbl_roles`
 ALTER TABLE `tbl_sessions`
   ADD CONSTRAINT `doc-sessions` FOREIGN KEY (`docID`) REFERENCES `tbl_users` (`ID`),
   ADD CONSTRAINT `patient-sessions` FOREIGN KEY (`patientID`) REFERENCES `tbl_patients` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_user_questionnaires`
+--
+ALTER TABLE `tbl_user_questionnaires`
+  ADD CONSTRAINT `questionnaire-filltable` FOREIGN KEY (`questionnaireID`) REFERENCES `tbl_questionnaires` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user-filltable` FOREIGN KEY (`userID`) REFERENCES `tbl_users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
