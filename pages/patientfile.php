@@ -1,3 +1,57 @@
+<?php
+    require_once('../functions/conn.php');
+    require_once('../functions/functions.php');
+    require_once("../classes/user.php");
+    require_once("../classes/patient.php");
+    require_once("../classes/allergy.php");
+    require_once("../classes/session.php");
+    require_once("../classes/diagnosis.php");
+
+    session_start();
+    $conn = connect();
+
+    $current_user = getCurrentUserOrDie();
+    if (!$current_user->isDoctor() && $current_user->isSupport()) {
+        doUnauthorized();      
+    }
+
+    $currentP;
+    $sessions;
+    if(isset($_GET['ID'])){
+        $conn = connect();
+        $id = Input::get('ID');
+        $currentP = Patient::getPatientByID($conn,$id);
+        if($currentP){
+           $sessions = Session::getSessionFromPatient($conn,$id);
+        }
+        
+    }
+
+    if (isset($_POST['submitinfo'])){
+        
+        if ( date('Y-m-d') < Input::toMysqlDate(Input::post('dob')) ){
+            echo "<script>alert('Invalid Date');</script>";
+        }else{
+            $conn = connect();
+            $stmt = $conn->prepare("INSERT INTO tbl_patients (firstname, lastname, email,phone_num,dob,height,weight) VALUES (:firstname, :lastname, :email, :phone_num, :dob. :height, :weight)");
+            
+            $id = Input::post('id');
+            $firstname = Input::post('firstname');
+            $lastname = Input::post('lastname');
+            $email = Input::post('email');
+            $phone_num = Input::post('phone_num');
+            $height = Input::post('height');
+            $weight = Input::post('weight');
+            $dob = Input::post('dob');
+        
+            $patient = new Patient($id, $email, $firstname, $lastname, $phone_num, $dob, $height, $weight);
+            $patient->updateDB($conn);
+            redirect("viewpatients.php");
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,18 +105,18 @@
     <div class="cards">
         <div class="card">
             <div class="patient-img"></div>
-            <span class="user-name">#Patient Name</span>
-            <span class="user-detail">#Patient genger, #age, ref.no</span>
+            <span class="user-name"><?php echo htmlspecialchars($currentP->firstname." ".$currentP->lastname);?></span>
+            <span class="user-detail">ID <?php echo $currentP->ID;?></span>
             <hr>
             <div class="col-md-4">
                 <span class="height">Height</span>
                 <span class="weight">Weight</span>
             </div>
             <div class="col-md-4">
-                <span class="weight">#patient weight</span>
-                <span class="height">#patient height</span>
+                <span class="height"><?php echo htmlspecialchars($currentP->height); ?></span>
+                <span class="weight"><?php echo htmlspecialchars($currentP->weight); ?></span>
             </div>
-            <input type="button" class="edit_btn" name="" href="editpatient.php">
+            <a class="edit_btn" href="managepatients.php?ID=<?php echo $currentP->ID;?>">EDIT</a>
          </div>
         <div class="card">
 
@@ -93,12 +147,6 @@
                                     Start Date
                                 </th>
                                 <th>
-                                    End Date
-                                </th>
-                                <th>
-                                    No. of Prescription
-                                </th>
-                                <th>
                                     Session Bill(N)
                                 </th>
                                 <th>
@@ -106,6 +154,33 @@
                                 </th>
                             </tr>
                         </thead>
+                        <tbody>
+                        <?php
+                            foreach ($sessions as $sess) {
+                                $docname = $sess->getDoctorName($conn);
+                                $paid = ($sess->paid == 1)? "TRUE":"FALSE";
+                                echo <<<_END
+                                <tr>
+                                    <td>
+                                        $sess->ID
+                                    </td>
+                                    <td>
+                                        $docname
+                                    </td>
+                                    <td>
+                                        $sess->startdate
+                                    </td>
+                                    <td>
+                                        $sess->consultation_bill
+                                    </td>
+                                    <td>
+                                        $paid
+                                    </td>
+                                </tr>
+_END;
+                            }
+                        ?>                      
+                        </tbody>
                     </table>
                 </div>
                 <div id="contact" class="tabcontent">
