@@ -71,7 +71,7 @@ if (isset($_POST['delete'])) {
     <img class="logo" src="../assets/images/newgate.svg" alt="logo here">
     <nav>
         <a href="viewquestionnaires.php" class="dash_btn"><i class="fas fa-long-arrow-alt-left"></i>Back</a>
-        <a href="#" class="active dash_btn"><i class="far fa-question-circle"></i>Questionnaire</a>
+        <a href="#" class="active dash_btn"><i class="fas fa-question"></i>Questionnaire</a>
         <a href="../pages/dashboard.php" class="dash_btn"><i class="fas fa-home"></i>Home</a>
     </nav>
 </section>
