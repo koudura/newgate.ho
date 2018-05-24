@@ -9,7 +9,9 @@ $current_user = getCurrentUserOrDie();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/dashboard.css"/>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -49,6 +51,13 @@ $current_user = getCurrentUserOrDie();
     </div>
 </header>
 <section class="main-container">
+    <div id="pers-info" class="card">
+        <div id="grid1">
+            <div id="grid2">
+                
+            </div>
+        </div>
+    </div>
 
 </section>
 
