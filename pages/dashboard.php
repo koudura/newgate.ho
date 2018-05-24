@@ -10,6 +10,7 @@ $current_user = getCurrentUserOrDie();
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/dashboard.css"/>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -44,7 +45,35 @@ $current_user = getCurrentUserOrDie();
         </a>
     </div>
 </header>
-<div class="stuff"></div>
+<section class="source-container">
+<div class="col-4" >
+
+				<div style="text-align: center border: 500px; border-radius: 500px border-color: black;">
+                <br><br>
+                <div class = "backg-image">
+					 <img src="../assets/images/Reggie.png" style="width: 90%; height: auto;"> 
+                </div>
+                <img src="../assets/images/Reggie.png" style="width: 90%; height: auto; border: 10px solid  rgb(182, 180, 180); border-radius: 500px; padding: 2px;">
+					<br><br> 
+                    <p style="font-size: 30px; line-height: 4px; letter-spacing: 2px;  margin-left: 20px; text-shadow: 1px 1px purple; text-align: center;"><b>Reggie Couz</b></p><br>
+</div>
+			</div>
+
+			<div class="col-5" style="color: white; text-align: center ">
+				<br><br>	
+					<hr width="50%" style="border: 1px solid blue">
+					<h2 style="text-shadow: 1px 1px purple; text-align: center; color: black;">MEDICAL PROFILE</h2>
+					<hr width="50%" style="border: 1px solid blue">
+					<br>
+                    <p><b>Status:</b> Administrator</p>
+                    <p><b>Date of birth:</b> june 28 1975</p>
+                    <p><b>Degree:</b> B.sc Medicine and Surgery</p><br>
+            </div>
+            
+            <aside class="col-12" style="text-align: center; color: white;  padding: 50px">
+		<hr width="100%" style="border: 1px solid blue">
+	</aside> 
+</section>
 
 </body>
 </html>
