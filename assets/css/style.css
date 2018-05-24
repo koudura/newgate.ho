@@ -190,7 +190,7 @@ header .user-field a {
 }
 
 /* Create an active/current tablink class */
-.tab button .active {
+.tab .active {
     background-color: #166BA7;
     border-top: 5px solid #C50000;
 }
