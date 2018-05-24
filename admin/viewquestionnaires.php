@@ -38,7 +38,7 @@ $quests = Questionnaire::getAll($conn);
     <nav>
         <a href="viewusers.php" class="dash_btn"><i class="fas fa-address-book"></i>User Explorer</a>
         <a href="addusers.php" class="dash_btn"><i class="fas fa-plus-circle"></i>Add User</a>
-        <a href="#" class="active dash_btn"><i class="far fa-question-circle"></i>Questionnaire</a>
+        <a href="#" class="active dash_btn"><i class="fas fa-question"></i>Questionnaire</a>
         <a href="../pages/dashboard.php" class="dash_btn"><i class="fas fa-home"></i>Home</a>
         <a href="../logout.php" class="dash_btn"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </nav>
