@@ -1,4 +1,5 @@
 <?php
+    require_once('user.php');
     class Session{
         function __construct($ID, $patientID, $docID, $consultation_bill, $startdate, $paid){
             $this->ID =$ID;
@@ -41,6 +42,15 @@
         function saveToDB($conn){
             $query = "INSERT INTO tbl_sessions(ID, patientID, docID, consultation_bill, startdate, paid) VALUES(null, '$this->patientID', '$this->docID', '$this->consultation_bill', '$this->startdate', '$this->paid')";
             $conn->exec($query);
+        }
+
+        function getDoctor($conn){
+            return User::getUserWithID($conn, $this->docID);
+        }
+
+        function getDoctorName($conn){
+            $doc = $this->getDoctor($conn);
+            return $doc->firstname." ". $doc->lastname;
         }
 
         function getTotalBill($conn){
