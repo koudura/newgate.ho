@@ -65,7 +65,7 @@
     if (isset($_POST['submitdiag'])) {
         $id = Input::post('pID');
         $currentP = Patient::getPatientByID($conn,$id);
-        $sess = Session::getLast($conn);
+        $sess = Session::getLastForPatient($conn, $currentP->ID);
         $sessid = $sess->ID;
         $now = date('Y-m-d');
         $diagnosis = Input::post('diagnosis');
@@ -92,7 +92,7 @@
         $id = Input::post('pID');
         $currentP = Patient::getPatientByID($conn,$id);
         $paid = Input::post('paid'); 
-        $sess = Session::getLast($conn);
+        $sess = Session::getLastForPatient($conn, $currentP->ID);
         $sess->paid = ($paid=="Paid")?1:0;
         $sess->updatePaid($conn);
     }
@@ -153,7 +153,7 @@
         <div id="header-tab" >
             <h3><?php
             $conn = Connect();
-            $sess = SESSION::getLast($conn);
+            $sess = SESSION::getLastForPatient($conn, $currentP->ID);
             $name = $sess->getDoctorName($conn);
             $status = ($sess->paid)?"PAID":"PENDING";
             echo "<p class='emp'>SESSION</p> #".$sess->ID."    <p class='emp'>IN-CHARGE</p>: ".$name."  <p class='emp'>TOTAL BILL</p>: N ".$sess->getTotalBill($conn)." <p class='emp'>PAYMENT</p>: ".$status;
@@ -224,9 +224,10 @@
                                 <select class="inputext addp" name="diagnosisID" required>
                                     <?php
                                         $conn = connect();
-                                        $lastSess = Session::getLast($conn);
+                                        $lastSess = Session::getLastForPatient($conn, $currentP->ID);
                                         $sessID = $lastSess->ID;
                                         $diags = Diagnosis::getDiagnosisFromSession($conn, $sessID);
+                                        echo '<option value="" disabled selected> Please Select A Diagnosis</option>';
                                         foreach ($diags as $diag){
                                             echo "<option value=".$diag->ID.">".$diag->diagnosis."</option>";
                                         }

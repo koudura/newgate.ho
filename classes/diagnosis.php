@@ -39,9 +39,20 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Diagnosis($row["ID"], $sessionID, $result["patientID"], $row["diagnosis"], $result["ddate"]));
+                array_push($array, new Diagnosis($row["ID"], $sessionID, $row["patientID"], $row["diagnosis"], $row["ddate"]));
             }
             return $array;
+        }
+
+        static function getAllDiagnosisFromPatient($conn, $patientID){
+            $stmt = $conn->query("SELECT * FROM tbl_diagnosis WHERE patientID = $patientID");
+            $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+            $array = array();
+            foreach ($result as $row) {
+                array_push($array, new Diagnosis($row["ID"], $row["sessionID"], $row["patientID"], $row["diagnosis"], $row["ddate"]));
+            }
+            return $array;
+
         }
     }
 ?>

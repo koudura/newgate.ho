@@ -27,7 +27,7 @@
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
-                array_push($array, new Prescription($row["ID"], $diagnosisID, $result["patientID"], $result["name"], $result["dosage"], $result["bill"]));
+                array_push($array, new Prescription($row["ID"], $diagnosisID, $row["patientID"], $row["name"], $row["dosage"], $row["bill"]));
             }
             return $array;            
         }
@@ -40,6 +40,17 @@
                 array_push($array, new Prescription($row["ID"], $row["diagnosisID"], $row["patientID"], $row["name"], $result["dosage"], $row["bill"]));
             }
             return $array;            
+        }
+
+        static function getAllPrescriptionsFromPatient($conn, $patientID){
+            $stmt = $conn->query("SELECT * FROM tbl_prescriptions WHERE patientID=$patientID");
+            $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+            $array = array();
+            foreach ($result as $row) {
+                array_push($array, new Prescription($row["ID"], $row["diagnosisID"], $row["patientID"], $row["name"], $row["dosage"], $row["bill"]));
+            }
+            return $array;
+
         }
     }
 ?>

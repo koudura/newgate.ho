@@ -148,7 +148,7 @@ if (isset($_GET['ID'])) {
                     </thead>
                     <tbody>
                         <?php
-                            $allergies = Allergy::getAllAllergies($conn, $id);
+                            $allergies = Allergy::getAllergyFromPatient($conn, $id);
                             foreach ($allergies as $allergy){
                                 echo "<tr><td>".$allergy->description."</td></tr>";
                             }
@@ -197,7 +197,6 @@ if (isset($_GET['ID'])) {
                     </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
                         <?php
                             $diagnosiss = Diagnosis::getAllDiagnosisFromPatient($conn, $id);
                             foreach ($diagnosiss as $diagnosis){
@@ -206,22 +205,9 @@ if (isset($_GET['ID'])) {
                                 foreach ($prescriptions as $prescription){
                                     $strng .= $prescription->name." ";
                                 }
-                                echo "<tr><td>".$diagnosis->diagnosis."</td><td>".$diagnosis->date."</td><td>".$string."</td></tr>";
+                                echo "<tr><td>".$diagnosis->diagnosis."</td><td>".$diagnosis->date."</td><td>".$strng."</td></tr>";
                             }
                         ?>
-||||||| merged common ancestors
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-=======
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
->>>>>>> 2fc096df2f548bd3e85cba6d91799e6e976a3b88
                     </tbody>
                 </table>
             </div>

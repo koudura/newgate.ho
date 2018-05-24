@@ -31,8 +31,8 @@
             return $array;
         }
 
-        static function getAllAllergies($conn, $patientID){
-            $stmt = $conn->query("SELECT * FROM tbl_allergies WHERE patientID=$patientID");
+        static function getAllAllergies($conn){
+            $stmt = $conn->query("SELECT * FROM tbl_allergies");
             $result = $stmt->fetchall(PDO::FETCH_ASSOC);
             $array = array();
             foreach ($result as $row) {
