@@ -3,6 +3,7 @@ require_once('../functions/conn.php');
 require_once('../functions/functions.php');
 require_once("../classes/user.php");
 require_once("../classes/patient.php");
+require_once("../classes/diagnosis.php");
 
 session_start();
 $current_user = getCurrentUserOrDie();
@@ -47,7 +48,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/addpatients.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/managepatients.css"/>
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
@@ -80,48 +81,72 @@ if (isset($_POST['submit'])) {
 </header>
 <section class="main-container">
     <div class="stuff">
+        <div id="header-tab" class="card">
+            <h3>SESSION #2 - IN-CHARGE: DR. Akande Adedeji - TOTAL BILL: $500</h3>
+        </div>
         <div class="card">
-            <h3>Patient Report</h3>
             <div class="history_display">
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'allergies')"><i class="fas fa-syringe"></i>Allergies</button>
-                    <button class="tablinks" onclick="openCity(event, 'sessions')"><i class="fas fa-clock"></i>Sessions</button>
-                    <button class="tablinks" onclick="openCity(event, 'contact')"><i class="fas fa-phone"></i>Contact Details</button>
+                    <button class="tablinks active" onclick="openCity(event, 'info')"><i class="fas fa-syringe"></i>Info</button>
+                    <button class="tablinks" onclick="openCity(event, 'diagnosis')"><i class="fas fa-clock"></i>Diagnosis</button>
+                    <button class="tablinks" onclick="openCity(event, 'prescription')"><i class="fas fa-phone"></i>Prescription</button>
+                    <button class="tablinks" onclick="openCity(event, 'allergies')"><i class="fas fa-phone"></i>Allergies</button>
                 </div>
 
                 <div id="allergies" class="tabcontent">
+                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                        <input class="inputext addp" type="hidden" name="id" value="<?php echo $patient->ID; ?>" required><br>
+                        <input class="inputext addp" type="text" name="desc" placeholder="Description" required><br>
+                        <input class="bodbut addp" type="submit" name="submit" value="submit">
+                    </form>   
+                </div>
+                <div id="info" class="tabcontent">                    
+                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <input class="inputext addp" type="text" name="firstname" placeholder="firstname"
+                                    value="<?php echo Input::htmlpost('firstname'); ?>" required><br>
+                                <input class="inputext addp" type="text" name="lastname" placeholder="lastname"
+                                    value="<?php echo Input::htmlpost('lastname'); ?>" required><br>
+                                <input class="inputext addp" type="email" name="email" placeholder="email"
+                                    value="<?php echo Input::htmlpost('email'); ?>"><br>
+                                <input class="inputext addp" type="text" name="phone_num" placeholder="phone num"
+                                    value="<?php echo Input::htmlpost('phone_num'); ?>"><br>
+                                <input class="inputext addp" type="date" name="dob" placeholder="date of birth"
+                                    value="<?php echo Input::htmlpost('dob'); ?>" required><br>
+                                <input class="inputext addp" type="number" name="height" placeholder="height"
+                                    value="<?php echo Input::htmlpost('height'); ?>"><br>
+                                <input class="inputext addp" type="number" name="weight" placeholder="weight"
+                                    value="<?php echo Input::htmlpost('weight'); ?>"><br>
+                                <input id="submit_info" class="bodbut addp" type="submit" name="submit" value="submit">
+                            </form>
+                </div>
 
+                <div id="diagnosis" class="tabcontent">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <input class="inputext addp" type="text" name="Diagnosis" placeholder="diagnosis"
+                                    value="<?php echo Input::htmlpost('diagnosis'); ?>" required><br>
+                                <input id="add_diag" class="bodbut addp" type="submit" name="add" value="Add">
+                            </form>
+                    
                 </div>
-                <div id="sessions" class="tabcontent">
-                    <table id="sess_table" class="genTab">
-                        <thead>
-                        <tr>
-                            <th>
-                                Session Ref.No
-                            </th>
-                            <th>
-                                Doctor
-                            </th>
-                            <th>
-                                Start Date
-                            </th>
-                            <th>
-                                End Date
-                            </th>
-                            <th>
-                                No. of Prescription
-                            </th>
-                            <th>
-                                Session Bill(N)
-                            </th>
-                            <th>
-                                Paid Status
-                            </th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div id="contact" class="tabcontent">
+
+                <div id="prescription" class="tabcontent">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <input class="inputext addp" type="text" name="prescription" placeholder="prescription"
+                                    value="<?php echo Input::htmlpost('prescription'); ?>" required><br>
+                                <input class="inputext addp" type="text" name="dosage" placeholder="dosage"
+                                    value="<?php echo Input::htmlpost('dosage'); ?>" required><br>
+                                <select class="inputext addp" >
+                                    <?php
+                                        $conn = connect();
+                                        $currentP = 1;
+                                        $diags = Diagnosis::getAllDiagnosisFromDB($conn, $currentP);
+                                        foreach ($diags as $diag){
+                                            echo "<option value=".diag["id"].">".diag["diagnosis"]."</option>";
+                                        }
+                                    ?>
+                                </select><br>
+                                <input id="add_presc" class="bodbut addp" type="submit" name="add" value="Prescription">
+                            </form>
                 </div>
 
                 <script>
@@ -139,27 +164,6 @@ if (isset($_POST['submit'])) {
                         evt.currentTarget.className += "active";
                     }
                 </script>
-            </div>
-        </div>
-        <div class="middlegrid">
-            <div id="card" class="card">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <input class="inputext addp" type="text" name="firstname" placeholder="firstname"
-                           value="<?php echo Input::htmlpost('firstname'); ?>" required><br>
-                    <input class="inputext addp" type="text" name="lastname" placeholder="lastname"
-                           value="<?php echo Input::htmlpost('lastname'); ?>" required><br>
-                    <input class="inputext addp" type="email" name="email" placeholder="email"
-                           value="<?php echo Input::htmlpost('email'); ?>"><br>
-                    <input class="inputext addp" type="text" name="phone_num" placeholder="phone num"
-                           value="<?php echo Input::htmlpost('phone_num'); ?>"><br>
-                    <input class="inputext addp" type="date" name="dob" placeholder="date of birth"
-                           value="<?php echo Input::htmlpost('dob'); ?>" required><br>
-                    <input class="inputext addp" type="number" name="height" placeholder="height"
-                           value="<?php echo Input::htmlpost('height'); ?>"><br>
-                    <input class="inputext addp" type="number" name="weight" placeholder="weight"
-                           value="<?php echo Input::htmlpost('weight'); ?>"><br>
-                    <input id="submit" class="bodbut addp" type="submit" name="submit" value="submit">
-                </form>
             </div>
         </div>
     </div>

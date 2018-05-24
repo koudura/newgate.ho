@@ -67,4 +67,9 @@ class Patient {
 
     }
 
+    function getCurrentSession($conn){
+        #get session with latest start date
+        return 1;
+    }
+
 }
