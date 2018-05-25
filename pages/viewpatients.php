@@ -37,6 +37,7 @@ $patients = Patient::getAllPatients($conn);
     <nav>
         <a href="#" class="active dash_btn"><i class="fas fa-file-alt"></i>Patients Explorer</a>
         <a href="addpatients.php" class="dash_btn"><i class="fas fa-plus-circle"></i>Add Patient</a>
+        <a href="viewquestionnaires.php" class="dash_btn"><i class="fas fa-question"></i>Questionnaire</a>
         <a href="../pages/dashboard.php" class="dash_btn"><i class="fas fa-home"></i>Home</a>
         <a href="../logout.php" class="dash_btn"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </nav>
